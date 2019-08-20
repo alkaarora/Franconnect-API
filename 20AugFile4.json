@@ -1,0 +1,2906 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "FranConnect API",
+    "termsOfService": "",
+    "contact": {
+      "name": "FranConnect"
+    }
+  },
+  "basePath": "/manage-finance",
+  "tags": [
+    {
+      "name": "REST API",
+      "description": "<h3 class=\"western\">REST API Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "Sales - Lead",
+      "description": "A lead is a prospect who has shown interest in acquiring a franchisee location."
+    },
+    {
+      "name": "Sales - Compliance",
+      "description": "This section details about the contract and financial agreement associated with the franchise process."
+    },
+    {
+      "name": "Sales - Additional Contacts",
+      "description": "This section details about the contact records of a lead."
+    },
+    {
+      "name": "Sales - Call",
+      "description": "This section details about the calls that are logged to a lead."
+    },
+    {
+      "name": "Sales - Mail",
+      "description": "This section details about the communication between the lead and members of the sales team"
+    },
+    {
+      "name": "Sales - Personal Profile",
+      "description": "This section details about the lead’s employment history, finances and other related details."
+    },
+    {
+      "name": "Sales - Sales Qualification",
+      "description": "This section provides details about qualification of a prospect who has shown interest in acquiring a franchisee location"
+    },
+    {
+      "name": "Sales - Real Estate",
+      "description": "This section details about the Physical location of the desired franchise."
+    },
+    {
+      "name": "Sales - Task",
+      "description": "The task form for Franchise Sales provides options for logging and assigning a task to various members of the franchise sales team."
+    },
+    {
+      "name": "Sales - Visit",
+      "description": "This section details about the visit day and the visits outcome."
+    },
+    {
+      "name": "Sales - Remark",
+      "description": "The Remark section contains the logging information or actions that don’t fit the Call or Task format. Remarks are displayed in the Activity History section of the lead record."
+    }
+  ],
+  "paths": {
+    "/dataservices/create": {
+      "post": {
+        "tags": [
+          "Sales - Lead"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to create a new lead in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to create a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to create the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Sales_Lead",
+        "consumes": [
+          "application/xml"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/xml": {
+              "schema": {
+                "$ref": "#/definitions/createLeadRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve": {
+      "post": {
+        "tags": [
+          "Sales - Lead"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the “Primary Info” for existing leads. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Sales_Lead",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update": {
+      "post": {
+        "tags": [
+          "Sales - Lead"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the “Primary Info” for existing leads. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Sales_Lead",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete": {
+      "post": {
+        "tags": [
+          "Sales - Lead"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete leads from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Sales_Lead",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/compliance": {
+      "post": {
+        "tags": [
+          "Sales - Compliance"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Compliance",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/Compliance retrieve": {
+      "post": {
+        "tags": [
+          "Sales - Compliance"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Compliance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Compliance": {
+      "post": {
+        "tags": [
+          "Sales - Compliance"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Compliance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Compliance": {
+      "post": {
+        "tags": [
+          "Sales - Compliance"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Compliance",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Additional Contacts": {
+      "post": {
+        "tags": [
+          "Sales - Additional Contacts"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Additional Contacts in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to insert Additional Contacts using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Additional Contacts. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Additional_Contacts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/Additional Contacts retrieve": {
+      "post": {
+        "tags": [
+          "Sales - Additional Contacts"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Additional Contacts data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Additional Contacts data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Additional Contacts data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Additional_Contacts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Additional Contacts": {
+      "post": {
+        "tags": [
+          "Sales - Additional Contacts"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Additional Contacts data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update Additional Contacts data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Additional Contacts data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Additional_Contacts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Additional Contacts": {
+      "post": {
+        "tags": [
+          "Sales - Additional Contacts"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Additional Contacts from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Additional Contacts using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Additional Contacts. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Additional_Contacts",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create call": {
+      "post": {
+        "tags": [
+          "Sales - Call"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Call data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Call data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Call data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Call",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Call": {
+      "post": {
+        "tags": [
+          "Sales - Call"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Call data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Call data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Call data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Call",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Call": {
+      "post": {
+        "tags": [
+          "Sales - Call"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Calls data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Calls data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Call data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Call",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Call": {
+      "post": {
+        "tags": [
+          "Sales - Call"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Call data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Call data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Call data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Call",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Mail": {
+      "post": {
+        "tags": [
+          "Sales - Mail"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Mail data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Mail data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Mail data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Mail",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "<fcRequest><fsMail><parentReferenceId>913876581</parentReferenceId><cc>shane.watson@yahoo.com</cc><bcc>larry.page@yahoo.com</bcc><subject>Regarding Franchisee Details</subject><mailText>Hello ! This is to bring in your kind knowledge that we are providing you the fulldetails to being a franchisee.</mailText><mailFrom>kayne.west@yahoo.com</mailFrom></fsMail></fcRequest>"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Mail": {
+      "post": {
+        "tags": [
+          "Sales - Mail"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Mail data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Mail data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Mail data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Mail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  "<fcRequest><fsMail><parentReferenceId>913876581</parentReferenceId><cc>shane.watson@yahoo.com</cc><bcc>larry.page@yahoo.com</bcc><subject>Regarding Franchisee Details</subject><mailText>Hello ! This is to bring in your kind knowledge that we are providing you the fulldetails to being a franchisee.</mailText><mailFrom>kayne.west@yahoo.com</mailFrom></fsMail></fcRequest>"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Mail": {
+      "post": {
+        "tags": [
+          "Sales - Mail"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Mail data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Mail data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Mail data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Mail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Mail": {
+      "post": {
+        "tags": [
+          "Sales - Mail"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Mail data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Mail data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Mail data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Mail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Personal Profile": {
+      "post": {
+        "tags": [
+          "Sales - Personal Profile"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Personal Profile data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Personal Profile data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Personal Profile data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Personal_Profile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Personal Profile": {
+      "post": {
+        "tags": [
+          "Sales - Personal Profile"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Personal Profile data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Personal Profile data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Personal Profile data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Personal_Profile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Personal Profile": {
+      "post": {
+        "tags": [
+          "Sales - Personal Profile"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Personal Profile data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Personal Profile data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Personal Profile data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Personal_Profile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Personal Profile": {
+      "post": {
+        "tags": [
+          "Sales - Personal Profile"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Personal Profile data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Personal Profile data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Personal Profile data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Retrieve_Personal_Profile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Sales Qualification": {
+      "post": {
+        "tags": [
+          "Sales - Sales Qualification"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Qualification data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Qualification data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Qualification data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Sales_Qualification",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Sales Qualification": {
+      "post": {
+        "tags": [
+          "Sales - Sales Qualification"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Qualification data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Qualification data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Qualification data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Sales_Qualification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Qualification": {
+      "post": {
+        "tags": [
+          "Sales - Sales Qualification"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Qualification data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Qualification data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Qualification data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Sales_Qualification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Sales Qualification": {
+      "post": {
+        "tags": [
+          "Sales - Sales Qualification"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Qualification data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Qualification data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Qualification data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Sales_Qualification",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Real Estate": {
+      "post": {
+        "tags": [
+          "Sales - Real Estate"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Real Estate data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Real Estate data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Real Estate data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Real_Estate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Real Estate": {
+      "post": {
+        "tags": [
+          "Sales - Real Estate"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Real Estate data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Real Estate data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Real Estate data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Real_Estate",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Real Estate": {
+      "post": {
+        "tags": [
+          "Sales - Real Estate"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Real Estate data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Real Estate data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Real Estate data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Real_Estate",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Real Estate": {
+      "post": {
+        "tags": [
+          "Sales - Real Estate"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Real Estate data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Real Estate data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Real Estate data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Real_Estate",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Sales Task": {
+      "post": {
+        "tags": [
+          "Sales - Task"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Task data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Task data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Task data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Task",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Task": {
+      "post": {
+        "tags": [
+          "Sales - Task"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Task data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Task data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Task data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Task",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Task": {
+      "post": {
+        "tags": [
+          "Sales - Task"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Task data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Task data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Task data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Task",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Task": {
+      "post": {
+        "tags": [
+          "Sales - Task"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Task data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Task data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Task data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Task",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Sales Visit": {
+      "post": {
+        "tags": [
+          "Sales - Visit"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Visit data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Visit data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Visit data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Visit",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Visit": {
+      "post": {
+        "tags": [
+          "Sales - Visit"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Visit data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Visit data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Visit data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Visit",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Visit": {
+      "post": {
+        "tags": [
+          "Sales - Visit"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Visit data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Visit data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Visit data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Visit",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Visit": {
+      "post": {
+        "tags": [
+          "Sales - Visit"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Visit data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Visit data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Visit data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Visit",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/create Sales Remark": {
+      "post": {
+        "tags": [
+          "Sales - Remark"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to insert Sales Remark data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Remark data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to insert Sales Remark data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "operationId": "Create_Remark",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/PaymentFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/NewPaymentFilter"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve Remark": {
+      "post": {
+        "tags": [
+          "Sales - Remark"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Remark data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Remark data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Remark data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "operationId": "Retrieve_Remark",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/update Remark": {
+      "post": {
+        "tags": [
+          "Sales - Remark"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Remark data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Remark data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the the Sales Remark data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Update_Remark",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/delete Remark": {
+      "post": {
+        "tags": [
+          "Sales - Remark"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Remark data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Remark data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Remark data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "operationId": "Delete_Remark",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/kpicategories"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/royalties/filter": {
+      "post": {
+        "tags": [
+          "Finance - Royalties"
+        ],
+        "summary": "Retrieve Royalty Invoices",
+        "description": "<p class=\"western\">Royalty reports are generated on the basis of sales submitted for the locations and can be retrieved in a similar way as retrieving a sales report. To retrieve a royalty report, a POST type of request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/royalties/filter\">https://skyapi.franconnect.net/manage-finance/royalties/filter</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/royalties/filter\">https://skyapi.franconnectuat.net/manage-finance/royalties/filter</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the constraints that would be used to filter out the royalty invoice(s).</p></li></ol><p class=\"western\">Here is a list of all the attributes that can be used as constraints while retrieving royalty reports along with the &ldquo;clauses&rdquo; that are supported for each constraint.</p><p class=\"western\">&nbsp;</p><center><table width=\"735\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"134\" /> <col width=\"253\" /> <col width=\"223\" /> <col width=\"66\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"134\" height=\"30\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"253\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applicable Clauses</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"66\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseRoyaltyID</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the Royalty Invoicce</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"9\"><p class=\"western\"><strong>invoiceNO</strong></p></td><td width=\"253\"><p class=\"western\">Royalty Invoice Number as seen in UI</p></td><td width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"85\"><p class=\"western\"><strong>invoiceDate</strong></p></td><td width=\"253\"><p class=\"western\">Invoice Date</p></td><td width=\"223\"><p class=\"western\">EQUAL, GREATER_THAN,</p><p class=\"western\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"66\"><p class=\"western\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>paymentStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Payment Status</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p>",
+        "operationId": "Retrieve_Royalty_Invoices",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "salesFilter",
+            "description": "ParameterType:PaymentFilter",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/RoyaltyFilter"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/financeCategories"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Character": {
+      "type": "object",
+      "title": "Character"
+    },
+    "FilterConstraint": {
+      "type": "object",
+      "title": "FilterConstraint",
+      "description": "This model is used for filter-contraints having field operation and values "
+    },
+    "Map«string,List«Map«string,object»»»": {
+      "type": "object",
+      "title": "Map«string,List«Map«string,object»»»",
+      "additionalProperties": {
+        "$ref": "#/definitions/List"
+      }
+    },
+    "Map«string,object»": {
+      "type": "object",
+      "title": "Map«string,object»",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "Map«string,string»": {
+      "type": "object",
+      "title": "Map«string,string»",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "Page": {},
+    "PaymentFilter": {},
+    "ProfitLossFilter": {},
+    "Response«Result«List«List«Map«string,string»»»»»": {},
+    "Response«Result«List«Map«string,List«Map«string,object»»»»»»": {},
+    "Response«Result«List«Map«string,object»»»»": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/Result«List«Map«string,object»»»"
+        }
+      },
+      "title": "Response«Result«List«Map«string,object»»»»"
+    },
+    "Result«List«List«Map«string,string»»»»": {},
+    "List": {},
+    "Result«List«Map«string,List«Map«string,object»»»»»": {},
+    "Result«List«Map«string,object»»»": {},
+    "RoyaltyFilter": {},
+    "SalesFilter": {},
+    "Sort": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "ASC",
+            "DESC"
+          ]
+        }
+      },
+      "title": "Sort"
+    },
+    "createLeadRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": [
+      "<fcRequest><fsMail><parentReferenceId>913876581</parentReferenceId><cc>shane.watson@yahoo.com</cc><bcc>larry.page@yahoo.com</bcc><subject>Regarding Franchisee Details</subject><mailText>Hello ! This is to bring in your kind knowledge that we are providing you the fulldetails to being a franchisee.</mailText><mailFrom>kayne.west@yahoo.com</mailFrom></fsMail></fcRequest>"
+      ]
+    },
+    "NewPaymentFilter": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "response": {
+          "data": [
+            {
+              "298031988": {
+                "paymentMappingId": "298031988",
+                "paymentID": "1708095951",
+                "franchiseRoyaltyId": "1928694199",
+                "invoiceNo": "6",
+                "paymentNo": "1",
+                "amountApplied": "35.00",
+                "dateApplied": "2019-06-26 08:32:12",
+                "franchiseeNo": "403951414",
+                "parentId": null,
+                "royaltyType": "All",
+                "dateReceived": "2019-06-26",
+                "collectionMethod": "Cash",
+                "refNo": "",
+                "submitDate": "2019-06-26 08:32:11",
+                "openBalance": "0.0",
+                "memo": "test"
+              },
+              "497802296": {
+                "paymentMappingId": "497802296",
+                "paymentID": "1708095951",
+                "franchiseRoyaltyId": "1928694199",
+                "invoiceNo": "6",
+                "paymentNo": "1",
+                "amountApplied": "350.00",
+                "dateApplied": "2019-06-26 08:32:11",
+                "franchiseeNo": "403951414",
+                "parentId": null,
+                "royaltyType": "All",
+                "dateReceived": "2019-06-26",
+                "collectionMethod": "--",
+                "refNo": "",
+                "submitDate": "2019-06-26 08:32:11",
+                "openBalance": "0.0",
+                "memo": "test"
+              },
+              "732473447": {
+                "paymentMappingId": "732473447",
+                "paymentID": "1708095951",
+                "franchiseRoyaltyId": "1928694199",
+                "invoiceNo": "6",
+                "paymentNo": "1",
+                "amountApplied": "215.0",
+                "dateApplied": "2019-06-26 08:32:12",
+                "franchiseeNo": "403951414",
+                "parentId": null,
+                "royaltyType": "All",
+                "dateReceived": "2019-06-26",
+                "collectionMethod": "--",
+                "refNo": "",
+                "submitDate": "2019-06-26 08:32:11",
+                "openBalance": "0.0",
+                "memo": "test"
+              },
+              "response": "Success"
+            }
+          ],
+          "page": null
+        }
+      }
+    },
+    "createSales": {},
+    "salesRetrieve": {},
+    "salesUpdate": {},
+    "financeCategories": {},
+    "kpicategories": {},
+    "additionalLineItems": {},
+    "salesReportPeriod": {},
+    "salesStatus": {},
+    "salesReportType": {}
+  }
+}
