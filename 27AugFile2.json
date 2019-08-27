@@ -200,7 +200,7 @@
       }
     },
     "requestBodies": {
-      "FSCreateLeadlArray": {
+      "FSCreateLeadArray": {
         "content": {
           "application/json": {
             "schema": {
