@@ -140,7 +140,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/FSEmailArray"
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
         }
       }
     }
@@ -215,7 +215,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/FSEmail"
+                "$ref": "#/components/schemas/FSCreateLead"
               },
               "xml": {
                 "name": "fcRequest",
