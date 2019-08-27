@@ -27,7 +27,9 @@
     {
       "name": "Introduction",
       "tags": [
-        "Introduction"
+        "Introduction",
+        "Security and Authorization",
+        "Error Codes"
       ]
     }
   ],
