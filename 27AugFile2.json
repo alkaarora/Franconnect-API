@@ -195,7 +195,7 @@
           }
         },
         "xml": {
-          "name": "fsCreateLead"
+          "name": "fsMail"
         }
       }
     },
