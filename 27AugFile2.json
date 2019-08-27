@@ -82,12 +82,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/FSEmail"
+                  "$ref": "#/components/schemas/FSCreateLead"
                 }
               },
               "application/xml": {
                 "schema": {
-                  "$ref": "#/components/schemas/FSEmail"
+                  "$ref": "#/components/schemas/FSCreateLead"
                 }
               }
             }
@@ -195,7 +195,7 @@
           }
         },
         "xml": {
-          "name": "fsMail"
+          "name": "fsCreateLead"
         }
       }
     },
