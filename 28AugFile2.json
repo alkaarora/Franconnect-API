@@ -42,7 +42,7 @@
     }
   ],
   "paths": {
-    "/dataservices/create": {
+    "/dataservices/create lead": {
       "post": {
         "tags": [
           "Sales Lead"
@@ -59,7 +59,7 @@
                      }
           }
             },
-       "/dataservices/retrieve": {     
+       "/dataservices/retrieve lead": {     
       "post": {
         "tags": [
           "Sales Lead"
@@ -77,7 +77,7 @@
           }
             
       },
-      "/dataservices/update": {     
+      "/dataservices/update lead": {     
       "post": {
         "tags": [
           "Sales Lead"
@@ -95,7 +95,7 @@
           }
             
       },
-      "/dataservices/Delete": {     
+      "/dataservices/Delete lead": {     
       "post": {
         "tags": [
           "Sales Lead"
@@ -130,7 +130,7 @@
                      }
           }
             },
-       "/dataservices/retrieve": {     
+       "/dataservices/retrieve compliance": {     
       "post": {
         "tags": [
           "Sales Compliance"
@@ -148,7 +148,7 @@
           }
             
       },
-      "/dataservices/update": {     
+      "/dataservices/update compliance": {     
       "post": {
         "tags": [
           "Sales Compliance"
@@ -166,7 +166,7 @@
           }
             
       },
-      "/dataservices/Delete": {     
+      "/dataservices/Delete compliance": {     
       "post": {
         "tags": [
           "Sales Compliance"
