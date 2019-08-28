@@ -1,0 +1,164 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "Franconnect API"
+  },
+  "tags": [
+    {
+      "name": "Introduction",
+      "description": "<p>FranConnect provides import/export services using a powerful Representational State Transfer (REST)<br />API. The FranConnect REST API lets you integrate with the FranConnect application using a simple HTTP POST method, in XML format, making this an ideal API for developing applications or external clients. The API provides access to all entities in the FranConnect system within the Sales, Info Mgr, and the CRM modules, and also to the system's user account data.</p> <ul><li>FranConnect API can be used by the authorized users only. FranConnect API is being rapidly upgraded and enhanced to keep up with the demand of today's on-demand applications. The privacy of FranConnect API can be maintained to allow more control and frequent updation without breaking existing applications, which is developed using the API. This control, combined with the FranConnect system&rsquo;s Multi-Tenant infrastructure allows a more secured application environment than any other on-demand application software.</li><li>FranConnect platform is compatible with your favorite programming language, development environment, or integration tool from software vendors, both installed and on-demand. As an open Web Service, the FranConnect API is available for all platforms that support the core Web Services standards such as Java, .NET, and Perl.</li><li>The FranConnect API is hosted in FranConnect data centers. The FranConnect integration code and the typical applications run in the customer&rsquo;s data center or at a third party data center. For integrating existing applications, the API is called over the Internet from applications running on the customer site. This signifies that the customer is responsible for determining the infrastructure needed to support the integration code and the application that is being integrated with FranConnect. The applications integrated with FranConnect ranges from simple links to web sites to full scale integrations with back-office ERP systems or to legacy applications.</li></ul>"
+    },
+     {
+      "name": "Security and Authorization",
+      "description": "<p>FranConnect web service security process is as follows:</p><ol><li>Each client of FranConnect is given a unique Client Code.</li><li>Client needs to pass the Client Code to access web service.</li><li>Web service will return a secure token (alphanumeric string).</li><li>For every subsequent request, this token is to be encrypted (with the Secret Key using AES encryption &amp; hash using SHA1 algorithms) and needs to be sent along as a parameter in every method. Following is the break down for these steps:<ol style=\"list-style-type: lower-alpha;\"><li>Encrypt the token using the Secret key with AES encryption algorithm</li><li>Apply SHA1 hashing to the encrypted token</li><li>Send over the hashed token using BASE64Encoded encoding</li></ol></li><li>Necessary information to encrypt the token using AES is as follows:<ol style=\"list-style-type: lower-alpha;\"><li>Initialization Vector : None</li><li>Salt : Hashed using SHA-1</li><li>Cipher Type : ECB</li><li>Padding : PKCS5Padding</li></ol></li><li>Web service will also encrypt &amp; hash the token using the same steps above and match it with the encrypted &amp; hashed key passed by the client. Essentially, no decryption is needed as it will match the two encrypted token values.</li><li>The encrypted token is only valid for 15 minutes.</li><li>After the data is exchanged between the Client system and the Web service, the connection needs to be closed from the client system. Otherwise, the connection will terminate automatically after 15 minutes.</li><li>After 15 minutes, if the client still tries to use the same token, it will display the error message: \"Invalid: Key has already expired\". Therefore, it is recommended to use the &ldquo;login&rdquo; operation before performing any other operation so that a new encrypted key is generated every time.</li><li>ISO-8601 Standard is applicable only to new clients (i.e., clients who haven&rsquo;t used the REST API), for whom the display format of the date field has changed.</li></ol><table style=\"border-collapse: collapse; width: 64.7059%; height: 72px;\" border=\"1\"><tbody><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; text-align: center; height: 18px;\"><strong>Action</strong></td><td style=\"width: 17.993%; text-align: center; height: 18px;\"><strong>Date/DateTime</strong></td><td style=\"width: 23.5037%; text-align: center; height: 18px;\"><strong>Acceptable Format</strong></td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Create/Update/Retrieve</td><td style=\"width: 17.993%; height: 18px;\">Date</td><td style=\"width: 23.5037%; height: 18px;\">YYYY-MM-DD</td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Create/Update/Retrieve</td><td style=\"width: 17.993%; height: 18px;\">Time</td><td style=\"width: 23.5037%; height: 18px;\">hh:mmZ</td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Retrieve</td><td style=\"width: 17.993%; height: 18px;\">DateTime</td><td style=\"width: 23.5037%; height: 18px;\">YYYY-MM-DDThh:mmZ</td></tr></tbody></table><p>&nbsp;</p>"
+    },
+    {
+      "name": "Error Codes",
+      "description": "<p>&nbsp;</p><table style=\"border-collapse: collapse; width: 86.5028%; height: 486px;\" border=\"1\"><tbody><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; text-align: center; height: 18px;\"><strong>Request Status</strong></td><td style=\"width: 4.54372%; text-align: center; height: 18px;\"><strong>Return code</strong></td><td style=\"width: 16.29%; text-align: center; height: 18px;\"><strong>Error Details</strong></td><td style=\"width: 22.8251%; text-align: center; height: 18px;\"><strong>Error Description</strong></td><td style=\"width: 11.6669%; text-align: center; height: 18px;\"><strong>Possible Operations</strong></td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Success</td><td style=\"width: 4.54372%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">&nbsp;</td><td style=\"width: 22.8251%; height: 18px;\">&nbsp;</td><td style=\"width: 11.6669%; height: 18px;\">&nbsp;</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">212</td><td style=\"width: 16.29%; height: 18px;\">Invalid field value :{field}</td><td style=\"width: 22.8251%; height: 18px;\">Invalid value of field is provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">213</td><td style=\"width: 16.29%; height: 18px;\">Missing dependent<br />field : {field}</td><td style=\"width: 22.8251%; height: 18px;\">Value for dependent field is not provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 72px;\"><td style=\"width: 11.9157%; height: 72px;\">Warning</td><td style=\"width: 4.54372%; height: 72px;\">214</td><td style=\"width: 16.29%; height: 72px;\">Ignored PII field :{field}</td><td style=\"width: 22.8251%; height: 72px;\">If field provided in xmlString is PII Field, and its value is already present for that record in database</td><td style=\"width: 11.6669%; height: 72px;\">Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">215</td><td style=\"width: 16.29%; height: 18px;\">Ignored Field :{field}</td><td style=\"width: 22.8251%; height: 18px;\">If any field doesn&rsquo;t require in some case, but it&rsquo;s value is provided in xmlString, then this warning is given</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">216</td><td style=\"width: 16.29%; height: 18px;\">Message :{message}</td><td style=\"width: 22.8251%; height: 18px;\">If any message that we need to convey to client, this warning will be given in response</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 216px;\" rowspan=\"5\">400</td><td style=\"width: 16.29%; height: 18px;\">Invalid :&lt;parameter&gt;</td><td style=\"width: 22.8251%; height: 18px;\">Provided parameter value is<br />invalid</td><td style=\"width: 11.6669%; height: 18px;\">All</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">Invalid XML format : {error}</td><td style=\"width: 22.8251%; height: 18px;\">Provided xmlString is invalid<br />XML</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 54px;\"><td style=\"width: 11.9157%; height: 54px;\">&nbsp;</td><td style=\"width: 16.29%; height: 54px;\">Request to{operation}{subModule} is not supported</td><td style=\"width: 22.8251%; height: 54px;\">If some operation is restricted<br />for particular subModule</td><td style=\"width: 11.6669%; height: 54px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 54px;\"><td style=\"width: 11.9157%; height: 54px;\">&nbsp;</td><td style=\"width: 16.29%; height: 54px;\">Invalid mandatory field : {field}</td><td style=\"width: 22.8251%; height: 54px;\">Field value provided in<br />xmlString is invalid for<br />mandatory field</td><td style=\"width: 11.6669%; height: 54px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 72px;\"><td style=\"width: 11.9157%; height: 72px;\">&nbsp;</td><td style=\"width: 16.29%; height: 72px;\">Invalid mandatory field : {custom_error}</td><td style=\"width: 22.8251%; height: 72px;\">Errors representing invalid field value in xmlString. E.g., the end date is before the start date E.g., userID should not contain space(s)</td><td style=\"width: 11.6669%; height: 72px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\" rowspan=\"2\">401</td><td style=\"width: 16.29%; height: 18px;\">Missing : &lt;parameter&gt;</td><td style=\"width: 22.8251%; height: 18px;\">Required Parameter is not provided</td><td style=\"width: 11.6669%; height: 18px;\">All</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">Missing mandatory field : {field}</td><td style=\"width: 22.8251%; height: 18px;\">Required field is not provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">409</td><td style=\"width: 16.29%; height: 18px;\">{subModule} already exists</td><td style=\"width: 22.8251%; height: 18px;\">It occurs when we try to perform create operation for a {subModule} again and only one time submission is allowed for that {subModule}</td><td style=\"width: 11.6669%; height: 18px;\">Create</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">411</td><td style=\"width: 16.29%; height: 18px;\">Duplicate mandatory field :<br />{field}</td><td style=\"width: 22.8251%; height: 18px;\">Trying to input duplicate data</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">438</td><td style=\"width: 16.29%; height: 18px;\">Invalid tag &lt;tagName&gt;</td><td style=\"width: 22.8251%; height: 18px;\">&lt;tagName&gt; is invalid for provided {module} and {subModule}</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr><td style=\"width: 11.9157%;\">Error</td><td style=\"width: 4.54372%;\">500</td><td style=\"width: 16.29%;\">Database error</td><td style=\"width: 22.8251%;\">Database mapping issue</td><td style=\"width: 11.6669%;\">Create / Update / Retrieve / Delete</td></tr><tr><td style=\"width: 11.9157%;\">Error</td><td style=\"width: 4.54372%;\">503</td><td style=\"width: 16.29%;\">Service Unavailable</td><td style=\"width: 22.8251%;\">It occurs when system is undergoing maintenance</td><td style=\"width: 11.6669%;\">All</td></tr></tbody></table><p>&nbsp;</p>"
+    },
+    {
+      "name": "Sales",
+      "description": "<h3 class=\"western\">Sales Module Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "Finance",
+      "description": "<h3 class=\"western\">Finance API Overview</h3>\n<p>This API is built to allow users to automate the transfer of data between the FranConnect system&rsquo;s Finance module and their 3<sup>rd</sup> party Finance/ POS systems. FranConnect&rsquo;s APIs are RESTful in nature and support the transfer Create, Retrieve, Update, and Delete (CRUD) operations.</p>\n<h3 class=\"western\">Rate limits and accounts</h3>\n<p>Currently, FranConnect&rsquo;s REST APIs do not impose any rate limit restrictions but users are expected to retrieve data after certain interval and retrieve only the deltas (wherever applicable) so as to not overload the system. Retrieving a large dataset might result in slowness and impede the overall system performance.</p>\n<h3 class=\"western\">Concurrent Requests</h3>\n<p>Franconnect&rsquo;s APIs do not support concurrent requests and the API expects that the requests be served one at a time.</p>\n<h3 class=\"western\">Authentication</h3>\n<p>FranConnect supports OAuth 2.0 for authenticating requests before they can be used to perform CRUD operations using FranConnect&rsquo;s API. Further details on how to set up the authentication and generate the access token can be found <span style=\"color: #0563c1;\"><u><a href=\"#tag/Authentication\">here</a></u></span>.</p>"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "",
+      "tags": [
+        "Introduction",
+        "Security and Authorization",
+        "Error Codes",
+        "Sales",
+        "Sales Lead",
+        "Finance"
+      ]
+    }
+  ],
+  "paths": {
+    "/dataservices/create": {
+      "post": {
+        "tags": [
+          "Sales Lead"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to create a new lead in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to create a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to create the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol><p>Notes:</p><ul><li>Here, &lt;division&gt; will be considered only if Division is enabled in FranConnect system.</li><li>Reference Id of owner (Chris Barlow) can also be provided instead of providing name in &lt;leadOwnerID&gt;. This will ensure owner with provided referenceId will be assigned as lead owner, as owners with same name can exist, but all owners have different referenceIds.Owner referenceId can be retrieved by performing retrieve operation with &lsquo;admin&rsquo; as module and &lsquo;user&rsquo; as subModule.</li><li>In case the email ID of the lead matches that of any existing lead in the system, the email subscription of the lead that is being created would be the same as the email subscription of the existing lead.</li></ul></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+                          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+                     }
+          }
+            },
+       "/dataservices/retrieve": {     
+      "post": {
+        "tags": [
+          "Sales Lead"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The create endpoint is used to create a new lead in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to create a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to create the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol><p>Notes:</p><ul><li>Here, &lt;division&gt; will be considered only if Division is enabled in FranConnect system.</li><li>Reference Id of owner (Chris Barlow) can also be provided instead of providing name in &lt;leadOwnerID&gt;. This will ensure owner with provided referenceId will be assigned as lead owner, as owners with same name can exist, but all owners have different referenceIds.Owner referenceId can be retrieved by performing retrieve operation with &lsquo;admin&rsquo; as module and &lsquo;user&rsquo; as subModule.</li><li>In case the email ID of the lead matches that of any existing lead in the system, the email subscription of the lead that is being created would be the same as the email subscription of the existing lead.</li></ul></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+                          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+                     }
+          }
+            
+      }
+  },
+  "components": {
+    "schemas": {
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "FSCreateLead": {
+        "type": "object",
+        "properties": {
+          "parentReferenceId": {
+            "description": "Parent record Id",
+            "type": "integer",
+            "example": "913876581"
+          },
+          "cc": {
+            "description": "CC email list",
+            "type": "string",
+            "format": "email",
+            "example": "shane.watson@yahoo.com"
+          },
+          "bcc": {
+            "description": "BCC email list",
+            "type": "string",
+            "format": "email",
+            "example": "larry.page@yahoo.com"
+          },
+          "subject": {
+            "description": "Email subject",
+            "type": "string",
+            "example": "Regarding Franchisee Details"
+          },
+          "mailText": {
+            "description": "mail contents",
+            "type": "string",
+            "example": "Hello ! This is to bring in your kind knowledge that we are providing you the full details to being a franchisee.",
+            "nullable": true
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      }
+    },
+    "requestBodies": {
+      "FSCreateLeadArray": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              }
+            }
+          },
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsMail>\n<parentReferenceId>913876581</parentReferenceId>\n<cc>shane.watson@yahoo.com</cc>\n<bcc>larry.page@yahoo.com</bcc>\n<subject>Regarding Franchisee Details</subject>\n<mailText>Hello ! This is to bring in your kind knowledge that we are providing you the full\ndetails to being a alka franchisee.</mailText>\n<mailFrom>kayne.west@yahoo.com</mailFrom>\n</fsMail> </fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      }
+    }
+  }
+}
