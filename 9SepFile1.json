@@ -1,0 +1,1039 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "Franconnect API"
+  },
+  "tags": [
+    {
+      "name": "Introduction",
+      "description": "<p>FranConnect provides import/export services using a powerful Representational State Transfer (REST)<br />API. The FranConnect REST API lets you integrate with the FranConnect application using a simple HTTP POST method, in XML format, making this an ideal API for developing applications or external clients. The API provides access to all entities in the FranConnect system within the Sales, Info Mgr, and the CRM modules, and also to the system's user account data.</p> <ul><li>FranConnect API can be used by the authorized users only. FranConnect API is being rapidly upgraded and enhanced to keep up with the demand of today's on-demand applications. The privacy of FranConnect API can be maintained to allow more control and frequent updation without breaking existing applications, which is developed using the API. This control, combined with the FranConnect system&rsquo;s Multi-Tenant infrastructure allows a more secured application environment than any other on-demand application software.</li><li>FranConnect platform is compatible with your favorite programming language, development environment, or integration tool from software vendors, both installed and on-demand. As an open Web Service, the FranConnect API is available for all platforms that support the core Web Services standards such as Java, .NET, and Perl.</li><li>The FranConnect API is hosted in FranConnect data centers. The FranConnect integration code and the typical applications run in the customer&rsquo;s data center or at a third party data center. For integrating existing applications, the API is called over the Internet from applications running on the customer site. This signifies that the customer is responsible for determining the infrastructure needed to support the integration code and the application that is being integrated with FranConnect. The applications integrated with FranConnect ranges from simple links to web sites to full scale integrations with back-office ERP systems or to legacy applications.</li></ul>"
+    },
+    {
+      "name": "Security and Authorization",
+      "description": "<p>FranConnect web service security process is as follows:</p><ol><li>Each client of FranConnect is given a unique Client Code.</li><li>Client needs to pass the Client Code to access web service.</li><li>Web service will return a secure token (alphanumeric string).</li><li>For every subsequent request, this token is to be encrypted (with the Secret Key using AES encryption &amp; hash using SHA1 algorithms) and needs to be sent along as a parameter in every method. Following is the break down for these steps:<ol style=\"list-style-type: lower-alpha;\"><li>Encrypt the token using the Secret key with AES encryption algorithm</li><li>Apply SHA1 hashing to the encrypted token</li><li>Send over the hashed token using BASE64Encoded encoding</li></ol></li><li>Necessary information to encrypt the token using AES is as follows:<ol style=\"list-style-type: lower-alpha;\"><li>Initialization Vector : None</li><li>Salt : Hashed using SHA-1</li><li>Cipher Type : ECB</li><li>Padding : PKCS5Padding</li></ol></li><li>Web service will also encrypt &amp; hash the token using the same steps above and match it with the encrypted &amp; hashed key passed by the client. Essentially, no decryption is needed as it will match the two encrypted token values.</li><li>The encrypted token is only valid for 15 minutes.</li><li>After the data is exchanged between the Client system and the Web service, the connection needs to be closed from the client system. Otherwise, the connection will terminate automatically after 15 minutes.</li><li>After 15 minutes, if the client still tries to use the same token, it will display the error message: \"Invalid: Key has already expired\". Therefore, it is recommended to use the &ldquo;login&rdquo; operation before performing any other operation so that a new encrypted key is generated every time.</li><li>ISO-8601 Standard is applicable only to new clients (i.e., clients who haven&rsquo;t used the REST API), for whom the display format of the date field has changed.</li></ol><table style=\"border-collapse: collapse; width: 64.7059%; height: 72px;\" border=\"1\"><tbody><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; text-align: center; height: 18px;\"><strong>Action</strong></td><td style=\"width: 17.993%; text-align: center; height: 18px;\"><strong>Date/DateTime</strong></td><td style=\"width: 23.5037%; text-align: center; height: 18px;\"><strong>Acceptable Format</strong></td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Create/Update/Retrieve</td><td style=\"width: 17.993%; height: 18px;\">Date</td><td style=\"width: 23.5037%; height: 18px;\">YYYY-MM-DD</td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Create/Update/Retrieve</td><td style=\"width: 17.993%; height: 18px;\">Time</td><td style=\"width: 23.5037%; height: 18px;\">hh:mmZ</td></tr><tr style=\"height: 18px;\"><td style=\"width: 19.9538%; height: 18px;\">Retrieve</td><td style=\"width: 17.993%; height: 18px;\">DateTime</td><td style=\"width: 23.5037%; height: 18px;\">YYYY-MM-DDThh:mmZ</td></tr></tbody></table><p>&nbsp;</p>"
+    },
+    {
+      "name": "Error Codes",
+      "description": "<p>&nbsp;</p><table style=\"border-collapse: collapse; width: 86.5028%; height: 486px;\" border=\"1\"><tbody><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; text-align: center; height: 18px;\"><strong>Request Status</strong></td><td style=\"width: 4.54372%; text-align: center; height: 18px;\"><strong>Return code</strong></td><td style=\"width: 16.29%; text-align: center; height: 18px;\"><strong>Error Details</strong></td><td style=\"width: 22.8251%; text-align: center; height: 18px;\"><strong>Error Description</strong></td><td style=\"width: 11.6669%; text-align: center; height: 18px;\"><strong>Possible Operations</strong></td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Success</td><td style=\"width: 4.54372%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">&nbsp;</td><td style=\"width: 22.8251%; height: 18px;\">&nbsp;</td><td style=\"width: 11.6669%; height: 18px;\">&nbsp;</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">212</td><td style=\"width: 16.29%; height: 18px;\">Invalid field value :{field}</td><td style=\"width: 22.8251%; height: 18px;\">Invalid value of field is provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">213</td><td style=\"width: 16.29%; height: 18px;\">Missing dependent<br />field : {field}</td><td style=\"width: 22.8251%; height: 18px;\">Value for dependent field is not provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 72px;\"><td style=\"width: 11.9157%; height: 72px;\">Warning</td><td style=\"width: 4.54372%; height: 72px;\">214</td><td style=\"width: 16.29%; height: 72px;\">Ignored PII field :{field}</td><td style=\"width: 22.8251%; height: 72px;\">If field provided in xmlString is PII Field, and its value is already present for that record in database</td><td style=\"width: 11.6669%; height: 72px;\">Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">215</td><td style=\"width: 16.29%; height: 18px;\">Ignored Field :{field}</td><td style=\"width: 22.8251%; height: 18px;\">If any field doesn&rsquo;t require in some case, but it&rsquo;s value is provided in xmlString, then this warning is given</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Warning</td><td style=\"width: 4.54372%; height: 18px;\">216</td><td style=\"width: 16.29%; height: 18px;\">Message :{message}</td><td style=\"width: 22.8251%; height: 18px;\">If any message that we need to convey to client, this warning will be given in response</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 216px;\" rowspan=\"5\">400</td><td style=\"width: 16.29%; height: 18px;\">Invalid :&lt;parameter&gt;</td><td style=\"width: 22.8251%; height: 18px;\">Provided parameter value is<br />invalid</td><td style=\"width: 11.6669%; height: 18px;\">All</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">Invalid XML format : {error}</td><td style=\"width: 22.8251%; height: 18px;\">Provided xmlString is invalid<br />XML</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 54px;\"><td style=\"width: 11.9157%; height: 54px;\">&nbsp;</td><td style=\"width: 16.29%; height: 54px;\">Request to{operation}{subModule} is not supported</td><td style=\"width: 22.8251%; height: 54px;\">If some operation is restricted<br />for particular subModule</td><td style=\"width: 11.6669%; height: 54px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 54px;\"><td style=\"width: 11.9157%; height: 54px;\">&nbsp;</td><td style=\"width: 16.29%; height: 54px;\">Invalid mandatory field : {field}</td><td style=\"width: 22.8251%; height: 54px;\">Field value provided in<br />xmlString is invalid for<br />mandatory field</td><td style=\"width: 11.6669%; height: 54px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 72px;\"><td style=\"width: 11.9157%; height: 72px;\">&nbsp;</td><td style=\"width: 16.29%; height: 72px;\">Invalid mandatory field : {custom_error}</td><td style=\"width: 22.8251%; height: 72px;\">Errors representing invalid field value in xmlString. E.g., the end date is before the start date E.g., userID should not contain space(s)</td><td style=\"width: 11.6669%; height: 72px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\" rowspan=\"2\">401</td><td style=\"width: 16.29%; height: 18px;\">Missing : &lt;parameter&gt;</td><td style=\"width: 22.8251%; height: 18px;\">Required Parameter is not provided</td><td style=\"width: 11.6669%; height: 18px;\">All</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">&nbsp;</td><td style=\"width: 16.29%; height: 18px;\">Missing mandatory field : {field}</td><td style=\"width: 22.8251%; height: 18px;\">Required field is not provided in xmlString</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">409</td><td style=\"width: 16.29%; height: 18px;\">{subModule} already exists</td><td style=\"width: 22.8251%; height: 18px;\">It occurs when we try to perform create operation for a {subModule} again and only one time submission is allowed for that {subModule}</td><td style=\"width: 11.6669%; height: 18px;\">Create</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">411</td><td style=\"width: 16.29%; height: 18px;\">Duplicate mandatory field :<br />{field}</td><td style=\"width: 22.8251%; height: 18px;\">Trying to input duplicate data</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update</td></tr><tr style=\"height: 18px;\"><td style=\"width: 11.9157%; height: 18px;\">Error</td><td style=\"width: 4.54372%; height: 18px;\">438</td><td style=\"width: 16.29%; height: 18px;\">Invalid tag &lt;tagName&gt;</td><td style=\"width: 22.8251%; height: 18px;\">&lt;tagName&gt; is invalid for provided {module} and {subModule}</td><td style=\"width: 11.6669%; height: 18px;\">Create / Update / Retrieve / Delete</td></tr><tr><td style=\"width: 11.9157%;\">Error</td><td style=\"width: 4.54372%;\">500</td><td style=\"width: 16.29%;\">Database error</td><td style=\"width: 22.8251%;\">Database mapping issue</td><td style=\"width: 11.6669%;\">Create / Update / Retrieve / Delete</td></tr><tr><td style=\"width: 11.9157%;\">Error</td><td style=\"width: 4.54372%;\">503</td><td style=\"width: 16.29%;\">Service Unavailable</td><td style=\"width: 22.8251%;\">It occurs when system is undergoing maintenance</td><td style=\"width: 11.6669%;\">All</td></tr></tbody></table><p>&nbsp;</p>"
+    },
+    {
+      "name": "List of Sub-Modules",
+      "description": "<h3 class=\"western\">Sub-Modules Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "List of Field Names",
+      "description": "<h3 class=\"western\">Field Names List</h3>\n<p>Use the query operation to generate an updated XML input sample to be used for manipulating various FranConnect System entities using the other operations (create/update/retrieve/delete). Sample XML will adapt to contain the fields as per the form builder.</p>\n>"
+    },
+    {
+      "name": "Admin",
+      "description": "<h3 class=\"western\">Admin Module Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "Sales",
+      "description": "<h3 class=\"western\">Sales Module Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>"
+    },
+    {
+      "name": "Info Manager",
+      "description": "<h3 class=\"western\">Info Manager Module Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "CRM",
+      "description": "<h3 class=\"western\">CRM Module Overview</h3>\n<p>The Sales module is used to streamline franchisee recruitment process and manage leads. It allows you to create leads, update leads’ details as they move along the franchise recruitment process, and finally award them franchisees.</p>\n>"
+    },
+    {
+      "name": "Finance",
+      "description": "<h3 class=\"western\">Finance API Overview</h3>\n<p>This API is built to allow users to automate the transfer of data between the FranConnect system&rsquo;s Finance module and their 3<sup>rd</sup> party Finance/ POS systems. FranConnect&rsquo;s APIs are RESTful in nature and support the transfer Create, Retrieve, Update, and Delete (CRUD) operations.</p>\n<h3 class=\"western\">Rate limits and accounts</h3>\n<p>Currently, FranConnect&rsquo;s REST APIs do not impose any rate limit restrictions but users are expected to retrieve data after certain interval and retrieve only the deltas (wherever applicable) so as to not overload the system. Retrieving a large dataset might result in slowness and impede the overall system performance.</p>\n<h3 class=\"western\">Concurrent Requests</h3>\n<p>Franconnect&rsquo;s APIs do not support concurrent requests and the API expects that the requests be served one at a time.</p>\n<h3 class=\"western\">Authentication</h3>\n<p>FranConnect supports OAuth 2.0 for authenticating requests before they can be used to perform CRUD operations using FranConnect&rsquo;s API. Further details on how to set up the authentication and generate the access token can be found <span style=\"color: #0563c1;\"><u><a href=\"#tag/Authentication\">here</a></u></span>.</p>"
+    },
+    {
+      "name": "Franchise Number",
+      "description": "<p class=\"western\">Franchise Number can be retrieved by making a &ldquo;GET&rdquo; type request to the API endpoint.</p><p class=\"western\"></p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://api.franconnectqa.net/common/franchisee\">https://api.franconnect.net/common/franchisee</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://api.franconnectuat.net/common/franchisee\">https://api.franconnectuat.net/common/franchisee</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">For this, the user has to:</p><p class=\"western\"></p><ol><li><p>Provide &ldquo;Authorization&rdquo; as the key and the value for that should be in the format &ldquo;Bearer access_token&rdquo;. The access_token is the one that is generated as a part of the authentication and the steps for the same can be found <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>Mention &ldquo;X-TenantId&rdquo; as the key and its value based on the user&rsquo;s FranConnect system&rsquo;s URL. Details on how to identify the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li></ol><p class=\"western\">This would provide the franchise number and the franchise names of all the locations.</p><p class=\"western\">In case the user would like to retrieve the franchise number for a specific location, this is to be done by making a POST type request to the API endpoint along with:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key and its value as &ldquo;Bearer &lt;access_token&gt;&rdquo; wherein the access_token is the one that is generated as a part of the authentication and the steps for the same can be found <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>Mention &ldquo;X-TenantId&rdquo; as the key and its value based on the user&rsquo;s FranConnect system&rsquo;s URL. Details on how to identify the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>In the body of the request, the filter criteria are to be mentioned.</p></li></ol>"
+    },
+    {
+      "name": "Sales Reports",
+      "description": "This API is to support the Finance Sales based operation"
+    },
+    {
+      "name": "Royalties",
+      "description": "This API is to support the Finance Royalty based operation"
+    },
+    {
+      "name": "Payments",
+      "description": "This API is to support the Finance Payment based operation"
+    },
+    {
+      "name": "Profit and Loss Statements",
+      "description": "This API is to support the Finance Profit and Loss based operation"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "",
+      "tags": [
+        "Introduction",
+        "Security and Authorization",
+        "Franchise Number",
+        "Retrieve Franchise Number",
+        "Error Codes",
+        "List of Sub-Modules",
+        "Retrieve Sub-Modules",
+        "List of Field Names",
+        "Retrieve Schema",
+        "Admin",
+        "User",
+        "Location",
+        "Sales",
+        "Lead",
+        "Info Manager",
+        "Franchisee",
+        "CRM",
+        "CRM Lead",
+        "Contact",
+        "Account",
+        "Transactions",
+        "Finance",
+        "Sales Reports",
+        "Royalties",
+        "Payments",
+        "Profit and Loss Statements"
+      ]
+    }
+  ],
+  "paths": {
+    "/dataservices/Retrieve Sub-Modules": {
+      "post": {
+        "tags": [
+          "Retrieve Sub-Modules"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Retrieve Schema": {
+      "post": {
+        "tags": [
+          "Retrieve Schema"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Franchise Number": {
+      "post": {
+        "tags": [
+          "Retrieve Franchise Number"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+      "/dataservices/create Location": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Location": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update Location": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete Location": {
+      "post": {
+        "tags": [
+          "Location"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create lead": {
+      "post": {
+        "tags": [
+          "Lead"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to perform a create operation in the Sales module. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a create operation using the REST API, you must make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Security and Authorization\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/List of Sub-Modules\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to create the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List of Field Names\">here.</a></u></li></ol><p>Notes:</p><ul><li>Here, &lt;division&gt; will be considered only if Division is enabled in FranConnect system.</li><li>Reference Id of owner (Chris Barlow) can also be provided instead of providing name in &lt;leadOwnerID&gt;. This will ensure owner with provided referenceId will be assigned as lead owner, as owners with same name can exist, but all owners have different referenceIds.Owner referenceId can be retrieved by performing retrieve operation with &lsquo;admin&rsquo; as module and &lsquo;user&rsquo; as subModule.</li><li>In case the email ID of the lead matches that of any existing lead in the system, the email subscription of the lead that is being created would be the same as the email subscription of the existing lead.</li></ul></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve lead": {
+      "post": {
+        "tags": [
+          "Lead"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to perform a retrieve operation for the existing leads. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><h4 class=\"western\">Prerequisites to perform a Retrieve operation</h4><p class=\"western\">To perform a retrieve operation using the REST API, you must make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Security and Authorization\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/List of Sub-Modules\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to perform the retrieve operation. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List of Field Names\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSRetrieveLeadArray"
+        }
+      }
+    },
+    "/dataservices/update lead": {
+      "post": {
+        "tags": [
+          "Lead"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the “Primary Info” for existing leads. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li></ol><ol><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete lead": {
+      "post": {
+        "tags": [
+          "Lead"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete leads from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete a lead using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li></ol><ol><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+     "/dataservices/create Franchisee": {
+      "post": {
+        "tags": [
+          "Franchisee"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Franchisee": {
+      "post": {
+        "tags": [
+          "Franchisee"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update Franchisee": {
+      "post": {
+        "tags": [
+          "Franchisee"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete Franchisee": {
+      "post": {
+        "tags": [
+          "Franchisee"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    }, 
+      "/dataservices/create CRM Lead": {
+      "post": {
+        "tags": [
+          "CRM Lead"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve CRM Lead": {
+      "post": {
+        "tags": [
+          "CRM Lead"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update CRM Lead": {
+      "post": {
+        "tags": [
+          "CRM Lead"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete CRM Lead": {
+      "post": {
+        "tags": [
+          "CRM Lead"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create Contact": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Contact": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update Contact": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete Contact": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create Account": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Account": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update Account": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete Account": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create Transactions": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve Transactions": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update Transactions": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The update endpoint is used to update the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/update</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to update the Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the update operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to update the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “update”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Delete Transactions": {
+      "post": {
+        "tags": [
+          "Transactions"
+        ],
+        "summary": "Delete",
+        "description": "<p class=\"western\">The delete endpoint is used to delete Sales Compliance data from the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/delete</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to delete Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the delete operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the delete operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired.</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to delete the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “delete”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+       "/dataservices/retrieve sales reports periods": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales Reports Periods",
+        "description": "<p class=\"western\">The report period for Sales refers to the minimum period of time for which sales is to be reported by the franchisees. The report period for any franchise location is defined in the financial agreement version that is associated with that franchise location. The term &ldquo;report period&rdquo; refers to the last day (i.e., the end date) of that reporting cycle.</p><p class=\"western\">A &ldquo;GET&rdquo; request is to be made to the API endpoint, along with other required details, to retrieve the report periods for which sales has not been filled for a particular franchisee location.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/franchiseeNo/%7BfranchiseeNo%7D/reportPeriod\">https://finance.franconnect.net/manage-finance/sales/franchiseeNo/{franchiseeNo}/reportPeriod</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/franchiseeNo/%7BfranchiseeNo%7D/reportPeriod\">https://finance.franconnectuat.net/manage-finance/sales/franchiseeNo/{franchiseeNo}/reportPeriod</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be required to make this GET call include:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key and its value as &ldquo;Bearer &lt;access_token&gt;&rdquo; wherein the access_token is the one that is generated as a part of the authentication and the steps for the same can be found <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>Mention &ldquo;X-TenantId&rdquo; as the key and its value based on the user&rsquo;s FranConnect system&rsquo;s URL. Details on how to identify the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>FranchiseNo is the internal unique reference number of the location. Steps to retrieve the franchiseeNo is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li></ol><p class=\"western\">This would return all the report periods for which sales has not been reported by that location.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve finance categories": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Finance Categories",
+        "description": "<p class=\"western\">The represents the finance categories used in sales report can be retrieved using the GET operation on the respective API endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/categories/finance-categories/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnect.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/categories/finance-categories/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnectuat.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">A previous section already talks about how to retrieve the report periods for which a location is yet to report sales for. This can be accessed&nbsp;<u><a href=\"#operation/Retrieve_Sales_Reports_Periods\">here</a></u>. Once this is done, a particular report period is to be selected and used in the endpoint to perform a GET operation. This would provide a list of financial categories that are available to report the sales against for the given report period.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve non finance categories": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Non Finance Categories",
+        "description": "<p class=\"western\">This represents the non-financial/ KPI categories that are used as a part of the sales report. To retrieve the KPI categories, a GET request is to be sent to the API endpoint along with the other required parameters.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnect.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnectuat.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">A previous section already talks about how to retrieve the report periods for which a location is yet to report sales for. This can be accessed&nbsp;<u><a href=\"#operation/Retrieve_Sales_Reports_Periods\">here</a></u>. Once this is done, a particular report period selected, and the financial categories corresponding to that report period retrieved (click&nbsp;<span style=\"color: #0563c1;\"><u><a href=\"#operation/Retrieve_Finance_Categories\">here</a></u></span>&nbsp;to know more on how to retrieve financial categories in a particular report period), the next step is to perform a GET operation on the corresponding endpoint (mentioned above) to retrieve a list of non-financial/ KPI categories that are available for the given report period.</p><p class=\"western\"><strong>Note</strong>: Some of the clients may or may not have non-financial/ KPI categories set up in their sales report. In case the sales reports do not contain non-financial/ KPI categories, this step can be omitted.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve additional invoice items": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Additional Invoice Items",
+        "description": "<p class=\"western\">This represents the additional items apart from the&nbsp;<u><a href=\"#operation/Retrieve_Finance_Categories\">finance</a></u>&nbsp;and the&nbsp;<u><a href=\"#operation/Retrieve_Non-Finance_Categories\">non-financial/KPI</a></u>&nbsp;categories that the franchisor would like to include in their sales reports. In order to retrieve the Additional Invoice Items, a GET type of request is to be made to the API endpoint along with the other required parameters.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnect.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/%7Bfranchisee_number%7D/reportPeriod/%7BreportPeriod%7D\">https://finance.franconnectuat.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">Similar to non-financial/KPI categories, the &ldquo;additional invoice items&rdquo; are optional. While they can be configured from &ldquo;Admin &gt; Finance &gt; Configure Additional Invoice Item(s)&rdquo;, some franchisors have it configured as part of their sales reports while some choose not to. In case it is not configured, retrieving &ldquo;additional invoice items&rdquo; would result in an empty data set. However, it should not be omitted while creating and/ or updating sales report(s).</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve sales report status": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales Report Status",
+        "description": "<p class=\"western\">This section lists the various status that can be attributed to sales reports and can therefore be used as a search constraint in retrieve operations.</p><p class=\"western\">&nbsp;</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"6\"><colgroup><col width=\"144\" /> <col width=\"592\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"144\"><p class=\"western\"><strong>Key</strong></p></td><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"592\"><p class=\"western\"><strong>Name</strong></p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>P</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for approval</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>A</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Approved</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>R</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Rejected</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>I</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Invoiced</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>K</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for Acknowledgement</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\">A &ldquo;GET&rdquo; request is to be made to the API endpoint, along with other required details, to retrieve the report status and their corresponding keys.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/status\">https://finance.franconnect.net/manage-finance/sales/status</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/status\">https://finance.franconnectuat.net/manage-finance/sales/status</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;POST</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create new sales report": {
+      "post": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Create New Sales Report",
+        "description": "<p class=\"western\">Sales report can be created for a location for a given period for which the sales has not been filled yet. In order to do so, a POST type request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/\">https://finance.franconnect.net/manage-finance/sales/</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/\">https://finance.franconnectuat.net/manage-finance/sales/</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the finance categories, the KPI categories, and the additional line items.</p></li></ol><p class=\"western\">The response provides &ldquo;reportNo&rdquo; and &ldquo;salesReportID&rdquo;. The &ldquo;reportNo&rdquo; represents the sales report number as seen on the UI side whereas the &ldquo;salesReportID&rdquo; is the internal unique identifier for that sales report.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve sales": {
+      "post": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales",
+        "description": "<p class=\"western\">An existing sales report can be retrieved by making a POST type of request to the specified API endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/filter\">https://finance.franconnect.net/manage-finance/sales/filter</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/filter\">https://finance.franconnectuat.net/manage-finance/sales/filter</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the constraints that would be used to filter out the sales report(s).</p></li></ol><p class=\"western\"><br /><strong>Note</strong>: In the example given, the &ldquo;franchiseeNo&rdquo; has been used as a &lsquo;constraints&rsquo; criterion. Other acceptable values of constraints that can be used to filter and retrieve sales reports are shown as below.</p><p class=\"western\">&nbsp;</p><center><table width=\"623\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"157\" /> <col width=\"135\" /> <col width=\"223\" /> <col width=\"51\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"157\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"135\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field Description</span></strong></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Applied Clause</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"51\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Format</span></strong></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Sales Report Number as seen in UI</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>salesReportID</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportPeriodStart/End</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Period Start/ End Date in YYYY-MM-DD format</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportSubmitDate</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Submit Date in YYYY-MM-DD format</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>totalSales</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Total Sales</p></td><td width=\"223\"><p class=\"western\" align=\"center\">GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Status of the Sales Report</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportType</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Type of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update existing sales report": {
+      "post": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Update Existing Sales Report",
+        "description": "<p class=\"western\">The update operation is performed to update an existing sales report for a given franchise location. In order for an existing sales report to be updated, a POST type of request is to be made to the specified API endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/sales/%7BsalesReportID%7D\">https://finance.franconnect.net/manage-finance/sales/{salesReportID}</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/sales/%7BsalesReportID%7D\">https://finance.franconnectuat.net/manage-finance/sales/{salesReportID}</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;PUT</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The &ldquo;salesReportID&rdquo; mentioned in the API endpoint refers to the internal unique ID for the sales report. Users can fetch this information by retrieving the sales report details on the basis of &ldquo;reportNo&rdquo; or any other parameter mentioned <u><a href=\"#operation/Retrieve_Sales\">here</a></u>.</p></li></ol><p class=\"western\"><strong>Note</strong>: It is to be noted that the sales report can only be modified as long as it is not approved. Once it is approved, only adjustments can be made to the sales report.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve royalty invoices": {
+      "post": {
+        "tags": [
+          "Royalties"
+        ],
+        "summary": "Retrieve Royalty Invoices",
+        "description": "<p class=\"western\">Royalty reports are generated on the basis of sales submitted for the locations and can be retrieved in a similar way as retrieving a sales report. To retrieve a royalty report, a POST type of request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/royalties/filter\">https://finance.franconnect.net/manage-finance/royalties/filter</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/royalties/filter\">https://finance.franconnectuat.net/manage-finance/royalties/filter</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the constraints that would be used to filter out the royalty invoice(s).</p></li></ol><p class=\"western\">Here is a list of all the attributes that can be used as constraints while retrieving royalty reports along with the &ldquo;clauses&rdquo; that are supported for each constraint.</p><p class=\"western\">&nbsp;</p><center><table width=\"735\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"134\" /> <col width=\"253\" /> <col width=\"223\" /> <col width=\"66\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"134\" height=\"30\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"253\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applicable Clauses</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"66\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseRoyaltyID</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the Royalty Invoicce</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"9\"><p class=\"western\"><strong>invoiceNO</strong></p></td><td width=\"253\"><p class=\"western\">Royalty Invoice Number as seen in UI</p></td><td width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"85\"><p class=\"western\"><strong>invoiceDate</strong></p></td><td width=\"253\"><p class=\"western\">Invoice Date</p></td><td width=\"223\"><p class=\"western\">EQUAL, GREATER_THAN,</p><p class=\"western\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"66\"><p class=\"western\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>paymentStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Payment Status</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/get royalties payment status": {
+      "post": {
+        "tags": [
+          "Royalties"
+        ],
+        "summary": "Retrieve Royalties Payment Status",
+        "description": "<p class=\"western\">The payment status for Royalty reports can be retrieved by making a GET type of request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/royalties/status\">https://finance.franconnect.net/manage-finance/royalties/status</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/royalties/status\">https://finance.franconnectuat.net/manage-finance/royalties/status</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li></ol><p class=\"western\">This would provide a list of royalty payment status that are available in the system as well as their corresponding keys.</p><p class=\"western\">&nbsp;</p><p class=\"western\">&nbsp;</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"228\" /> <col width=\"505\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"228\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Key</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"505\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Payment Status</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>N</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Unpaid</p></td></tr><tr valign=\"top\"><td width=\"228\"><p class=\"western\"><strong>P</strong></p></td><td width=\"505\"><p class=\"western\">Partially Paid</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>C</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Fully Paid</p></td></tr></tbody></table></center>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve payments": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Retrieve Payments",
+        "description": "<p class=\"western\">Payments that are made against a royalty report can be retrieved using the Payments endpoint. A payment can be retrieved by making a POST type of request to the specified API endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong>https://finance.franconnect.net/manage-finance/payments/filter</p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> https://finance.franconnectuat.net/manage-finance/payments/filter</p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><p class=\"western\">1. &ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/Authentication\">here</a></u></span>.</p><p class=\"western\">2. &ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p><p class=\"western\">3. &ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/Authentication\">here</a></u></span>.</p><p class=\"western\">4. The body of the request should contain the constraints that would be used to filter out the payment(s).</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve p&l statements periods": {
+      "get": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit and Loss Periods",
+        "description": "<p class=\"western\">This endpoint is used to retrieve the Profit and Loss report periods for locations against which data is yet to be filled. To retrieve these report periods, a POST type of call is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/profit-loss/periods/franchiseeNo/%7Bfranchise_number%7D\">https://finance.franconnect.net/manage-finance/profit-loss/periods/franchiseeNo/{franchise_number}</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/profit-loss/periods/franchiseeNo/%7Bfranchise_number%7D\">https://finance.franconnectuat.net/manage-finance/profit-loss/periods/franchiseeNo/{franchise_number}</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li></ol><p class=\"western\">This would provide a list of statement periods for which the mentioned franchise is yet to declare its P&amp;L statement for.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve profit loss categories": {
+      "get": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit Loss Categories",
+        "description": "<p class=\"western\">These are used to represent the categories that are present in P&amp;L statements against which income and expenses are to be entered for each franchisee. To retrieve the Profit and Loss categories, a GET type of call is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong>https://finance.franconnect.net/manage-finance/profit-loss/categories</p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>https://finance.franconnectuat.net/manage-finance/profit-loss/categories</p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;GET</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li></ol><p class=\"western\">The response contains all the P&amp;L categories that are configured in the system and a placeholder where the &ldquo;amount&rdquo; can be filled in against that corresponding category. This information is to be used to fill in profit in loss details while creating and/ or updating profit and loss reports.</p><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create new profit loss statements": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Create New Profit Loss Statements",
+        "description": "<p class=\"western\">This operation is used to create a new P&amp;L statement in the system. In order to do so, a POST type of call is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/profit-loss\">https://finance.franconnect.net/manage-finance/profit-loss</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/profit-loss\">https://finance.franconnectuat.net/manage-finance/profit-loss</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the profit and loss categories. Details on retrieving Profit and Loss categories is described <u><a href=\"#operation/Retrieve_ProfitLoss_Categories\">here</a></u>.</p></li></ol><p class=\"western\">A POST request is to be made to the endpoint specified above with &ldquo;Content-Type&rdquo; as &ldquo;application/json&rdquo;, &ldquo;Authorization&rdquo; as &ldquo;bearer &lt;&lt;accessToken&gt;&gt;&rdquo; (where the &lt;&lt;accessToken&gt;&gt; is to be replaced by the actual access token generated in step a), and &ldquo;X-TenantId&rdquo; as the login URL of the user&rsquo;s FranConnect system prior to&rdquo;/fc&rdquo;.</p><p class=\"western\">In case the create operation is successful, the response data would contain the &ldquo;plrepId&rdquo;. This represents the internal reference ID for the P&amp;L statement that was just created and can be used for&nbsp;<span style=\"color: #0563c1;\"><u><a href=\"#operation/Retrieve_ProfitLoss_Statements\">retrieve</a></u></span>&nbsp;and &nbsp;<span style=\"color: #0563c1;\"><u><a href=\"#operation/Update_Existing_ProfitLoss_Statement\">update</a></u></span>&nbsp; operations.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve profit loss statements": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit Loss Statements",
+        "description": "<p class=\"western\">This endpoint is used to retrieve an existing P&amp;L statement. In order to do so, a POST type of call is to be made to the specified endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong> <span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/profit-loss/filter\">https://finance.franconnect.net/manage-finance/profit-loss/filter</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> <span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/profit-loss/filter\">https://finance.franconnectuat.net/manage-finance/profit-loss/filter</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>&nbsp;POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the constraints that would be used to filter out the P&amp;L report.</p></li></ol><p class=\"western\">Other values that can be used as constraints along with their clause criteria as mentioned below.</p><p class=\"western\">&nbsp;</p><center><table width=\"720\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"147\" /> <col width=\"127\" /> <col width=\"306\" /> <col width=\"82\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"147\" height=\"8\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"127\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"306\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applied Clause</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"82\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\"><p class=\"western\"><strong><span lang=\"en\">plrepId</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Internal Unique Reference Number of the P&amp;L Report</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td width=\"147\"><p class=\"western\"><strong><span lang=\"en\">franchiseeNo</span></strong></p></td><td width=\"127\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\" height=\"73\"><p class=\"western\"><strong><span lang=\"en\">statementPeriod</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Statement Period</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr><tr valign=\"top\"><td width=\"147\" height=\"77\"><p class=\"western\"><strong><span lang=\"en\">submissionDate</span></strong></p></td><td width=\"127\"><p class=\"western\"><span lang=\"en\">Submission Date</span></p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\"><strong>Note</strong>: Multiple constraints can be used in the filter to retrieve data.</p><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update exising profit/loss statement": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Update Existing Profit/Loss Statement",
+        "description": "<p class=\"western\">This endpoint is used to update an existing P&amp;L report. For this, a PUT type of call is to be made to the P&amp;L endpoint.</p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnect.net/manage-finance/profit-loss/%7BplrepId%7D\"><strong>https://finance.franconnect.net/manage-finance/profit-loss/{plrepId}</strong></a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://finance.franconnectuat.net/manage-finance/profit-loss/%7BplrepId%7D\"><strong>https://finance.franconnectuat.net/manage-finance/profit-loss/{plrepId}</strong></a></u></span></p><p class=\"western\"><strong>Operation Name  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> PUT</p><p class=\"western\">&nbsp;</p><p class=\"western\">Other details that are to be included in the request are:</p><ol><li><p>&ldquo;Authorization&rdquo; as the key name with its value as &ldquo;Bearer &lt;acess_token&gt;&rdquo;. Steps to retrieve the access_token is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value as &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value as per the FranConnect system&rsquo;s login URL. Steps to determine the &ldquo;X-TenantId&rdquo; is mentioned <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The body of the request should contain the profit and loss categories. Details on retrieving Profit and Loss categories is described <u><a href=\"#operation/Retrieve_ProfitLoss_Categories\">here</a></u>.</p></li></ol>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FSCreateLead": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "xmlString": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      }
+    },
+    "requestBodies": {
+      "FSCreateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<sendAutomaticMail>Yes</sendAutomaticMail>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<basedOnAssignmentRule>Yes</basedOnAssignmentRule>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n488<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>Yes</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>1</noOfUnitReq>\n<locationId1>Yes</locationId1>\n<locationId1b>Yes</locationId1b>\n<locationId2>Yes</locationId2>\n<preferredCity1>Reston</preferredCity1>\n<preferredCountry1>USA</preferredCountry1>\n<preferredStateId1>Albahama</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<basedOnWorkflowAssignmentRule>No</basedOnWorkflowAssignmentRule>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+       "FSRetrieveLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>1696458950</referenceId>\n<requestDateFrom>2016-11-25</requestDateFrom>\n<requestDateTo>2017-12-25</requestDateTo>\n<leadStatusID op='eq'>NewLead</leadStatusID>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Retrieval object",
+        "required": true
+      }
+    }
+  }
+}
