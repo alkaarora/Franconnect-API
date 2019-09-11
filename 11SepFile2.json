@@ -108,24 +108,24 @@
         "tags": [
           "Retrieve Sub-Modules"
         ],
-        "summary": "Retrieve Admin Sub-Modules",
-        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / custom-tabs available for Admin.></p>",
+        "summary": "Admin",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / custom-tabs available for Admin.</p>",
         "responses": {
           "default": {
             "description": "successful operation"
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+          "$ref": "#/components/requestBodies/AdminSubModuleArray"
         }
       }
     },
      "/dataservices/Retrieve Sales Sub-Modules": {
       "post": {
         "tags": [
-          "Retrieve Sales Sub-Modules"
+          "Retrieve Sub-Modules"
         ],
-        "summary": "Retrieve Admin Sub-Modules",
+        "summary": "Sales",
         "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
         "responses": {
           "default": {
@@ -140,9 +140,9 @@
      "/dataservices/Retrieve InfoMgr Sub-Modules": {
       "post": {
         "tags": [
-          "Retrieve Info Mgr Sub-Modules"
+          "Retrieve Sub-Modules"
         ],
-        "summary": "Retrieve Admin Sub-Modules",
+        "summary": "InfoMgr",
         "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
         "responses": {
           "default": {
@@ -157,9 +157,9 @@
      "/dataservices/Retrieve CRM Sub-Modules": {
       "post": {
         "tags": [
-          "Retrieve CRM Sub-Modules"
+          "Retrieve Sub-Modules"
         ],
-        "summary": "Retrieve Admin Sub-Modules",
+        "summary": "CRM",
         "description": "<p class=\"western\">The create endpoint is used to add Sales Compliance data in the system. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/create</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to add Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the create operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">xmlString that would contain the parameters/ details of the request that is to be used to add Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “create”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here.</a></u></li></ol></p>",
         "responses": {
           "default": {
@@ -1024,6 +1024,23 @@
   },
   "components": {
     "schemas": {
+       "AdminSubModule": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
       "FSCreateLead": {
         "type": "object",
         "properties": {
@@ -1124,6 +1141,25 @@
         },
         "description": "Lead Deletion object",
         "required": true
+      },
+      "AdminSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nkey=key&module=admin&responseType=XML",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+       "required": true
       }
     }
   }
