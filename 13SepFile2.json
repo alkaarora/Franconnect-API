@@ -8,7 +8,7 @@
   "tags": [
     {
       "name": "Introduction",
-      "description": "<p>FranConnect provides import/export services using a powerful Representational State Transfer (REST)<br />API. The FranConnect REST API lets you integrate with the FranConnect application using a simple HTTP POST method, in XML format, making this an ideal API for developing applications or external clients. The API provides access to all entities in the FranConnect system within the Sales, Info Mgr, and the CRM modules, and also to the system's user account data.</p> <ul><li>FranConnect API can be used by the authorized users only. FranConnect API is being rapidly upgraded and enhanced to keep up with the demand of today's on-demand applications. The privacy of FranConnect API can be maintained to allow more control and frequent updation without breaking existing applications, which is developed using the API. This control, combined with the FranConnect system&rsquo;s Multi-Tenant infrastructure allows a more secured application environment than any other on-demand application software.</li><li>FranConnect platform is compatible with your favorite programming language, development environment, or integration tool from software vendors, both installed and on-demand. As an open Web Service, the FranConnect API is available for all platforms that support the core Web Services standards such as Java, .NET, and Perl.</li><li>The FranConnect API is hosted in FranConnect data centers. The FranConnect integration code and the typical applications run in the customer&rsquo;s data center or at a third party data center. For integrating existing applications, the API is called over the Internet from applications running on the customer site. This signifies that the customer is responsible for determining the infrastructure needed to support the integration code and the application that is being integrated with FranConnect. The applications integrated with FranConnect ranges from simple links to web sites to full scale integrations with back-office ERP systems or to legacy applications.</li></ul>"
+      "description": "<p>FranConnect provides import/export services using a powerful Representational State Transfer (REST)>API. The FranConnect REST API lets you integrate with the FranConnect application using a simple HTTP POST method, in XML format, making this an ideal API for developing applications or external clients. The API provides access to all entities in the FranConnect system within the Sales, Info Mgr, and the CRM modules, and also to the system's user account data.</p> <ul><li>FranConnect API can be used by the authorized users only. FranConnect API is being rapidly upgraded and enhanced to keep up with the demand of today's on-demand applications. The privacy of FranConnect API can be maintained to allow more control and frequent updation without breaking existing applications, which is developed using the API. This control, combined with the FranConnect system&rsquo;s Multi-Tenant infrastructure allows a more secured application environment than any other on-demand application software.</li><li>FranConnect platform is compatible with your favorite programming language, development environment, or integration tool from software vendors, both installed and on-demand. As an open Web Service, the FranConnect API is available for all platforms that support the core Web Services standards such as Java, .NET, and Perl.</li><li>The FranConnect API is hosted in FranConnect data centers. The FranConnect integration code and the typical applications run in the customer&rsquo;s data center or at a third party data center. For integrating existing applications, the API is called over the Internet from applications running on the customer site. This signifies that the customer is responsible for determining the infrastructure needed to support the integration code and the application that is being integrated with FranConnect. The applications integrated with FranConnect ranges from simple links to web sites to full scale integrations with back-office ERP systems or to legacy applications.</li></ul>"
     },
     {
       "name": "Authorization",
@@ -117,12 +117,11 @@
         "Retrieve Task",
         "Emails",
         "Retrieve Emails",
-        "Email Campaigns",
-        "Retrieve Email Campaigns",
         "SMS",
         "Retrieve SMS",
+        "Campaigns",
+        "Email Campaigns",
         "SMS Campaigns",
-        "Retrieve SMS Campaigns",
         "Finance",
         "Sales Reports",
         "Royalties",
@@ -829,12 +828,63 @@
         }
       }
     },
+       "/dataservices/create Task": {
+      "post": {
+        "tags": [
+          "Retrieve Task"
+        ],
+        "summary": "Create",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
       "/dataservices/retrieve Task": {
       "post": {
         "tags": [
           "Retrieve Task"
         ],
         "summary": "Retrieve",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+       "/dataservices/update Task": {
+      "post": {
+        "tags": [
+          "Retrieve Task"
+        ],
+        "summary": "Update",
+        "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+       "/dataservices/delete Task": {
+      "post": {
+        "tags": [
+          "Retrieve Task"
+        ],
+        "summary": "Delete",
         "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
         "responses": {
           "default": {
@@ -866,7 +916,7 @@
       "/dataservices/retrieve Email Campaigns": {
       "post": {
         "tags": [
-          "Retrieve Email Campaigns"
+          "Campaigns"
         ],
         "summary": "Retrieve",
         "description": "<p class=\"western\">The retrieve endpoint is used to retrieve the Sales Compliance data. </p><p class=\"western\"><strong>Production API Endpoint : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnect.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>UAT API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong><span style=\"color: #0563c1;\"><u><a href=\"https://skyapi.franconnectuat.net/manage-finance/sales/franchiseeNo/%7Bid%7D/reportPeriod\"><context-path>/rest/dataservices/retrieve</a></u></span></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong>POST</p><p class=\"western\">&nbsp;</p><p class=\"western\">In order to retrieve Sales Compliance data using the REST API, the user should make a POST request on the context path. The following items should be used as path parameters:</p><ol><li><p>An encrypted secure token as a key. Steps on how a secure token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The subModule for which the retrieve operation is being performed. A list of all subModules can be retrieved from the “submodule” endpoint mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired</u>.</p></li><li><p class=\"western\">filterXml that would contain the parameters/ details of the request that is to be used to retrieve the Sales Compliance data. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and submodule names and operation as “retrieve”. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/Retrieve-Franchise-Number\">here</a></u>.</li>.</ol></p>",
