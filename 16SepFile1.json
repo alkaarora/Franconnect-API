@@ -146,7 +146,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/retrieveAdminSubmod"
+              "$ref": "#/components/requestBodies/AdminSubModuleArray"
             }
           },
           "201": {
