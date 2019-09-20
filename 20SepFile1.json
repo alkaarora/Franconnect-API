@@ -141,7 +141,7 @@
           "Retrieve Sub-Modules"
         ],
         "summary": "Admin",
-        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Admin.</p><p class=\"western\"><strong> API Endpoint : </strong><u><a href=\"<context-path>/rest/dataservices/submodule?key=<generated-secure-token>&module=admin&responseType=xml\"><context-path>/rest/dataservices/submodule?key=<generated-secure-token>&module=admin&responseType=xml</a></u></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p>",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Admin.</p><p class=\"western\"><strong> API Endpoint : </strong><u><a href=\"<context-path>/rest/dataservices/submodule?key=\"<generated-secure-token>\"&module=admin&responseType=xml\"><context-path>/rest/dataservices/submodule?key=<generated-secure-token>&module=admin&responseType=xml</a></u></p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p>",
         "responses": {
           "200": {
             "description": "OK",
