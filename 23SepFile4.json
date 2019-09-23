@@ -292,7 +292,7 @@
           "Retrieve Franchise Number"
         ],
         "summary": "Retrieve for All Locations",
-        "description": "<p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> GET</p><h4>To retrieve the Franchise Number, you must provide the following items in the header of the GET request:</h4><ol><li><p>Specify &ldquo;Authorization&rdquo; as the key and its value in the format &ldquo;Bearer access_token&rdquo;. This access_token is generated as a part of authentication.<br />Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. <br />Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would provide the franchise number and the franchise names of all the locations.</p>",
+        "description": "<p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><p class=\"western\"><strong>Operation Name&nbsp; &nbsp;&nbsp;&nbsp;: </strong> GET</p><h4>To retrieve the Franchise Number, you must provide the following items in the header of the GET request:</h4><ol><li><p>Specify &ldquo;Authorization&rdquo; as the key and its value in the format &ldquo;Bearer access_token&rdquo;. This access_token is generated as a part of authentication.<br />Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. <br />Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would provide the franchise number and the franchise names of all the locations.</p>",
         "responses": {
           "default": {
             "description": "successful operation"
@@ -310,7 +310,7 @@
           "Retrieve Franchise Number"
         ],
         "summary": "Retrieve for a Specific Location",
-        "description": "<p class=\"western\">You can retrieve the Franchise Number for a specific location by making a &ldquo;POST&rdquo; type request to the API endpoint and performing the steps to retrieve the Franchise Number.</p><p class=\"western\">Note that you must specify the filter criteria in the body of the request.</p>",
+        "description": "<p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee/filter</p><p class=\"western\"><strong>Operation Name&nbsp; &nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\">You can retrieve the Franchise Number for a specific location by making a POST request to the API endpoint and performing the steps to retrieve the Franchise Number.</p><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchiseeNos.</p>",
         "responses": {
           "default": {
             "description": "successful operation"
@@ -1276,6 +1276,18 @@
   },
   "components": {
     "schemas": {
+      "RetFranNoLoc": {
+
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
       "AdminSubModule": {
         "type": "object",
         "properties": {
@@ -1348,7 +1360,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/components/schemas/FSCreateLead"
+                "$ref": "#/components/schemas/RetFranNoLoc"
               },
               "xml": {
                 "name": "fcRequest",
