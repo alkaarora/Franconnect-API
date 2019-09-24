@@ -289,9 +289,9 @@
     "/common/franchisee": {
       "get": {
         "tags": [
-          "Retrieve for all Locations"
+          "Retrieve Franchise Number"
         ],
-        "summary": "Retrieve Franchise Number",
+        "summary": "Retrieve for all Locations",
         "description": "</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> GET</p><h4>To retrieve the Franchise Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\"as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication.<br />Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. <br />Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchise number and the franchise names of all the locations.</p>",
         "responses": {
           "default": {
@@ -305,9 +305,9 @@
 
       "post": {
         "tags": [
-          "Retrieve for a specific Location"
+          "Retrieve Franchise Number"
         ],
-        "summary": "Retrieve Franchise Number",
+        "summary": "Retrieve for a specific Location",
         "description": "</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee/filter</p><p class=\"western\"><strong>Operation Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : </strong> POST</p><p class=\"western\">You can retrieve the Franchise Number for a specific location by making a POST request to the API endpoint and performing the steps to retrieve the Franchise Number.</p><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchiseeNos.</p>",
         "responses": {
           "default": {
