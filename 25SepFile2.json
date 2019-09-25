@@ -241,7 +241,7 @@
           "Retrieve Schema"
         ],
         "summary": "Retrieve",
-        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Retrieve operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Retrieve operation for the Sales, Info Manager and CRM submodules.</p><p class=\"western\"><strong> API Endpoint &nbsp;&nbsp;&nbsp;: </strong><u><a href=\"<context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=retrieve&roleTypeForQuery=1&subModule=user\"><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=retrieve&roleTypeForQuery=1&subModule=user</a></u></p><p class=\"western\"><strong>Operation Name: </strong> POST</p>",
+        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Retrieve operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Retrieve operation for the Sales, Info Manager and CRM submodules.<p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=retrieve&roleTypeForQuery=1&subModule=user</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p>",
         "responses": {
           "default": {
             "description": "successful operation"
@@ -258,7 +258,7 @@
           "Retrieve Schema"
         ],
         "summary": "Update",
-        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Update operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Update operation for the Sales, Info Manager and CRM submodules.</p><p class=\"western\"><strong> API Endpoint &nbsp;&nbsp;&nbsp;: </strong><u><a href=\"<context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=update&roleTypeForQuery=1&subModule=user\"><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=update&roleTypeForQuery=1&subModule=user</a></u></p><p class=\"western\"><strong>Operation Name: </strong> POST</p>",
+        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Update operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Update operation for the Sales, Info Manager and CRM submodules.</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=update&roleTypeForQuery=1&subModule=user</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p>",
         "responses": {
           "default": {
             "description": "successful operation"
@@ -275,7 +275,7 @@
           "Retrieve Schema"
         ],
         "summary": "Delete",
-        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Delete operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Delete operation for the Sales, Info Manager and CRM submodules.</p><p class=\"western\"><strong> API Endpoint &nbsp;&nbsp;&nbsp;: </strong><u><a href=\"<context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=delete&roleTypeForQuery=1&subModule=user\"><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=delete&roleTypeForQuery=1&subModule=user</a></u></p><p class=\"western\"><strong>Operation Name: </strong> POST</p>",
+        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Delete operation for the Admin submodule. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Delete operation for the Sales, Info Manager and CRM submodules.</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/query?key=getAccessToken&module=admin&operation=delete&roleTypeForQuery=1&subModule=user</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p>",
         "responses": {
           "default": {
             "description": "successful operation"
