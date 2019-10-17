@@ -300,12 +300,13 @@
         "application/xml": {
            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>",
            "nullable": true
-        }
-      },
+        },
+      
        "xml": {
           "name": "AdminSubModuleResp",
           "wrapped": true
         }
+      }
         }
   
     },
