@@ -128,7 +128,7 @@
             "content": {
                 "application/xml": {
                 "schema": {
-                  "$ref": "#/definitions/AdminSubModuleResp"
+                  "$ref": "#/components/schemas/AdminSubModuleResp"
                 }
               }
             }
@@ -285,7 +285,28 @@
         "xml": {
           "name": "fsMail"
         }
-      }
+      },
+      "AdminSubModuleResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "content": {
+        "application/xml": {
+           "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>",
+           "nullable": true
+        }
+      },
+       "xml": {
+          "name": "AdminSubModuleResp"
+        }
+        }
+  
     },
     "requestBodies": {
       "CreateSchemaArray": {
@@ -531,27 +552,5 @@
         "required": true
       }
     }
-  },
-  "definitions": {
-    "AdminSubModuleResp": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "content": {
-        "application/xml": {
-           "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>",
-           "nullable": true
-        }
-      },
-       "xml": {
-          "name": "fsMail"
-        }
-        }
   }
 }
