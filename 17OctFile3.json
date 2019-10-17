@@ -1,0 +1,557 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "FranConnect API"
+  },
+  "tags": [
+    {
+      "name": "List of Sub-Modules",
+      "description": "<p>You must use the \"subModule\" endpoint to get a list of all sub-modules / tabs available for a specific module and use them, subsequently, in Create, Retrieve, Update, and, Delete operations.</p> To retrieve the list of subModules for a given module, you must make a POST request with “key”, “module name”, and “responseType” parameters appended in the URL. The following sections provide examples on how this is to be performed for Admin (module=admin), Sales (module=fs), Info Manager (module=fim), and CRM (module=cm).</p>",
+      "operationId": "List_of_Sub_Modules"
+    },
+    {
+      "name": "List of Field Names",
+      "description": "<p> The \"query\" endpoint enables you to get all those field names and internal names that you need to send in the request body for Create, Retrieve, Update, and, Delete operations. You must use the \"query\" endpoint to generate an XML input sample. This XML sample must be used for manipulating various FranConnect System entities using the Create, Retrieve, Update, and Delete operations. Sample XML will adapt to contain the fields as per the form builder.</p><p>You must consider the following points before using the \"query\" endpoint:</p><ul><li>Once you have the access token, then only you are authorized to make a call to the \"query\" endpoint using this access token.</li><li>Request XMLs are generated after using this endpoint. You can use these Request XMLs to import/export/delete data into the FranConnect system. The 'module'represents the entity for which you want to retrieve the query xml string (for example, 'admin'for Admin, 'cm' for CRM, 'fs' for Sales, 'fim' for Info Manager. The subModule represents the sub-module/tab that is required (for example, 'user' for Users, 'contact' for contacts, 'lead' for leads, and, 'franchisee' for locations). </li><li>The 'roleTypeForQuery' parameter specifies the user type( for example, Corporate User, Franchisee User, and so on) that you want to create or update. However, for delete and retrieve operations, the 'roleTypeForQuery' parameter is not required. </li><li>The response is received in XML format only.</li><li>If internationalization (translation settings) is enabled, then the<strong> &lt;userLanguage&gt;</strong> element node appears in \"query\" endpoint for the create and update operations. Otherwise, your system's default language is considered as the default language for the API.</li></ul>",
+      "operationId": "List_of_Field_Names"
+    },
+    {
+      "name": "Admin",
+      "description": "<p>The Admin module enables you to manage different types of users and locations. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for various types of users (such as Corporate User, Regional User, Franchisee User, and Divisional User) and locations.</p><p>The following sections explain and provide examples to perform Create, Retrieve, Update, and Delete operations for users. Similarly, you can perform Create, Retrieve, and Update operations for locations.</p>"
+    },
+    {
+      "name": "Sales",
+      "description": "<p>The Sales Module helps you to manage franchisee leads across their lifecycle. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for all the tabs that are available in <strong>Sales > Lead Management</strong>, except the file type fields and the pages/tabs that contain multiple tabular sections. The “file” type of fields are not supported by the FranConnect API and you can perform only Retrieve operations on pages that contain multiple tabular sections. </p><p>The following sections provide details and examples to perform Create, Retrieve, Update, and Delete operations on a Sales Lead’s “Primary Info” tab. Similarly, you can perform these operations for any other tab in <strong>Sales > Lead Management</strong>.</p>"
+    }
+      ],
+  "x-tagGroups": [
+    {
+      "name": "",
+      "tags": [
+        "Introduction",
+        "Authentication",
+        "Franchisee Number",
+        "Retrieve Franchisee Number",
+        "Error Codes",
+        "List of Sub-Modules",
+        "Retrieve Sub-Modules",
+        "List of Field Names",
+        "Retrieve Schema",
+        "Admin",
+        "User",
+        "Sales",
+        "Lead",
+        "Info Manager",
+        "Franchisee",
+        "CRM",
+        "CRM Lead",
+        "Contact",
+        "Account",
+        "Transactions",
+        "Opportunity",
+        "Task",
+        "Retrieve Task",
+        "Emails",
+        "Email",
+        "SMS",
+        "Retrieve SMS",
+        "Campaigns",
+        "Email Campaigns",
+        "SMS Campaigns",
+        "Finance",
+        "Sales Reports",
+        "Royalties",
+        "Payments",
+        "Profit and Loss Statements"
+      ]
+    }
+  ],
+  "paths": {
+    "/common/franchisee": {
+      "get": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for all Locations",
+        "description": "<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><h4>To retrieve the Franchisee Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchisee number and the franchisee names of all the locations.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/common/franchisee/filter": {
+      "post": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for a specific Location",
+        "description": "</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee/filter</p><h4>To retrieve the Franchisee Number for a specific location, you must provide the following items in the header of the POST request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchisee numbers. Performing the above mentioned steps will provide the franchisee number and the franchisee name for the required location.</p>",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/requestBodies/AdminSubModuleArray"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/Retrieve Admin Sub-Modules": {
+      "post": {
+        "tags": [
+          "Retrieve Sub-Modules"
+        ],
+        "summary": "Admin",
+        "description": "<p class=\"western\">Use this operation to get a list of all sub-modules / tabs available for Admin.<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=admin&responseType=XML</p>",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+                "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminSubModuleResp"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AdminSubModuleArray"
+        }
+      }
+    },
+    "/dataservices/Retrieve Sales submodules": {
+      "post": {
+        "tags": [
+          "Retrieve Sub-Modules"
+        ],
+        "summary": "Sales",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Sales.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fs&responseType=XML</p><p><strong>Notes:</strong> In response, the \"element names\" specify the actual name that you must use to perform any operation and \"element value\" specifies the display name of the sub-module that is displayed in the system.<br />Format: &lt; element_name&gt; element_value&lt; /element_name&gt;<br />Example: &lt;user&gt;User&lt;/user&gt;<br />Here, <strong>user</strong> is the subModule key that is to be used in the API for user.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/SalesSubModuleArray"
+        }
+      }
+    },
+    "/dataservices/Retrieve InfoMgr Sub-Modules": {
+      "post": {
+        "tags": [
+          "Retrieve Sub-Modules"
+        ],
+        "summary": "Info Manager",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Info Manager.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fim&responseType=XML</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/InfoMgrSubModuleArray"
+        }
+      }
+    },
+    "/dataservices/Retrieve CRM Sub-Modules": {
+      "post": {
+        "tags": [
+          "Retrieve Sub-Modules"
+        ],
+        "summary": "CRM",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for CRM.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=cm&responseType=XML</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CRMSubModuleArray"
+        }
+      }
+    },
+   
+   "/dataservices/update exising profit/loss statement": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Update Existing Profit/Loss Statement",
+        "description": "<p class=\"western\">You can update an existing profit and loss report by making a PUT request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>PUT</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/manage-finance/profit-loss/{plrepId} </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The profit and loss categories must be included in the body of the request.Click <u><a href=\"#tag/Authentication\">here</a></u> for details on retrieving the profit and loss categories.</p></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdminSubModule": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "XML": {
+          "name": "fsMail"
+        }
+      },
+      "CreateSchema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "roleTypeForQuery": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
+      "FSCreateLead": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "xmlString": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
+      "AdminSubModuleResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "content": {
+        "application/xml": {
+           "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>",
+           "nullable": true
+        },
+       "xml": {
+          "name": "AdminSubModule",
+          "wrapped": true
+        }
+      }
+        }
+  
+    },
+    "requestBodies": {
+      "CreateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=create",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "RetrieveSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=retrieve",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "UpdateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=update",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "DeleteSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=delete",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSCreateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<sendAutomaticMail>Yes</sendAutomaticMail>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<basedOnAssignmentRule>Yes</basedOnAssignmentRule>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n488<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>Yes</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>1</noOfUnitReq>\n<locationId1>Yes</locationId1>\n<locationId1b>Yes</locationId1b>\n<locationId2>Yes</locationId2>\n<preferredCity1>Reston</preferredCity1>\n<preferredCountry1>USA</preferredCountry1>\n<preferredStateId1>Albahama</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<basedOnWorkflowAssignmentRule>No</basedOnWorkflowAssignmentRule>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSCreateCRMLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest><cmLead><title>Mr.</title>\n<leadFirstName>Shaun</leadFirstName>\n562<leadLastName>Henry</leadLastName>\n<companyName>Company</companyName>\n<primaryContactMethod>Email</primaryContactMethod>\n<ownerTypeValue> CORP</ownerTypeValue>\n<leadOwnerID>Justin Williams</leadOwnerID><franchiseeNo></franchiseeNo>\n<areaID></areaID>\n<divisionID>Division</divisionID>\n<address>Street 1</address>\n<city>New Delhi</city>\n<country>India</country>\n<zipcode>110018</zipcode>\n<state>Delhi</state>\n<phoneNumbers>25252525</phoneNumbers>\n<extn>011</extn>\n<faxNumbers> </faxNumbers>\n<mobileNumbers>9898989898</mobileNumbers>\n<emailIds>shaun.henry@franconnect.com</emailIds>\n<alternateEmail> </alternateEmail>\n<suffix></suffix>\n<position></position>\n<birthdate></birthdate>\n<anniversarydate></anniversarydate>\n<cmLeadTypeID></cmLeadTypeID>\n<cmRatingID>Cold</cmRatingID>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID>Newspaper</cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact></bestTimeToContact>\n<comments>Welcome to FC System</comments>\n<serviceID>Product/Service Update, Announcements</serviceID>\n</cmLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSRetrieveLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>1696458950</referenceId>\n<requestDateFrom>2016-11-25</requestDateFrom>\n<requestDateTo>2017-12-25</requestDateTo>\n<leadStatusID op='eq'>NewLead</leadStatusID>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Retrieval object",
+        "required": true
+      },
+      "FSUpdateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>323234</referenceId>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n765<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<leadStatusID>Deffered</leadStatusID>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>50000</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>2</noOfUnitReq>\n<statusChangeDate>2016-04-04</statusChangeDate>\n<noOfFieldSold>5</noOfFieldSold>\n<dateOfOpen>2016-04-04</dateOfOpen>\n<leadKilledReason></leadKilledReason>\n<leadKilledReasonComment></leadKilledReasonComment>\n<franchiseeAwarded>Yes</franchiseeAwarded>\n<locationId1>From New Available Sites</locationId1>\n<locationId1b>From Existing Sites</locationId1b>\n<locationId2>From Resale Sites</locationId2>\n<preferredCity1>New York City</preferredCity1>\n<preferredCountry1>USA </preferredCountry1>\n<preferredStateId1>New York</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n766<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<unsubscribe>Opt-in</unsubscribe>\n<smsUnsubscribe></smsUnsubscribe>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Updation object",
+        "required": true
+      },
+      "FSDeleteLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>1661907438</referenceId>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      },
+      "AdminSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      },
+      "SalesSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nkey=key&module=fs&responseType=XML",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      },
+      "InfoMgrSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nkey=key&module=fim&responseType=XML",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      },
+      "CRMSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nkey=key&module=cm&responseType=XML",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      }
+    }
+  }
+}
