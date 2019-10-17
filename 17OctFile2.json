@@ -303,7 +303,8 @@
         }
       },
        "xml": {
-          "name": "AdminSubModuleResp"
+          "name": "AdminSubModuleResp",
+          "wrapped": true
         }
         }
   
