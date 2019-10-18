@@ -202,7 +202,7 @@
         }
       }
     }
-      },
+  },
   "components": {
     "schemas": {
       "AdminSubModule": {
@@ -218,7 +218,7 @@
             "type": "string"
           }
         },
-        "XML": {
+        "xml": {
           "name": "fsMail"
         }
       },
@@ -278,10 +278,39 @@
             "type": "string"
           }
         },
+        "example":{
+        "response": {
+          "data": [
+            {
+              "298031988": {
+                "paymentMappingId": "298031988",
+                "paymentID": "1708095951",
+                "franchiseRoyaltyId": "1928694199",
+                "invoiceNo": "6",
+                "paymentNo": "1",
+                "amountApplied": "35.00",
+                "dateApplied": "2019-06-26 08:32:12",
+                "franchiseeNo": "403951414",
+                "parentId": null,
+                "royaltyType": "All",
+                "dateReceived": "2019-06-26",
+                "collectionMethod": "Cash",
+                "refNo": "",
+                "submitDate": "2019-06-26 08:32:11",
+                "openBalance": "0.0",
+                "memo": "test"
+              },
+              
+              "response": "Success"
+            }
+          ],
+          "page": null
+        }
+      },
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>"
-            
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcResponse>",
+            "nullable": true
           },
           "xml": {
             "name": "AdminSubModule",
