@@ -183,7 +183,7 @@
         }
       }
     },
-    "/dataservices/Retrieve Admin Sub-Modules": {
+    "/dataservices/submodule": {
       "post": {
         "tags": [
           "Retrieve Sub-Modules"
@@ -220,8 +220,20 @@
         "summary": "Sales",
         "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Sales.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fs&responseType=XML</p><p><strong>Notes:</strong> In response, the \"element names\" specify the actual name that you must use to perform any operation and \"element value\" specifies the display name of the sub-module that is displayed in the system.<br />Format: &lt; element_name&gt; element_value&lt; /element_name&gt;<br />Example: &lt;user&gt;User&lt;/user&gt;<br />Here, <strong>user</strong> is the subModule key that is to be used in the API for user.</p>",
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "$ref": "#/components/responses/SalesSubModuleResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
@@ -236,9 +248,21 @@
         ],
         "summary": "Info Manager",
         "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for Info Manager.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fim&responseType=XML</p>",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+         "responses": {
+          "200": {
+            "$ref": "#/components/responses/InfoMgrSubModuleResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
@@ -254,8 +278,20 @@
         "summary": "CRM",
         "description": "<p class=\"western\">Use this operation to get list of all sub-modules / tabs available for CRM.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=cm&responseType=XML</p>",
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "$ref": "#/components/responses/CRMSubModuleResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
@@ -1632,7 +1668,31 @@
       "AdminSubModuleResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse><responseStatus>Success</responseStatus>\n<responseId>1527878235</responseId>\n<responseData><fcRequest>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcRequest>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1527878235</responseId>\n<responseData><fcRequest>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "SalesSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1449885839</responseId>\n<responseData>\n<fcRequest>\n<addlContact>Co-Applicants</addlContact>\n<call>Call</call>\n<compliance>Compliance</compliance>\n<lead>Primary Info</lead>\n<mail>Emails</mail>\n<personalProfile>Personal Profile</personalProfile>\n<qualification>Qualification Details</qualification>\n<realEstate>Real Estate</realEstate>\n<remark>Remark</remark>\n<statusChangeHistory>Status Change History</statusChangeHistory>\n<task>Task</task>\n<visit>Visit</visit>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "InfoMgrSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1449885839</responseId>\n<responseData>\n<fcRequest>\n<agreement>Agreement</agreement>\n<auditFieldHistory>Field Audit History</auditFieldHistory>\n<auditFormHistory>Form Audit History</auditFormHistory>\n<call>Call</call>\n<centerInfo>Center Info</centerInfo>\n<complaint>Customer Complaints</complaint>\n<contractSigning>Contract Signing</contractSigning>\n<employee>Employees</employee>\n<entity>Entity Details</entity>\n<event>Events</event>\n<financial>Financial</financial>\n<franchisee>Franchisee</franchisee>\n<guarantor>Guarantors</guarantor>\n<insurance>Insurance</insurance>\n<legalViolation>Legal Violation</legalViolation>\n<lender>Lenders</lender>\n<mail>External Mail</mail>\n<marketing>Marketing</marketing>\n<mysteryReview>Mystery Review</mysteryReview>\n<outlookMail>Outlook Emails</outlookMail>\n<owner>Owners</owner>\n<qa>QA History</qa>\n<realEstate>Real Estate</realEstate>\n<remark>Remark</remark>\n<renewal>Renewal</renewal>\n<task>Task</task>\n<termination>Default and Termination</termination>\n<territory>Territory</territory>\n<training>Training</training>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CRMSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>165173566</responseId>\n<responseData>\n<fcRequest>\n<account>Account Info</account>\n<accountRemark>Account - Remarks</accountRemark>\n<call>CM - Call</call>\n<category>Product Category</category>\n<contact>Primary Info</contact>\n<contactStatusChangeHistory>Contact StatusChangeHistory</contactStatusChangeHistory>\n<lead>Lead Info</lead>\n<leadCall>Lead - Call</leadCall>\n<leadMail>Lead Email</leadMail><leadOutlookMail>Lead Outlook Emails</leadOutlookMail>\n<leadRemark>Lead - Remarks</leadRemark>\n<leadStatusChangeHistory>Lead Status Change History</leadStatusChangeHistory>\n<leadTask>Lead - Task</leadTask>\n<leadToContactConversion>Lead Conversion</leadToContactConversion>\n<mail>Email</mail>\n<opportunity>Opportunity Information</opportunity>\n<opportunityCall>Opportunity - Call</opportunityCall>\n<opportunityRemark>Opportunity - Remarks</opportunityRemark>\n<opportunityTask>Opportunity - Task</opportunityTask>\n<otherAddress>Other Address</otherAddress>\n<outlookMail>Outlook Emails</outlookMail>\n<product>Product / Service</product>\n<remark>CM - Remarks</remark>\n<stageChangeHistory>Opportunity Stage Change History</stageChangeHistory>\n<task>CM - Task</task>\n<transaction>Transaction</transaction>\n</fcRequest>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
