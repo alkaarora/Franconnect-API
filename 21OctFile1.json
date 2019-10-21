@@ -1,0 +1,207 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "This is sample",
+    "version": "1.0.0",
+    "title": "Email"
+  },
+  "tags": [
+    {
+      "name": "email",
+      "description": "Operations about email"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "User Management",
+      "tags": [
+        "email"
+      ]
+    }
+  ],
+  "paths": {
+    "/lead/email/create": {
+      "post": {
+        "tags": [
+          "email"
+        ],
+        "summary": "Create Email",
+        "description": "create email for lead.",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FSEmail"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/FSEmail"
+              }
+            }
+          },
+          "description": "Created email object",
+          "required": true
+        }
+      }
+    },
+    "/retrieve/lead/email": {
+      "get": {
+        "tags": [
+          "email"
+        ],
+        "summary": "Retrieve emails",
+        "description": "",
+        "parameters": [
+          {
+            "name": "parentReferenceId",
+            "in": "path",
+            "description": "The name that needs to be fetched ",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/FSEmailResp"
+          },
+          "400": {
+            "description": "Invalid parentReferenceId supplied"
+          },
+          "404": {
+            "description": "parentReferenceId not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "email"
+        ],
+        "summary": "Delete email",
+        "description": "delete email.",
+        "parameters": [
+          {
+            "name": "ReferenceId",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/lead/email/createlist": {
+      "post": {
+        "tags": [
+          "email"
+        ],
+        "summary": "Creates list of emails with given input array",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSEmailArray"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "FSEmail": {
+        "type": "object",
+        "properties": {
+          "parentReferenceId": {
+            "description": "Parent record Id",
+            "type": "integer",
+            "example": "913876581"
+          },
+          "cc": {
+            "description": "CC email list",
+            "type": "string",
+            "format": "email",
+            "example": "shane.watson@yahoo.com"
+          },
+          "bcc": {
+            "description": "BCC email list",
+            "type": "string",
+            "format": "email",
+            "example": "larry.page@yahoo.com"
+          },
+          "subject": {
+            "description": "Email subject",
+            "type": "string",
+            "example": "Regarding Franchisee Details"
+          },
+          "mailText": {
+            "description": "mail contents",
+            "type": "string",
+            "example": "Hello ! This is to bring in your kind knowledge that we are providing you the full details to being a franchisee.",
+            "nullable": true
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      }
+    },
+    "requestBodies": {
+      "FSEmailArray": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSEmail"
+              }
+            }
+          },
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsMail>\n<parentReferenceId>913876581</parentReferenceId>\n<cc>shane.watson@yahoo.com</cc>\n<bcc>larry.page@yahoo.com</bcc>\n<subject>Regarding Franchisee Details</subject>\n<mailText>Hello ! This is to bring in your kind knowledge that we are providing you the full\ndetails to being a franchisee.</mailText>\n<mailFrom>kayne.west@yahoo.com</mailFrom>\n</fsMail> </fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSEmail"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "List of email object",
+        "required": true
+      }
+    },
+    "responses": {
+      "FSEmailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsMail>\n<parentReferenceId>913876581</parentReferenceId>\n<cc>shane.watson@yahoo.com</cc>\n<bcc>larry.page@yahoo.com</bcc>\n<subject>Regarding Franchisee Details</subject>\n<mailText>Hello ! This is to bring in your kind knowledge that we are providing you the full\ndetails to being a franchisee.</mailText>\n<mailFrom>kayne.west@yahoo.com</mailFrom>\n</fsMail> </fcRequest>"
+          }
+        },
+        "description": "Successfull"
+      }
+    }
+  }
+}
