@@ -125,10 +125,8 @@
         "responses": {
           "200": {
             "description": "OK",
-             "schema": {
-              "$ref": "#/components/responses/AdminSubModuleResp"
-            }
-                      },
+                   "$ref": "#/components/responses/AdminSubModuleResp"
+                  },
           "201": {
             "description": "Created"
           },
