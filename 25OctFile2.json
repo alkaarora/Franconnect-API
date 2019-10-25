@@ -1860,6 +1860,33 @@
           }
         },
         "description": "Successful"
+      },
+       "AdminRetrieveUserResp": 
+{
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseId>445098613</responseId>\n<responseData>\n<adminUser>\n<referenceId>52152465</referenceId>\n<userID>jameswilliam</userID>\n<userLevel>Corporate Users</userLevel>\n<firstname>James</firstname>\n<lastname>William</lastname>\n<role>Default Corporate Role</role>\n<expirationTime>Not Applicable</expirationTime>\n<type>Normal User</type>\n<timeZone>US/Eastern</timeZone>\n<division>North Division</division>\n<creationDate>2018-06-04T11:33Z</creationDate>\n<createdBy>FranConnect Administrator</createdBy>\n<createdByReferenceId>1</createdByReferenceId>\n<lastModifiedBy>FranConnect Administrator</lastModifiedBy>\n<lastModifiedByReferenceId>1</lastModifiedByReferenceId>\n<lastModifiedOn>2018-06-04T11:33Z</lastModifiedOn>\n<personalDetails>\n<referenceId>1150056991</referenceId>\n</franchiseeName>\n<address>Park Avenue, Hudson Lane</address>\n<city>Reston </city>\n<state>Virginia</state>\n<country>USA</country>\n<zipcode>201301</zipcode>\n<phone1>(985) 845-8251</phone1>\n<phone1Extn>52</phone1Extn>\n<fax />\n<mobile>(999) 999-9998</mobile>\n<emailID>james.william@yahoo.com</emailID>\n<jobTitle>Project Manager</jobTitle>\n<phone2>8584587542</phone2>\n<phone2Extn>43</phone2Extn>\n593\n<language>en</language>\n<loginUserIp>192.168.4.127</loginUserIp>\n<isBillable>Y</isBillable>\n<isDaylight>Y</isDaylight>\n</isAuditor>\n</salutation /><canAddEmployee />\n<unsubscribeCampaign>0</unsubscribeCampaign>\n<birthDate />\n<muidValue />\n<region /> <visibleToStore/>\n</personalDetails>\n</adminUser>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+       "AdminUpdateUserResp": 
+{
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<adminUser>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</adminUser>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+       "AdminDeleteUserResp": 
+{
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<adminUser>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</adminUser>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
       }
     }
   }
