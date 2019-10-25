@@ -1851,6 +1851,15 @@
           }
         },
         "description": "Successful"
+      },
+      "AdminCreateUserResp": 
+{
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<adminUser>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</adminUser>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
       }
     }
   }
