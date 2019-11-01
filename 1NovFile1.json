@@ -1547,7 +1547,7 @@
         }
       }
     },
-    "/dataservices/retrieve Email Campaigns": {
+    "/dataservices/retrieve?module=cm&subModule=campaignEmail": {
       "post": {
         "tags": [
           "Email Campaigns"
@@ -1556,7 +1556,7 @@
         "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving a Campaign email for a contact through the CRM module. In a similar manner, the Retrieve operation can be performed to retrieve Campaign emails through the Sales module.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/retrieve?key=generatedAccessToken&module=cm&subModule=CampaignEmail&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Retrieve operation</h4><p class=\"western\">To perform a Retrieve operation for retrieving a Campaign email using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “CampaignEmail”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to retrieve a Campaign email. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><strong>Note:</strong> Since the Retrieve operation is not being done on the main tab/sub-module, you are required to mention the <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u> of the lead/contact/location for whom you will perform the API operation. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
         "responses": {
           "200": {
-            "$ref": "#/components/responses/CMDeleteMailResp"
+            "$ref": "#/components/responses/CMRetrieveCampaignEmailResp"
           },
           "201": {
             "description": "Created"
@@ -1572,7 +1572,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+          "$ref": "#/components/requestBodies/CMRetrieveCampaignEmailArray"
         }
       }
     },
@@ -1613,12 +1613,24 @@
         "summary": "Retrieve",
         "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving a Campaign SMS for a contact through the CRM module. In a similar manner, the Retrieve operation can be performed to retrieve Campaign SMS through the Sales module.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/retrieve?key=generatedAccessToken&module=cm&subModule=SMSCampaign&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Retrieve operation</h4><p class=\"western\">To perform a Retrieve operation for retrieving a Campaign SMS using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “SMSCampaign”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to retrieve a Campaign SMS. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><strong>Note:</strong> Since the Retrieve operation is not being done on the main tab/sub-module, you are required to mention the <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u> of the lead/contact/location for whom you will perform the API operation. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "$ref": "#/components/responses/CMRetrieveCampaignSMSResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+          "$ref": "#/components/requestBodies/CMRetrieveCampaignSMSArray"
         }
       }
     },
@@ -2878,6 +2890,44 @@
         },
         "description": "Lead Creation object",
         "required": true
+      },
+       "CMRetrieveCampaignEmailArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "CMRetrieveCampaignSMSArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
       }
     },
     "responses": {
@@ -3261,6 +3311,22 @@
         "content": {
           "application/xml": {
             "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1715977357</responseId>\n<responseData>\n<cmContact>\n<referenceId>742374233</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:34Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>vk corp user</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T2</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>17</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i'm SMS for contact sent by workflow</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n<cmContact>\n<referenceId>419799026</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:33Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>vk corp user</contactOwnerID>\n<contactAddedBy>WebService</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T1</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>16</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i m sms (contact modified)</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+       "CMRetrieveCampaignEmailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveCampaignSMSResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
