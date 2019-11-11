@@ -1662,7 +1662,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/salesReportPeriod"
+              "$ref": "#/components/definitions/salesReportPeriod"
             }
           },
           "401": {
