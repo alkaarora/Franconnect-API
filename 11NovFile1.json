@@ -3357,9 +3357,8 @@
         },
         "description": "Successful"
       }
-    }
-  },
-  "definitions": {
+    },
+    "definitions": {
      "salesReportPeriod": {
       "type": "object",
       "properties": {
@@ -3395,5 +3394,6 @@
         }
       }
     }
+  }
   }
 }
