@@ -150,7 +150,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/CMRetrieveSMSArray"
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
         }
       }
     },
@@ -179,7 +179,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/CMRetrieveCampaignSMSArray"
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
         }
       }
     },
