@@ -1,0 +1,883 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "FranConnect API"
+  },
+  "tags": [
+    
+    
+    
+    {
+      "name": "Finance",
+      "description": "<p>The Finance module supports integration with other third party systems for reporting on sales, royalties, profit and loss, and payments. The FranConnect API allows you to automate the transfer of data between the Finance module and your Finance/POS systems.</p>"
+    },
+    {
+      "name": "Franchisee Number",
+      "description": "<p class=\"western\">Franchisee number is the unique reference number that is used in the API to reference a particular location. The franchisee number is used while performing CRUD operations, primarily in the Finance module. You can retrieve a list of the franchisee numbers for all the locations or for a single location.</p>"
+    },
+    {
+      "name": "Sales Reports",
+      "description": "This API endpoint supports the Finance Sales based operations."
+    },
+    {
+      "name": "Royalties",
+      "description": "This API endpoint supports the Finance Royalty based operations."
+    },
+    {
+      "name": "Payments",
+      "description": "This API endpoint supports the Finance Payment based operations."
+    },
+    {
+      "name": "Profit and Loss Statements",
+      "description": "This API endpoint supports the Finance Profit and Loss based operations."
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "",
+      "tags": [
+        "Introduction",
+        "Authentication",
+        "Franchisee Number",
+        "Retrieve Franchisee Number",
+        "Error Codes",
+        "List of Sub-Modules",
+        "Retrieve Sub-Modules",
+        "List of Field Names",
+        "Retrieve Schema",
+        "Admin",
+        "User",
+        "Sales",
+        "Lead",
+        "Info Manager",
+        "Franchisee",
+        "CRM",
+        "CRM Lead",
+        "Contact",
+        "Account",
+        "Transactions",
+        "Opportunity",
+        "Tasks",
+        "Task",
+        "Emails",
+        "Email",
+        "SMS",
+        "Retrieve SMS",
+        "Campaigns",
+        "Email Campaigns",
+        "SMS Campaigns",
+        "Finance",
+        "Sales Reports",
+        "Royalties",
+        "Payments",
+        "Profit and Loss Statements"
+      ]
+    }
+  ],
+  "paths": {
+    "/common/franchisee": {
+      "get": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for all Locations",
+        "description": "<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><h4>To retrieve the Franchisee Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchisee number and the franchisee names of all the locations.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/common/franchisee/filter": {
+      "post": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for a specific Location",
+        "description": "</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee/filter</p><h4>To retrieve the Franchisee Number for a specific location, you must provide the following items in the header of the POST request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchisee numbers. Performing the above mentioned steps will provide the franchisee number and the franchisee name for the required location.</p>",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/requestBodies/AdminSubModuleArray"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    
+    "/dataservices/retrieve?module=cm&subModule=contactSMS": {
+      "post": {
+        "tags": [
+          "Retrieve SMS"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\"><p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving an SMS for a contact through the CRM module. In a similar manner, the Retrieve operation can be performed to retrieve SMS through the Sales module.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/retrieve?key=generatedAccessToken&module=cm&subModule=ContactSMS&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Retrieve operation</h4><p class=\"western\">To perform a Retrieve operation for retrieving an SMS using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “ContactSMS”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to retrieve SMS. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><strong>Note:</strong> Since the Retrieve operation is not being done on the main tab/sub-module, you are required to mention the <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u> of the lead/contact/location for whom you will perform the API operation. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CMRetrieveSMSResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CMRetrieveSMSArray"
+        }
+      }
+    },
+    "/dataservices/retrieve SMS Campaigns": {
+      "post": {
+        "tags": [
+          "SMS Campaigns"
+        ],
+        "summary": "Retrieve",
+        "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving a Campaign SMS for a contact through the CRM module. In a similar manner, the Retrieve operation can be performed to retrieve Campaign SMS through the Sales module.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/retrieve?key=generatedAccessToken&module=cm&subModule=SMSCampaign&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Retrieve operation</h4><p class=\"western\">To perform a Retrieve operation for retrieving a Campaign SMS using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “SMSCampaign”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to retrieve a Campaign SMS. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><strong>Note:</strong> Since the Retrieve operation is not being done on the main tab/sub-module, you are required to mention the <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u> of the lead/contact/location for whom you will perform the API operation. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CMRetrieveCampaignSMSResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CMRetrieveCampaignSMSArray"
+        }
+      }
+    },
+    "/sales/periods/franchiseeNo/{id}": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales Reports Periods",
+        "description": "<p class=\"western\">The report period in Finance > Sales refers to that time duration for which sales is to be reported by the franchisees. The report period for each location is defined in the financial agreement that is associated with that location.</p><p class=\"western\">You must make a GET request to the request URL, along with other required details, to retrieve the report periods. This would provide a list of all the report periods for which sales is to be reported by the franchisees.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/periods/franchiseeNo/{id}</p>To retrieve the report periods for which sales data has not been entered for a particular franchisee location, you must make a GET request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters: <ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>Franchisee number as the internal unique reference number of the location. Click <u><a href=\"#tag/Retrieve-Franchisee-Number\">here</a></u> for details on retrieving the franchisee number. </p></li></ol><p class=\"western\">Performing the above mentioned steps would return all the report periods for which sales has not been reported by that location.</p>",
+        "operationId": "Retrieve_Sales_Reports_Periods",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/definitions/salesReportPeriod"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/dataservices/retrieve finance categories": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Finance Categories",
+        "description": "<p class=\"western\">Finance categories are an important part of the sales report. These represent the categories that are used to report Sales data. To retrieve all the finance categories, you must use the report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">here</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET request to retrieve a list of financial categories that are available to report the sales for the given report period. </p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;:  </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</p>",
+        "operationId": "Finance_Categories",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve non finance categories": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Non Finance Categories",
+        "description": "<p class=\"western\">Non-Finance categories represent the categories that are not financial in nature but are still tracked as a part of sales reports (such as customer count and loyalty program enrollments). Every sales report has at least one non-finance category in it. To retrieve all the non-finance/Key Performance Indicator (KPI) categories that are used in sales report, you must use a report period and its corresponding finance categories as input parameters for the GET request. Click <u><a href=\"#tag/Sales-Reports\">Report Periods</a></u> for details on retrieving these report periods and click <u><a href=\"#tag/Sales-Reports\">Finance Categories</a></u> for details on retrieving these finance categories.</p><p>Then, using these parameters, perform a GET request to retrieve a list of non finance categories that are available to report the sales for the given report period.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;:  </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod} </p><p><strong>Note:</strong> Sometimes, you may not have non-finance categories set up in your sales report. If this is the case, you need not retrieve the non-finance categories.</p>",
+        "operationId": "Non_Finance_Categories",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve additional invoice items": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Additional Invoice Items",
+        "description": "<p class=\"western\">There are some additional invoice items that can be included in the sales report apart from the finance and non-finance categories. To retrieve these additional invoice items, you must use a report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">Report Periods</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET operation to retrieve a list of additional invoice items that are available to report the sales for the given report period.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod} </p><p><strong>Note:</strong> Configuring the additional invoice items is optional. In case you have not configured these as part of your sales report and still if you try retrieving them using the above mentioned endpoint, an empty data set is retrieved.</p>",
+        "operationId": "Retrieve_Additional_Invoice_Items",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve sales report status": {
+      "get": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales Report Status",
+        "description": "<p class=\"western\">Following table lists the various status that can be attributed to sales reports and can therefore be used as a search constraint in retrieve operations.</p><p class=\"western\">&nbsp;</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"6\"><colgroup><col width=\"144\" /> <col width=\"592\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"144\"><p class=\"western\"><strong>Key</strong></p></td><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"592\"><p class=\"western\"><strong>Name</strong></p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>P</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for approval</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>A</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Approved</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>R</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Rejected</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>I</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Invoiced</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>K</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for Acknowledgement</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\">You must make a GET request to the API endpoint, along with other required details, to retrieve the report status and their corresponding keys.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/status </p><p><strong>Note:</strong> Configuring the additional invoice items is optional. In case you have not configured these as part of your sales report and still if you try retrieving them using the above mentioned endpoint, an empty data set is retrieved.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create new sales report": {
+      "post": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Create New Sales Report",
+        "description": "<p class=\"western\">Sales reports allow locations to declare their proceeds during that report period. These are comprised of finance and non-finance categories. Sometimes, the sales report may contain additional invoice items. A sales report can be created for a location for that time duration for which sales is to be reported by the franchisees. In order to do so, a POST type request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/status </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p><u><a href=\"#operation/Finance_Categories\">Finance Categories</a></u>, <u><a href=\"#operation/Non_Finance_Categories\">Non Finance Categories</a></u> and <u><a href=\"#operation/Retrieve_Additional_Invoice_Items\">Additional Line Items</a></u> must be included in the body of the request. </p></li></ol><p class=\"western\">Performing the above mentioned steps would create a new sales report. The response received from the API contains the “reportNo” and “salesReportID”. While the “reportNo” represents the \"Report ID\" of the report and can be seen in Finance > Sales > Sales Summary, the “salesReportID” represents the unique reference ID for that sales report.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve sales": {
+      "post": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Retrieve Sales Report",
+        "description": "<p class=\"western\">You can retrieve an existing sales report by making a POST type request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/filter </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the sales report must be included in the body of the request. </p></li></ol><p class=\"western\">In the example that is included, the “franchiseeNo” has been used as a ‘constraints’ criterion. Other acceptable values of constraints, that can be used to filter and retrieve sales reports, are explained in the following table:</p><center><table width=\"623\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"157\" /> <col width=\"135\" /> <col width=\"223\" /> <col width=\"51\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"157\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"135\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field Description</span></strong></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Applied Clause</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"51\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Format</span></strong></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Sales Report Number as seen in UI</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>salesReportID</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportPeriodStart/End</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Period Start/ End Date in YYYY-MM-DD format</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportSubmitDate</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Submit Date in YYYY-MM-DD format</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>totalSales</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Total Sales</p></td><td width=\"223\"><p class=\"western\" align=\"center\">GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Status of the Sales Report</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportType</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Type of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update existing sales report": {
+      "put": {
+        "tags": [
+          "Sales Reports"
+        ],
+        "summary": "Update Existing Sales Report",
+        "description": "<p class=\"western\">You can update an existing sales report by making a PUT type request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>PUT</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/{salesReportID} </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The “salesReportID” refers to the internal unique ID for the sales report. You can fetch this information by retrieving the sales report details on the basis of report number “reportNo” or any other constraint.</p></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve royalty invoices": {
+      "post": {
+        "tags": [
+          "Royalties"
+        ],
+        "summary": "Retrieve Royalty Invoices",
+        "description": "<p class=\"western\">Once a sales report is approved, the royalty for the same is automatically generated by the FranConnect system. Royalty reports are generated on the basis of sales submitted for the locations. The method for retrieving a Royalty report is similar to that of retrieving a Sales report. To retrieve a royalty report, a POST of request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/royalties/filter </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the royalty invoices must be included in the body of the request. </p></li></ol><p class=\"western\">The following table lists all the attributes that can be used as constraints while retrieving royalty reports along with the “clauses” that are supported for each constraint.</p><center><table width=\"735\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"134\" /> <col width=\"253\" /> <col width=\"223\" /> <col width=\"66\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"134\" height=\"30\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"253\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applicable Clauses</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"66\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseeRoyaltyID</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the Royalty Invoicce</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"9\"><p class=\"western\"><strong>invoiceNO</strong></p></td><td width=\"253\"><p class=\"western\">Royalty Invoice Number as seen in UI</p></td><td width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr><tr valign=\"top\"><td width=\"134\" height=\"85\"><p class=\"western\"><strong>invoiceDate</strong></p></td><td width=\"253\"><p class=\"western\">Invoice Date</p></td><td width=\"223\"><p class=\"western\">EQUAL, GREATER_THAN,</p><p class=\"western\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"66\"><p class=\"western\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"134\"><p class=\"western\"><strong>paymentStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"253\"><p class=\"western\">Payment Status</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"66\"><p class=\"western\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/get royalties payment status": {
+      "get": {
+        "tags": [
+          "Royalties"
+        ],
+        "summary": "Retrieve Royalties Payment Status",
+        "description": "<p class=\"western\">You can retrieve the payment status for Royalty reports by making a GET request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/royalties/status</p>The following items must be used as path parameters:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a list of royalty payment status that are available in the system along with their corresponding keys. The following table lists the different royalty payment status along with their corresponding keys:</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"228\" /> <col width=\"505\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"228\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Key</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"505\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Payment Status</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>N</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Unpaid</p></td></tr><tr valign=\"top\"><td width=\"228\"><p class=\"western\"><strong>P</strong></p></td><td width=\"505\"><p class=\"western\">Partially Paid</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>C</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Fully Paid</p></td></tr></tbody></table></center>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve payments": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Retrieve Payments",
+        "description": "<p class=\"western\">You can retrieve the payments that were made against a royalty report by making a POST request to the Payments endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/payments/filter</p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the payments must be included in the body of the request. </p></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve p&l statements periods": {
+      "get": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit and Loss Periods",
+        "description": "<p class=\"western\">You can retrieve the Profit and Loss report periods for a location for that time duration for which sales is to be reported by the franchisees. In order to do so, a GET request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/periods/franchiseeNo/{franchise_number}</p>The following items must be used as path parameters:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a list of all the statement periods for which Profit and Loss statement has not been declared by that location.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve profit loss categories": {
+      "get": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit Loss Categories",
+        "description": "<p class=\"western\">You can retrieve the Profit and Loss categories that are present in the Profit and Loss statements for each franchisee against which income and expenses are to be entered. In order to do so, a GET request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/categories</p>The following items must be used as path parameters:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a response that contains all the profit and loss categories that are configured in the system and a placeholder where the amount can be entered against that corresponding category. You can use this information to add the profit and loss details while creating and/ or updating profit and loss reports.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/create new profit loss statements": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Create New Profit Loss Statements",
+        "description": "<p class=\"western\">You can create new Profit and Loss statements in the system by making a POST request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss</p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The profit and loss categories must be included in the body of the request. Click <u><a href=\"#tag/Authentication\">here for details on retrieving the Profit and Loss categories.</p></li></ol><p class=\"western\">If the Create operation is successful, performing the above mentioned steps would return a response containing the \"plrepld\". This represents the internal reference ID for the Profit and Loss statements that was just created and can be used for the update and the retrieve operations.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/retrieve profit loss statements": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Retrieve Profit Loss Statements",
+        "description": "<p class=\"western\">You can retrieve an existing Profit and Loss statement in the system by making a POST request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/filter</p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the profit and loss report must be included in the body of the request.</p></li></ol><p class=\"western\">The following table details the other values that can be used as constraints along with their clause criteria:</p><center><table width=\"720\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"147\" /> <col width=\"127\" /> <col width=\"306\" /> <col width=\"82\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"147\" height=\"8\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"127\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"306\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applied Clause</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"82\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\"><p class=\"western\"><strong><span lang=\"en\">plrepId</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Internal Unique Reference Number of the P&amp;L Report</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td width=\"147\"><p class=\"western\"><strong><span lang=\"en\">franchiseeNo</span></strong></p></td><td width=\"127\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\" height=\"73\"><p class=\"western\"><strong><span lang=\"en\">statementPeriod</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Statement Period</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr><tr valign=\"top\"><td width=\"147\" height=\"77\"><p class=\"western\"><strong><span lang=\"en\">submissionDate</span></strong></p></td><td width=\"127\"><p class=\"western\"><span lang=\"en\">Submission Date</span></p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\"><strong>Note</strong>: Multiple constraints can be used in the filter to retrieve data.</p><p class=\"western\">&nbsp;</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    },
+    "/dataservices/update exising profit/loss statement": {
+      "post": {
+        "tags": [
+          "Profit and Loss Statements"
+        ],
+        "summary": "Update Existing Profit/Loss Statement",
+        "description": "<p class=\"western\">You can update an existing profit and loss report by making a PUT request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>PUT</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/{plrepId} </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The profit and loss categories must be included in the body of the request.Click <u><a href=\"#tag/Authentication\">here</a></u> for details on retrieving the profit and loss categories.</p></li></ol></p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdminSubModule": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "XML": {
+          "name": "fsMail"
+        }
+      },
+      "CreateSchema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "roleTypeForQuery": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
+      "FSCreateLead": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "xmlString": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      }
+    },
+    "requestBodies": {
+      "CreateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=create",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "RetrieveSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=retrieve",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "UpdateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=update",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "DeleteSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=delete",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSCreateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<sendAutomaticMail>Yes</sendAutomaticMail>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<basedOnAssignmentRule>Yes</basedOnAssignmentRule>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n488<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>Yes</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>1</noOfUnitReq>\n<locationId1>Yes</locationId1>\n<locationId1b>Yes</locationId1b>\n<locationId2>Yes</locationId2>\n<preferredCity1>Reston</preferredCity1>\n<preferredCountry1>USA</preferredCountry1>\n<preferredStateId1>Albahama</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<basedOnWorkflowAssignmentRule>No</basedOnWorkflowAssignmentRule>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSRetrieveLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>1696458950</referenceId>\n<requestDateFrom>2016-11-25</requestDateFrom>\n<requestDateTo>2017-12-25</requestDateTo>\n<leadStatusID op='eq'>NewLead</leadStatusID>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Retrieval object",
+        "required": true
+      },
+    
+      "FSRetrieveTaskArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>1696458950</referenceId>\n<requestDateFrom>2016-11-25</requestDateFrom>\n<requestDateTo>2017-12-25</requestDateTo>\n<leadStatusID>Lead Status (Mandatory when no other filter value provided).</leadStatusID>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSUpdateTaskArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<referenceId>913876583</referenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Mandatory</taskType>\n<subject>JBF task</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>2017-01-11</date>\n<calendarTask>Y</calendarTask>\n<startTime>01:00 AM</startTime>\n<endTime>02:00 PM</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSDeleteTaskArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<referenceId>1661907438</referenceId>\n</fsTask>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+          "CMRetrieveCampaignEmailArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "CMRetrieveCampaignSMSArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      }
+    },
+    "responses": {
+      "AdminSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1527878235</responseId>\n<responseData><fcRequest>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+     
+      "FSRetrieveTaskResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>445098613</responseId>\n<responseData>\n<fsLead>\n<referenceId>1696458950</referenceId>\n<requestDate>2016-12-01</requestDate>\n<salutation>Mr.</salutation>\n<firstName>Yulia</firstName>\n<lastName>Klein</lastName>\n<fsTask>\n<referenceId>1375071536</referenceId>\n<assignBy>FranConnect Administrator</assignBy>\n<subject>Application Task</subject>\n<priority>Medium</priority>\n<date>2016-12-01 07:30 AM</date>\n<duration>2016-12-01 08:30 AM</duration>\n<status>Not Started</status>\n<taskType>Default</taskType>\n<reminderTime>2016-12-01 12:00 AM</reminderTime>\n<comments>Hello! This is my first task.</comments>\n<assignTo>Test User,Test1 User11,FranConnect Administrator</assignTo>\n</fsTask>\n</fsLead>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "FSUpdateTaskResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n< fsTask>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "FSDeleteTaskResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< fsTask>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMCreateMailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>386076013</responseId>\n<responseData />\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveMailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>589658425</responseId>\n<responseData>\n<cmContact>\n<referenceId>329773998</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2016-05-12</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>FranConnect Administrator</contactOwnerID>\n<contactAddedBy>FranConnect Administrator</contactAddedBy>\n<contactFirstName>Matt</contactFirstName>\n<contactLastName>Dwyer</contactLastName>\n<franchiseeReferenceId>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmMail>\n<referenceId>218671952</referenceId>\n<fromID>FranConnect Administrator</fromID>\n<subject>Reminder mail</subject>\n<mailText> Hey! I am here to remind you about your bills. </mailText>\n<date>2016-05-12</date>\n</cmMail>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMDeleteMailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmMail>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmMail>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveSMSResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1715977357</responseId>\n<responseData>\n<cmContact>\n<referenceId>742374233</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:34Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>vk corp user</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T2</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>17</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i'm SMS for contact sent by workflow</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n<cmContact>\n<referenceId>419799026</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:33Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>vk corp user</contactOwnerID>\n<contactAddedBy>WebService</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T1</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>16</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i m sms (contact modified)</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveCampaignEmailResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveCampaignSMSResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      }
+    },
+    "definitions": {
+      "salesReportPeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "response": {
+            "data": [
+              [
+                {
+                  "reportPeriod": "Jan - 2019"
+                },
+                {
+                  "reportPeriod": "Feb - 2019"
+                },
+                {
+                  "reportPeriod": "Mar - 2019"
+                },
+                {
+                  "reportPeriod": "Apr - 2019"
+                },
+                {
+                  "reportPeriod": "May - 2019"
+                }
+              ]
+            ],
+            "page": null
+          }
+        }
+      }
+    }
+  }
+}
