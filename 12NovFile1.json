@@ -103,7 +103,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/components/requestBodies/AdminSubModuleArray"
+              "$ref": "#/components/requestBodies/FSCreateLeadArray"
             }
           },
           "201": {
