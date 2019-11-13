@@ -6,55 +6,6 @@
     "title": "FranConnect API"
   },
   "tags": [
-        {
-      "name": "List of Sub-Modules",
-      "description": "<p>You must use the \"subModule\" endpoint to get a list of all sub-modules / tabs available for a specific module and use them, subsequently, in Create, Retrieve, Update, and, Delete operations.</p> To retrieve the list of subModules for a given module, you must make a POST request with “key”, “module name”, and “responseType” parameters appended in the URL. The following sections provide examples on how this is to be performed for Admin (module=admin), Sales (module=fs), Info Manager (module=fim), and CRM (module=cm).</p>",
-      "operationId": "List_of_Sub_Modules"
-    },
-    {
-      "name": "List of Field Names",
-      "description": "<p> The \"query\" endpoint enables you to get all those field names and internal names that you need to send in the request body for Create, Retrieve, Update, and, Delete operations. You must use the \"query\" endpoint to generate an XML input sample. This XML sample must be used for manipulating various FranConnect System entities using the Create, Retrieve, Update, and Delete operations. Sample XML will adapt to contain the fields as per the form builder.</p><p>You must consider the following points before using the \"query\" endpoint:</p><ul><li>Once you have the access token, then only you are authorized to make a call to the \"query\" endpoint using this access token.</li><li>Request XMLs are generated after using this endpoint. You can use these Request XMLs to import/export/delete data into the FranConnect system. The 'module'represents the entity for which you want to retrieve the query xml string (for example, 'admin'for Admin, 'cm' for CRM, 'fs' for Sales, 'fim' for Info Manager. The subModule represents the sub-module/tab that is required (for example, 'user' for Users, 'contact' for contacts, 'lead' for leads, and, 'franchisee' for locations). </li><li>The 'roleTypeForQuery' parameter specifies the user type( for example, Corporate User, Franchisee User, and so on) that you want to create or update. However, for delete and retrieve operations, the 'roleTypeForQuery' parameter is not required. </li><li>The response is received in XML format only.</li><li>If internationalization (translation settings) is enabled, then the<strong> &lt;userLanguage&gt;</strong> element node appears in \"query\" endpoint for the create and update operations. Otherwise, your system's default language is considered as the default language for the API.</li></ul>"
-    },
-    {
-      "name": "Admin",
-      "description": "<p>The Admin module enables you to manage different types of users and locations. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for various types of users (such as Corporate User, Regional User, Franchisee User, and Divisional User) and locations.</p><p>The following sections explain and provide examples to perform Create, Retrieve, Update, and Delete operations for users. Similarly, you can perform Create, Retrieve, and Update operations for locations.</p>"
-    },
-    {
-      "name": "Sales",
-      "description": "<p>The Sales Module helps you to manage franchisee leads across their lifecycle. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for all the tabs that are available in <strong>Sales > Lead Management</strong>, except the file type fields and the pages/tabs that contain multiple tabular sections. The “file” type of fields are not supported by the FranConnect API and you can perform only Retrieve operations on pages that contain multiple tabular sections. </p><p>The following sections provide details and examples to perform Create, Retrieve, Update, and Delete operations on a Sales Lead’s “Primary Info” tab. Similarly, you can perform these operations for any other tab in <strong>Sales > Lead Management</strong>.</p>"
-    },
-    {
-      "name": "Info Manager",
-      "description": "<p>The Info Manager module comprises of both, in-development as well as operational locations, that you can manage through the FranConnect API. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location’s main page (in Center Info) or in any of the tabs (such as Real Estate and Mystery Review).</p><p>Note that the following sections explain and provide examples on how to perform these operations on the “Primary Info” tab for locations. Similarly, you can perform these  operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
-    },
-    {
-      "name": "CRM",
-      "description": "<p>The CRM module is used to manage leads, contacts, and accounts across their entire lifecycle. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the CRM’s main page or in any of the tabs (such as Accounts, Leads, Contacts, and Opportunities).</p>"
-    },
-    {
-      "name": "Tasks",
-      "description": "<p> A task is a piece of work to be done. Using the FranConnect API, you can perform Create, Retrieve, Update, and, Delete operations for the tasks in Sales, Info Manager and CRM modules.</p>"
-    },
-    {
-      "name": "Emails",
-      "description": "An email is a piece of communication that is sent from within the FranConnect system. Using the FranConnect API, you can perform the Create, Retrieve and Delete operations for emails. Note that the Update operation cannot be performed for emails since an email that has already been created and sent out cannot be updated."
-    },
-    {
-      "name": "SMS",
-      "description": "<p>Using the FranConnect API, you can perform the Retrieve operation for SMS for only the Sales and CRM modules, as follows: CRM-Contacts and CRM-Leads, Sales-Leads</p>\n>"
-    },
-    {
-      "name": "Campaigns",
-      "description": "<p>Using the FranConnect API, you can perform the Retrieve operation for Campaigns for only the Sales and CRM modules, as follows: CRM-Contacts and CRM-Leads, Sales-Leads.</p>"
-    },
-    {
-      "name": "Email Campaigns",
-      "description": "<p>Using the FranConnect API, you can perform the Retrieve operation for Campaign emails for only the Sales and CRM modules, as follows: CRM-Contacts and CRM-Leads, Sales-Leads.</p>"
-    },
-    {
-      "name": "SMS Campaigns",
-      "description": "<p>Using the FranConnect API, you can perform the Retrieve operation for Campaign SMS as follows: CRM-Contacts and CRM-Leads, Sales-Leads.</p>"
-    },
     {
       "name": "Finance",
       "description": "<p>The Finance module supports integration with other third party systems for reporting on sales, royalties, profit and loss, and payments. The FranConnect API allows you to automate the transfer of data between the Finance module and your Finance/POS systems.</p>"
