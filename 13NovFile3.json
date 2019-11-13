@@ -1785,13 +1785,45 @@
         "summary": "Retrieve Additional Invoice Items",
         "description": "<p class=\"western\">There are some additional invoice items that can be included in the sales report apart from the finance and non-finance categories. To retrieve these additional invoice items, you must use a report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">Report Periods</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET operation to retrieve a list of additional invoice items that are available to report the sales for the given report period.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/addtional-line-items/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod} </p><p><strong>Note:</strong> Configuring the additional invoice items is optional. In case you have not configured these as part of your sales report and still if you try retrieving them using the above mentioned endpoint, an empty data set is retrieved.</p>",
         "operationId": "Retrieve_Additional_Invoice_Items",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RetrieveAddInvoiceItemsResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -3506,6 +3538,35 @@
                     "data": [
                       {
                         "amount": "Enter the amount of earning in Non-Fin Integer Categ2"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "RetrieveAddInvoiceItemsResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "finAddnlItems": [
+                {
+                  "450294861": {
+                    "name": "Additional Invoice Item Categ",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Additional Invoice Item Categ"
                       }
                     ]
                   }
