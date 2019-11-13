@@ -1684,14 +1684,46 @@
         ],
         "summary": "Retrieve Finance Categories",
         "description": "<p class=\"western\">Finance categories are an important part of the sales report. These represent the categories that are used to report Sales data. To retrieve all the finance categories, you must use the report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">here</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET request to retrieve a list of financial categories that are available to report the sales for the given report period. </p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;:  </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</p>",
-        "operationId": "Finance_Categories",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+       "operationId": "Retrieve_Finance_Categories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RetrieveFinanceCategoriesResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -3380,6 +3412,36 @@
                 "reportPeriod": "May - 2019"
               }
             ]
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+      "RetrieveFinanceCategoriesResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "financialItems": [
+                {
+                  "1": {
+                    "name": "Service",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Service",
+                        "quantity": "Enter the quantity of the products in Service"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
           ],
           "page": null
         }
