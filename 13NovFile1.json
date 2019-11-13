@@ -1649,7 +1649,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "ParameterType:AlkaInteger",
             "required": false,
             "type": "integer",
             "format": "int32",
