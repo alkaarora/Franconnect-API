@@ -426,6 +426,25 @@
         },
         "description": "Lead Deletion object",
         "required": true
+      },
+      "CMRetrieveCampaignSMSArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
       }
     },
     "responses": {
