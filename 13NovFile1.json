@@ -1649,7 +1649,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "ParameterTypo:Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
@@ -1662,7 +1662,7 @@
           "200": {
             "$ref": "#/components/responses/SalesReportPeriod"
           },
-          "202": {
+          "201": {
             "description": "Created"
           },
           "401": {
