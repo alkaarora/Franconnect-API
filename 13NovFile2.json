@@ -1,0 +1,419 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0",
+    "title": "FranConnect API"
+  },
+  "tags": [
+       {
+      "name": "Sales Reports",
+      "description": "This API endpoint supports the Finance Sales based operations."
+    },
+    {
+      "name": "Royalties",
+      "description": "This API endpoint supports the Finance Royalty based operations."
+    },
+    {
+      "name": "Payments",
+      "description": "This API endpoint supports the Finance Payment based operations."
+    },
+    {
+      "name": "Profit and Loss Statements",
+      "description": "This API endpoint supports the Finance Profit and Loss based operations."
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "",
+      "tags": [
+        "Sales Reports",
+        "Royalties",
+        "Payments",
+        "Profit and Loss Statements"
+      ]
+    }
+  ],
+  "paths": {
+    "/common/franchisee": {
+      "get": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for all Locations",
+        "description": "<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee</p><h4>To retrieve the Franchisee Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchisee number and the franchisee names of all the locations.</p>",
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/common/franchisee/filter": {
+      "post": {
+        "tags": [
+          "Retrieve Franchisee Number"
+        ],
+        "summary": "Retrieve for a specific Location",
+        "description": "</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/common/franchisee/filter</p><h4>To retrieve the Franchisee Number for a specific location, you must provide the following items in the header of the POST request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchisee numbers. Performing the above mentioned steps will provide the franchisee number and the franchisee name for the required location.</p>",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/components/requestBodies/AdminSubModuleArray"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        }
+      }
+    }
+  },
+    "components": {
+    "schemas": {
+      "AdminSubModule": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "XML": {
+          "name": "fsMail"
+        }
+      },
+      "CreateSchema": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "roleTypeForQuery": {
+            "type": "integer"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      },
+      "FSCreateLead": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "module": {
+            "type": "string"
+          },
+          "subModule": {
+            "type": "string"
+          },
+          "xmlString": {
+            "type": "string"
+          },
+          "responseType": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "fsMail"
+        }
+      }
+    },
+    "requestBodies": {
+      "CreateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=create",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "RetrieveSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=retrieve",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "UpdateSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&roleTypeForQuery=1&operation=update",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "DeleteSchemaArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/key=key&module=admin&subModule=user&operation=delete",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/CreateSchema"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+      "FSCreateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<sendAutomaticMail>Yes</sendAutomaticMail>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<basedOnAssignmentRule>Yes</basedOnAssignmentRule>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n488<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>Yes</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>1</noOfUnitReq>\n<locationId1>Yes</locationId1>\n<locationId1b>Yes</locationId1b>\n<locationId2>Yes</locationId2>\n<preferredCity1>Reston</preferredCity1>\n<preferredCountry1>USA</preferredCountry1>\n<preferredStateId1>Albahama</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<basedOnWorkflowAssignmentRule>No</basedOnWorkflowAssignmentRule>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Creation object",
+        "required": true
+      },
+       "FSRetrieveLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>1696458950</referenceId>\n<requestDateFrom>2016-11-25</requestDateFrom>\n<requestDateTo>2017-12-25</requestDateTo>\n<leadStatusID op='eq'>NewLead</leadStatusID>\n</filter>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Retrieval object",
+        "required": true
+      },
+        "FSUpdateLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>323234</referenceId>\n<salutation>Mr.</salutation>\n<firstName>Josn</firstName>\n<lastName>Marsh</lastName>\n<address>100 Main St</address>\n<address2></address2>\n<city>Seattle</city>\n<country>USA</country>\n<stateID>Washington</stateID>\n<zip>98102</zip>\n<countyID>Adams</countyID>\n<primaryPhoneToCall>Email</primaryPhoneToCall>\n<bestTimeToContact></bestTimeToContact>\n<phone></phone>\n<phoneExt></phoneExt>\n<homePhone></homePhone>\n765<homePhoneExt></homePhoneExt>\n<fax></fax>\n<mobile></mobile>\n<emailID>support@franconnect.com</emailID>\n<companyName></companyName>\n<comments>Newly added lead in this area</comments>\n<leadStatusID>Deffered</leadStatusID>\n<leadOwnerID>Chris Barlow</leadOwnerID>\n<leadRatingID>Warm</leadRatingID>\n<marketingCodeId></marketingCodeId>\n<leadSource2ID>Advertisement</leadSource2ID>\n<leadSource3ID>Magazine</leadSource3ID>\n<otherLeadSourceDetail></otherLeadSourceDetail>\n<liquidCapitalMin>10000</liquidCapitalMin>\n<liquidCapitalMax>50000</liquidCapitalMax>\n<investTimeframe>5</investTimeframe>\n<background>Business</background>\n<sourceOfFunding>Business</sourceOfFunding>\n<nextCallDate>2016-04-04</nextCallDate>\n<division>Division</division>\n<noOfUnitReq>2</noOfUnitReq>\n<statusChangeDate>2016-04-04</statusChangeDate>\n<noOfFieldSold>5</noOfFieldSold>\n<dateOfOpen>2016-04-04</dateOfOpen>\n<leadKilledReason></leadKilledReason>\n<leadKilledReasonComment></leadKilledReasonComment>\n<franchiseeAwarded>Yes</franchiseeAwarded>\n<locationId1>From New Available Sites</locationId1>\n<locationId1b>From Existing Sites</locationId1b>\n<locationId2>From Resale Sites</locationId2>\n<preferredCity1>New York City</preferredCity1>\n<preferredCountry1>USA </preferredCountry1>\n<preferredStateId1>New York</preferredStateId1>\n<preferredCity2>Delhi</preferredCity2>\n<preferredCountry2>India</preferredCountry2>\n<preferredStateId2>Delhi</preferredStateId2>\n766<forecastClosureDate>2016-04-06</forecastClosureDate>\n<probability>10</probability>\n<forecastRating>Upside</forecastRating>\n<forecastRevenue>1500</forecastRevenue>\n<unsubscribe>Opt-in</unsubscribe>\n<smsUnsubscribe></smsUnsubscribe>\n<campaignID>Welcome Campaign</campaignID>\n<serviceID>Product/Service Update,Newsletters,Offers</serviceID>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Updation object",
+        "required": true
+      },
+      "FSDeleteLeadArray": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>1661907438</referenceId>\n</fsLead>\n</fcRequest>",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/FSCreateLead"
+              },
+              "xml": {
+                "name": "fcRequest",
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      },
+            "AdminSubModuleArray": {
+        "content": {
+          "application/xml": {
+            "example": "POST /<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nkey=key&module=admin&responseType=XML",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/AdminSubModule"
+              },
+              "xml": {
+                "wrapped": true
+              }
+            }
+          }
+        },
+        "description": "Lead Deletion object",
+        "required": true
+      }
+    },
+    "responses": {
+      "AdminSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1527878235</responseId>\n<responseData><fcRequest>\n<franchisee>Franchisee</franchisee>\n<user>User</user>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "SalesSubModuleResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1449885839</responseId>\n<responseData>\n<fcRequest>\n<addlContact>Co-Applicants</addlContact>\n<call>Call</call>\n<compliance>Compliance</compliance>\n<lead>Primary Info</lead>\n<mail>Emails</mail>\n<personalProfile>Personal Profile</personalProfile>\n<qualification>Qualification Details</qualification>\n<realEstate>Real Estate</realEstate>\n<remark>Remark</remark>\n<statusChangeHistory>Status Change History</statusChangeHistory>\n<task>Task</task>\n<visit>Visit</visit>\n</fcRequest>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+      "CMRetrieveCampaignSMSResp": {
+        "content": {
+          "application/xml": {
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+       "SalesReportPeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "response": {
+          "data": [
+            [
+              {
+                "reportPeriod": "Jan - 2019"
+              },
+              {
+                "reportPeriod": "Feb - 2019"
+              },
+              {
+                "reportPeriod": "Mar - 2019"
+              },
+              {
+                "reportPeriod": "Apr - 2019"
+              },
+              {
+                "reportPeriod": "May - 2019"
+              }
+            ]
+          ],
+          "page": null
+        }
+      }
+    }
+    },
+    "definitions": {
+     "salesReportPeriod": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "response": {
+          "data": [
+            [
+              {
+                "reportPeriod": "Jan - 2019"
+              },
+              {
+                "reportPeriod": "Feb - 2019"
+              },
+              {
+                "reportPeriod": "Mar - 2019"
+              },
+              {
+                "reportPeriod": "Apr - 2019"
+              },
+              {
+                "reportPeriod": "May - 2019"
+              }
+            ]
+          ],
+          "page": null
+        }
+      }
+    }
+  }
+  }
+    }
