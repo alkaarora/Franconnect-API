@@ -1734,14 +1734,46 @@
         ],
         "summary": "Retrieve Non Finance Categories",
         "description": "<p class=\"western\">Non-Finance categories represent the categories that are not financial in nature but are still tracked as a part of sales reports (such as customer count and loyalty program enrollments). Every sales report has at least one non-finance category in it. To retrieve all the non-finance/Key Performance Indicator (KPI) categories that are used in sales report, you must use a report period and its corresponding finance categories as input parameters for the GET request. Click <u><a href=\"#tag/Sales-Reports\">Report Periods</a></u> for details on retrieving these report periods and click <u><a href=\"#tag/Sales-Reports\">Finance Categories</a></u> for details on retrieving these finance categories.</p><p>Then, using these parameters, perform a GET request to retrieve a list of non finance categories that are available to report the sales for the given report period.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;:  </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/categories/kpi-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod} </p><p><strong>Note:</strong> Sometimes, you may not have non-finance categories set up in your sales report. If this is the case, you need not retrieve the non-finance categories.</p>",
-        "operationId": "Non_Finance_Categories",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+       "operationId": "Retrieve_Non-Finance_Categories",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ParameterType:Integer",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "enum": [
+              "Integer"
+            ]
+          },
+          {
+            "name": "reportPeriod",
+            "in": "path",
+            "description": "ParameterType:String",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "String"
+            ]
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RetrieveNonFinanceCategoriesResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -3436,6 +3468,44 @@
                       {
                         "amount": "Enter the amount of earning in Service",
                         "quantity": "Enter the quantity of the products in Service"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+        "RetrieveNonFinanceCategoriesResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "nonFinancialItems": [
+                {
+                  "100": {
+                    "name": "Non Financial Category",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Non Financial Category"
+                      }
+                    ]
+                  },
+                  "450294864": {
+                    "name": "Non-Fin Integer Categ2",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Non-Fin Integer Categ2"
                       }
                     ]
                   }
