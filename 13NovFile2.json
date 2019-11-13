@@ -176,7 +176,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/components/responses/SalesReportPeriod"
+            "$ref": "#/components/responses/SalesReportPeriodResp"
           },
           "201": {
             "description": "Created"
@@ -468,6 +468,37 @@
         "content": {
           "application/xml": {
             "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>611296382</responseId>\n<responseData>\n<cmContact>\n<referenceId>1590177018</referenceId>\n<contactType>Customers</contactType>\n<contactAddDate>2017-08-10T07:40Z</contactAddDate>\n<franchiseeNo>location2</franchiseeNo>\n<contactOwnerID>Nick Mecozzi</contactOwnerID>\n<contactAddedBy>Nick Mecozzi</contactAddedBy>\n<contactFirstName>John</contactFirstName>\n<contactLastName>Karter</contactLastName>\n<franchiseeReferenceId />\n<accountDetails>\n<referenceId />\n<accountName />\n<accountType />\n<emailIds />\n<companyAddDate />\n</accountDetails>\n<cmSmsCampaign>\n<referenceId>4</referenceId>\n<smsSent>2017-08-16</smsSent>\n<smsText>Hello All location Public SMS Template</smsText>\n<smsStatus>Failed</smsStatus>\n<smsTemplates>\n<referenceId>209545930</referenceId>\n<smsTemplateTitle>All location Public SMS Template</smsTemplateTitle>\n</smsTemplates>\n</cmSmsCampaign>\n</cmContact>\n</responseData>\n</fcResponse>"
+          }
+        },
+        "description": "Successful"
+      },
+        "SalesReportPeriodResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            [
+              {
+                "reportPeriod": "Jan - 2019"
+              },
+              {
+                "reportPeriod": "Feb - 2019"
+              },
+              {
+                "reportPeriod": "Mar - 2019"
+              },
+              {
+                "reportPeriod": "Apr - 2019"
+              },
+              {
+                "reportPeriod": "May - 2019"
+              }
+            ]
+          ],
+          "page": null
+        }
+            }
           }
         },
         "description": "Successful"
