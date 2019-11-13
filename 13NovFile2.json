@@ -6,10 +6,7 @@
     "title": "FranConnect API"
   },
   "tags": [
-    
-    
-    
-    {
+        {
       "name": "List of Sub-Modules",
       "description": "<p>You must use the \"subModule\" endpoint to get a list of all sub-modules / tabs available for a specific module and use them, subsequently, in Create, Retrieve, Update, and, Delete operations.</p> To retrieve the list of subModules for a given module, you must make a POST request with “key”, “module name”, and “responseType” parameters appended in the URL. The following sections provide examples on how this is to be performed for Admin (module=admin), Sales (module=fs), Info Manager (module=fim), and CRM (module=cm).</p>",
       "operationId": "List_of_Sub_Modules"
