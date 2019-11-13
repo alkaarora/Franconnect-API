@@ -1834,13 +1834,23 @@
         ],
         "summary": "Retrieve Sales Report Status",
         "description": "<p class=\"western\">Following table lists the various status that can be attributed to sales reports and can therefore be used as a search constraint in retrieve operations.</p><p class=\"western\">&nbsp;</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"6\"><colgroup><col width=\"144\" /> <col width=\"592\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"144\"><p class=\"western\"><strong>Key</strong></p></td><td style=\"background: #5b9bd5;\" bgcolor=\"#5b9bd5\" width=\"592\"><p class=\"western\"><strong>Name</strong></p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>P</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for approval</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>A</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Approved</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>R</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Rejected</p></td></tr><tr valign=\"top\"><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"144\"><p class=\"western\"><strong>I</strong></p></td><td style=\"background: #ffffff;\" bgcolor=\"#ffffff\" width=\"592\"><p class=\"western\">Invoiced</p></td></tr><tr valign=\"top\"><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"144\"><p class=\"western\"><strong>K</strong></p></td><td style=\"background: #deeaf6;\" bgcolor=\"#deeaf6\" width=\"592\"><p class=\"western\">Waiting for Acknowledgement</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\">You must make a GET request to the API endpoint, along with other required details, to retrieve the report status and their corresponding keys.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/sales/status </p><p><strong>Note:</strong> Configuring the additional invoice items is optional. In case you have not configured these as part of your sales report and still if you try retrieving them using the above mentioned endpoint, an empty data set is retrieved.</p>",
+        "operationId": "Retrieve_Sales_Report_Status",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "$ref": "#/components/responses/RetrieveSalesReportStatusResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
         }
       }
     },
@@ -3572,6 +3582,47 @@
                   }
                 }
               ]
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "RetrieveSalesReportStatusResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "P": {
+                "key": "P",
+                "name": "Waiting for Approval",
+                "description": ""
+              },
+              "A": {
+                "key": "A",
+                "name": "Approved",
+                "description": ""
+              },
+              "R": {
+                "key": "R",
+                "name": "Rejected",
+                "description": ""
+              },
+              "I": {
+                "key": "I",
+                "name": "Invoiced",
+                "description": ""
+              },
+              "K": {
+                "key": "K",
+                "name": "Waiting for Acknowledgement",
+                "description": ""
+              }
             }
           ],
           "page": null
