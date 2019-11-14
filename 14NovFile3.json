@@ -2285,16 +2285,27 @@
         ],
         "summary": "Retrieve Royalties Payment Status",
         "description": "<p class=\"western\">You can retrieve the payment status for Royalty reports by making a GET request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/royalties/status</p>The following items must be used as path parameters:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a list of royalty payment status that are available in the system along with their corresponding keys. The following table lists the different royalty payment status along with their corresponding keys:</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"228\" /> <col width=\"505\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"228\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Key</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"505\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Payment Status</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>N</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Unpaid</p></td></tr><tr valign=\"top\"><td width=\"228\"><p class=\"western\"><strong>P</strong></p></td><td width=\"505\"><p class=\"western\">Partially Paid</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>C</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Fully Paid</p></td></tr></tbody></table></center>",
+         "operationId": "Get_Royalties_payment_Status",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "$ref": "#/components/responses/RetrieveRoyaltyPaymentResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
-        },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
         }
       }
     },
+    
     "/dataservices/retrieve payments": {
       "post": {
         "tags": [
@@ -4395,8 +4406,38 @@
           }
         },
         "description": "Successful"
+      },
+      "RetrieveRoyaltyPaymentResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "P": {
+                "key": "P",
+                "name": "Partially Paid",
+                "description": ""
+              },
+              "C": {
+                "key": "C",
+                "name": "Fully Paid",
+                "description": ""
+              },
+              "N": {
+                "key": "N",
+                "name": "Unpaid",
+                "description": ""
+              }
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
       }
-      
     }
   }
 }
