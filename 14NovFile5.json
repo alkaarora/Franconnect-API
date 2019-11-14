@@ -2727,7 +2727,7 @@
             "schema": {
               "type": "array",
               "items": {
-                
+               
               }
             }
           },
@@ -2824,7 +2824,8 @@
           }
         }
       }
-    },
+    }
+  },
   "components": {
     "schemas": {
       "AdminSubModule": {
