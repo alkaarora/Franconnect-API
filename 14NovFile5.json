@@ -2428,13 +2428,89 @@
         ],
         "summary": "Retrieve Profit Loss Categories",
         "description": "<p class=\"western\">You can retrieve the Profit and Loss categories that are present in the Profit and Loss statements for each franchisee against which income and expenses are to be entered. In order to do so, a GET request is to be made to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>GET</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/categories</p>The following items must be used as path parameters:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a response that contains all the profit and loss categories that are configured in the system and a placeholder where the amount can be entered against that corresponding category. You can use this information to add the profit and loss details while creating and/ or updating profit and loss reports.</p>",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+        "operationId": "Retrieve_ProfitLoss_Categories",
+        "produces": [
+          "application/json"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "response": {
+                    "data": [
+                      {
+                        "plItems": [
+                          {
+                            "1": {
+                              "name": "Income",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "Enter the amount of earning in Income"
+                                }
+                              ]
+                            },
+                            "2": {
+                              "name": "Expense",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "Enter the amount of earning in Expense"
+                                }
+                              ]
+                            },
+                            "3": {
+                              "name": "Overhead",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "Enter the amount of earning in Overhead"
+                                }
+                              ]
+                            },
+                            "1495583145": {
+                              "name": "P&L Addition Type Categ",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "Enter the amount of earning in P&L Addition Type Categ"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "page": null
+                  }
+                }
+              }
+            }
           }
         },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RetrieveProfitLossCategoriesResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -2445,13 +2521,111 @@
         ],
         "summary": "Create New Profit Loss Statements",
         "description": "<p class=\"western\">You can create new Profit and Loss statements in the system by making a POST request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss</p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The profit and loss categories must be included in the body of the request. Click <u><a href=\"#tag/Authentication\">here for details on retrieving the Profit and Loss categories.</p></li></ol><p class=\"western\">If the Create operation is successful, performing the above mentioned steps would return a response containing the \"plrepld\". This represents the internal reference ID for the Profit and Loss statements that was just created and can be used for the update and the retrieve operations.</p>",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+       "operationId": "Create_New_ProfitLoss_Statement",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "datalist",
+            "description": "ParameterType:ArrayList<Entity>",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  {
+                    "data": [
+                      {
+                        "franchiseeNo": "403951414",
+                        "statementPeriod": "Jun - 2019",
+                        "submissionDate": "2019-06-26",
+                        "plItems": [
+                          {
+                            "1": {
+                              "name": "Income",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "1500"
+                                }
+                              ]
+                            },
+                            "2": {
+                              "name": "Expense",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "500"
+                                }
+                              ]
+                            },
+                            "3": {
+                              "name": "Overhead",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "1500"
+                                }
+                              ]
+                            },
+                            "1495583145": {
+                              "name": "P&L Addition Type Categ",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "2500"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CreateProfitLossStatementResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -2462,13 +2636,71 @@
         ],
         "summary": "Retrieve Profit Loss Statements",
         "description": "<p class=\"western\">You can retrieve an existing Profit and Loss statement in the system by making a POST request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/filter</p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the profit and loss report must be included in the body of the request.</p></li></ol><p class=\"western\">The following table details the other values that can be used as constraints along with their clause criteria:</p><center><table width=\"720\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"147\" /> <col width=\"127\" /> <col width=\"306\" /> <col width=\"82\" /> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"147\" height=\"8\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"127\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Field Display Name</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"306\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Applied Clause</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"82\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Format</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\"><p class=\"western\"><strong><span lang=\"en\">plrepId</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Internal Unique Reference Number of the P&amp;L Report</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td width=\"147\"><p class=\"western\"><strong><span lang=\"en\">franchiseeNo</span></strong></p></td><td width=\"127\"><p class=\"western\">Internal Unique Reference Number of the location</p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, IN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">String</span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"147\" height=\"73\"><p class=\"western\"><strong><span lang=\"en\">statementPeriod</span></strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"127\"><p class=\"western\"><span lang=\"en\">Statement Period</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr><tr valign=\"top\"><td width=\"147\" height=\"77\"><p class=\"western\"><strong><span lang=\"en\">submissionDate</span></strong></p></td><td width=\"127\"><p class=\"western\"><span lang=\"en\">Submission Date</span></p></td><td width=\"306\"><p class=\"western\"><span lang=\"en\">EQUAL, GREATER_THAN,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN, GREATER_THAN_OR_EQUAL,</span></p><p class=\"western\"><span lang=\"en\">LESS_THAN_OR_EQUAL, BETWEEN</span></p></td><td width=\"82\"><p class=\"western\"><span lang=\"en\">Date</span></p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><p class=\"western\"><strong>Note</strong>: Multiple constraints can be used in the filter to retrieve data.</p><p class=\"western\">&nbsp;</p>",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+       "operationId": "Retrieve_ProfitLoss_Statements",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "profitLossFilter",
+            "description": "ParameterType:ProfitLossFilter",
+            "required": false,
+            "schema": {
+              
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "constraints": {
+                    "franchiseeNo": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "403951414"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
+              }
+            }
           }
         },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/RetrieveProfitLossStatementResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
     },
@@ -2479,17 +2711,120 @@
         ],
         "summary": "Update Existing Profit/Loss Statement",
         "description": "<p class=\"western\">You can update an existing profit and loss report by making a PUT request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>PUT</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>/finance.franconnect.net/manage-finance/profit-loss/{plrepId} </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The profit and loss categories must be included in the body of the request.Click <u><a href=\"#tag/Authentication\">here</a></u> for details on retrieving the profit and loss categories.</p></li></ol></p>",
-        "responses": {
-          "default": {
-            "description": "successful operation"
+      "operationId": "Update_Existing_ProfitLoss_Statement",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "datalist",
+            "description": "ParameterType:ArrayList<Entity>",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  {
+                    "data": [
+                      {
+                        "submissionDate": "2019-06-26",
+                        "plItems": [
+                          {
+                            "1": {
+                              "name": "Income",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "100"
+                                }
+                              ]
+                            },
+                            "2": {
+                              "name": "Expense",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "200"
+                                }
+                              ]
+                            },
+                            "3": {
+                              "name": "Overhead",
+                              "calculationType": "(-)",
+                              "data": [
+                                {
+                                  "amount": "300"
+                                }
+                              ]
+                            },
+                            "1495583145": {
+                              "name": "P&L Addition Type Categ",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "400"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
           }
         },
-        "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/CreateProfitLossStatementResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
         }
       }
-    }
-  },
+    },
   "components": {
     "schemas": {
       "AdminSubModule": {
@@ -4610,6 +4945,193 @@
                 "statementPeriod": "Mar - 2019"
               }
             ]
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "RetrieveProfitLossCategoriesResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "plItems": [
+                {
+                  "1": {
+                    "name": "Income",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Income"
+                      }
+                    ]
+                  },
+                  "2": {
+                    "name": "Expense",
+                    "calculationType": "(-)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Expense"
+                      }
+                    ]
+                  },
+                  "3": {
+                    "name": "Overhead",
+                    "calculationType": "(-)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in Overhead"
+                      }
+                    ]
+                  },
+                  "1495583145": {
+                    "name": "P&L Addition Type Categ",
+                    "calculationType": "(+)",
+                    "data": [
+                      {
+                        "amount": "Enter the amount of earning in P&L Addition Type Categ"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "CreateProfitLossStatementResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "response": "Success",
+              "plrepId": "1"
+            }
+          ],
+          "page": null
+        }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+      "RetrieveProfitLossStatementResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+          "data": [
+            {
+              "1": {
+                "plrepId": "1",
+                "franchiseeNo": "403951414",
+                "submissionDate": "2019-06-26 00:00:00",
+                "addedOn": "2019-06-26 07:21:29",
+                "statementPeriod": "Jun - 2019",
+                "Net Profit": "-400.0",
+                "plItems": [
+                  {
+                    "1": {
+                      "name": "Income",
+                      "calculationType": "(+)",
+                      "data": [
+                        {
+                          "amount": 100
+                        }
+                      ]
+                    },
+                    "2": {
+                      "name": "Expense",
+                      "calculationType": "(-)",
+                      "data": [
+                        {
+                          "amount": 200
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "Overhead",
+                      "calculationType": "(-)",
+                      "data": [
+                        {
+                          "amount": 300
+                        }
+                      ]
+                    },
+                    "1495583145": {
+                      "name": "P&L Addition Type Categ",
+                      "calculationType": "(+)",
+                      "data": [
+                        {
+                          "amount": 400
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "246516745": {
+                "plrepId": "246516745",
+                "franchiseeNo": "403951414",
+                "submissionDate": "2019-06-26 03:41:26",
+                "addedOn": "2019-06-26 03:40:53",
+                "statementPeriod": "May - 2019",
+                "Net Profit": "50.0",
+                "plItems": [
+                  {
+                    "1": {
+                      "name": "Income",
+                      "calculationType": "(+)",
+                      "data": [
+                        {
+                          "amount": 120
+                        }
+                      ]
+                    },
+                    "2": {
+                      "name": "Expense",
+                      "calculationType": "(-)",
+                      "data": [
+                        {
+                          "amount": 50
+                        }
+                      ]
+                    },
+                    "3": {
+                      "name": "Overhead",
+                      "calculationType": "(-)",
+                      "data": [
+                        {
+                          "amount": 20
+                        }
+                      ]
+                    },
+                    "1495583145": {
+                      "name": "P&L Addition Type Categ",
+                      "calculationType": "(+)",
+                      "data": [
+                        {
+                          "amount": 200
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "response": "Success"
+            }
           ],
           "page": null
         }
