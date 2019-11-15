@@ -5,7 +5,7 @@
     "version": "1.0",
     "title": "FranConnect API"
   },
-  "basePath": " ",
+  "basePath": "/manage-finance",
   "tags": [
     {
       "name": "Introduction",
