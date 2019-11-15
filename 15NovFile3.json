@@ -13,11 +13,11 @@
     },
     {
       "name": "Authentication",
-      "description": "<p>Franconnect recommends you to use OAuth 2.0 authorization to authenticate to the FranConnect API.</p><img src=\"images/AuthorizationTab.png\"><p>Perform the following steps to set up the OAuth 2.0 authorization, using the <strong>Postman</strong> GUI client:</p><ol><li>Select an API method.</li><li>Click the <strong>Authorization</strong> tab.&nbsp;</li>  <li>Select the option <strong>OAuth 2.0&nbsp;</strong>for the<strong>&nbsp;Type&nbsp;</strong>field.</li><li>Select the option<strong>&nbsp;</strong><strong>Request Headers</strong> for the <strong>Add authorization data to</strong> field.</li><li>Click <strong>Get New Access Token&nbsp;</strong>to generate request for a new token.</li><img src=\"images/Get-New-Access-Token.png\"><li>In the <strong>Get New Access Token&nbsp;</strong>dialog that appears, enter the details as explained in the following steps.<ol type=\"a\"> <li style=\"margin-left: 1px;\">Enter a name for your Access Token.</li><li style=\"margin-left: 1px;\">Select the <strong>Grant Type</strong> as <strong>Authorization Code</strong>.</li><li style=\"margin-left: 1px;\">Enter the callback URL that you want to be redirected to, once your application is authorized. The callback URL is also known as redirect URI. This URL should match the one that you use during the application registration process.<br>Example: Callback URL can be <a href=\"https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://oauth.powerbi.com/views/oauthredirect.html</a>.<br>To register your callback/redirect URL, contact <a href=\"mailto:integrations@franconnect.com\">integrations@franconnect.com</a></li><li style=\"margin-left: 1px;\">Enter the endpoint for the authorization server as the <strong>Auth URL</strong>. This is used to get the authorization code.<br>Note that the redirect URI is same as the callback URL.<br>Example: Auth URL can be <a href=\"https%3A//auth.franconnectuat.net/userauth/oauth/authorize?response_type=code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://auth.franconnectuat.net/userauth/oauth/authorize?response_type=code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</a></li><li style=\"margin-left: 1px;\">Enter the endpoint for the authentication server in the <strong>Access Token URL&nbsp;</strong>field. This is used to exchange the authorization code for an access token.<br>Example: Access Token URL can be <a href=\"https%3A//auth.franconnectuat.net/userauth/oauth/token?X-tenantID=developers.franconnectdemo.net&amp;grant_type=authorization_code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://auth.franconnectuat.net/userauth/oauth/token?X-tenantID=developers.franconnectdemo.net&amp;grant_type=authorization_code&amp;client_id=FRANC0NN3CT_API&amp;<br>redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</a></li><li style=\"margin-left: 1px;\">Enter the client identifier used to identify the client during the application registration process in the <strong>Client ID</strong> field. <br>Example: Client ID can be FRANC0NN3CT_API</li><li style=\"margin-left: 1px;\">Enter the client secret issued to the client during the application registration process in the <strong>Client Secret</strong> field.<br>Example: Client secret can be DDEEMVOE2L0O1P9E<br>Contact <a href=\"mailto:integrations@franconnect.com\">integrations@franconnect.com</a> to get your client identifier and client secret</li><li style=\"margin-left: 1px;\">Select the option <strong>Send as Basic Auth header</strong> for the <strong>Client Authentication&nbsp;</strong>field.</li></ol></li></ol></p><img src=\"images/CompanyCode.png\"><p>After adding all these details, when you request for a token, you are prompted to enter the following additional information: <strong>Company Code</strong>, <strong>Username</strong> and <strong>Password</strong>.</p><ol>  <li>If the login URL for your Franconnect System is <a href=\"https://developers.franconnectdemo.net/fc,\">https://developers.franconnectdemo.net/fc</a>, then the company code will be developers.franconnectdemo.net/fc  </li><li>Your username and password will be your login credentials for your Franconnect system</li></ol><p>If all the details provided under the <strong>Authorization </strong>tab are valid, then, the access token is generated that can be used for the API calls.</p>"
+      "description": "<p>Franconnect recommends you to use OAuth 2.0 authorization to authenticate to the FranConnect API.</p><img src=\"images/AuthorizationTab.png\"><p>Perform the following steps to set up the OAuth 2.0 authorization, using the <strong>Postman</strong> GUI client:</p><ol><li>Select an API method.</li><li>Click the <strong>Authorization</strong> tab.&nbsp;</li><li>Select the option <strong>OAuth 2.0&nbsp;</strong>for the<strong>&nbsp;Type&nbsp;</strong>field.</li><li>Select the option<strong>&nbsp;</strong><strong>Request Headers</strong> for the <strong>Add authorization data to</strong> field.</li><li>Click <strong>Get New Access Token&nbsp;</strong>to generate request for a new token.</li><img src=\"images/Get-New-Access-Token.png\"><li>In the <strong>Get New Access Token&nbsp;</strong>dialog that appears, enter the details as explained in the following steps.<ol type=\"a\"> <li style=\"margin-left: 1px;\">Enter a name for your Access Token.</li><li style=\"margin-left: 1px;\">Select the <strong>Grant Type</strong> as <strong>Authorization Code</strong>.</li><li style=\"margin-left: 1px;\">Enter the callback URL that you want to be redirected to, once your application is authorized. The callback URL is also known as redirect URI. This URL should match the one that you use during the application registration process.<br>Example: Callback URL can be <a href=\"https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://oauth.powerbi.com/views/oauthredirect.html</a>.<br>To register your callback/redirect URL, contact <a href=\"mailto:integrations@franconnect.com\">integrations@franconnect.com</a></li><li style=\"margin-left: 1px;\">Enter the endpoint for the authorization server as the <strong>Auth URL</strong>. This is used to get the authorization code.<br>Note that the redirect URI is same as the callback URL.<br>Example: Auth URL can be <a href=\"https%3A//auth.franconnectuat.net/userauth/oauth/authorize?response_type=code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://auth.franconnectuat.net/userauth/oauth/authorize?response_type=code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</a></li><li style=\"margin-left: 1px;\">Enter the endpoint for the authentication server in the <strong>Access Token URL&nbsp;</strong>field. This is used to exchange the authorization code for an access token.<br>Example: Access Token URL can be <a href=\"https%3A//auth.franconnectuat.net/userauth/oauth/token?X-tenantID=developers.franconnectdemo.net&amp;grant_type=authorization_code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https%3A//oauth.powerbi.com/views/oauthredirect.html\">https://auth.franconnectuat.net/userauth/oauth/token?X-tenantID=developers.franconnectdemo.net&amp;grant_type=authorization_code&amp;client_id=FRANC0NN3CT_API&amp;<br>redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</a></li><li style=\"margin-left: 1px;\">Enter the client identifier used to identify the client during the application registration process in the <strong>Client ID</strong> field. <br>Example: Client ID can be FRANC0NN3CT_API</li><li style=\"margin-left: 1px;\">Enter the client secret issued to the client during the application registration process in the <strong>Client Secret</strong> field.<br>Example: Client secret can be DDEEMVOE2L0O1P9E<br>Contact <a href=\"mailto:integrations@franconnect.com\">integrations@franconnect.com</a> to get your client identifier and client secret</li><li style=\"margin-left: 1px;\">Select the option <strong>Send as Basic Auth header</strong> for the <strong>Client Authentication&nbsp;</strong>field.</li></ol></li></ol></p><img src=\"images/CompanyCode.png\"><p>After adding all these details, when you request for a token, you are prompted to enter the following additional information: <strong>Company Code</strong>, <strong>Username</strong> and <strong>Password</strong>.</p><ol><li>If the login URL for your Franconnect System is <a href=\"https://developers.franconnectdemo.net/fc,\">https://developers.franconnectdemo.net/fc</a>, then the company code will be developers.franconnectdemo.net/fc  </li><li>Your username and password will be your login credentials for your Franconnect system</li></ol><p>If all the details provided under the <strong>Authorization </strong>tab are valid, then, the access token is generated that can be used for the API calls.</p>"
     },
     {
       "name": "Error Codes",
-      "description": "<p>Franconnect uses various error codes in the API response to indicate that the request was not processed. In general, response codes in the <code>2xx&nbsp;</code>range indicate success while codes in the <code>4xx&nbsp;</code>and <code>5xx&nbsp;</code>range indicate an error in processing the request (such as a required parameter was invalid, incorrect XML format, and so on).</p><p>Following are the common error codes and their meaning for the FranConnect API:</p><ul><li>    <p>400<strong> Invalid : &lt;parameter&gt;</strong> - Returned when the input parameter name is invalid</p></li><li><p>400<strong> Invalid XML format: {error}</strong> - Returned when the xmlString entered in the payload is invalid</p></li><li><p>400 <strong>Request to {operation}{subModule} is not supported</strong> - Returned when some operation is restricted for a specific sub-module</p></li> <li> <p>400 <strong>Invalid mandatory field : {field}</strong> - Returned when the value provided in xmlString is invalid for a mandatory field</p> </li><li><p>400 <strong>Invalid mandatory field : {custom_error}</strong> - Returned when the xmlString entered in the payload is invalid. For example, the end date is before the start date or the userID contains space(s)</p></li><li><p>401 <strong>Missing : &lt;parameter&gt; </strong> - Returned when a mandatory parameter is missing</p></li><li> <p>401 <strong>mandatory field : {field}</strong> - Returned when a mandatory field is missing in the xmlString.</p></li> <li><p>409 <strong>{subModule}already exists</strong> - Returned when you try to perform create operation for a sub-module again and only one time submission is allowed for that sub-module</p></li><li><p>411 <strong>Duplicate mandatory field : {field}</strong> - Returned when you try to input duplicate data</p></li><li><p>438 <strong>Invalid tag &lt;tagName&gt;</strong> - Returned when the &lt;tagName&gt; is invalid for the specified module and sub-module</p></li><li><p>500 <strong>Database error</strong> - Returned when there is a database mapping issue</p></li><li><p>503 <strong>Service Unavailable</strong> - Returned when the system is undergoing maintenance</p></li></ul><p></p><p></p>"
+      "description": "<p>Franconnect uses various error codes in the API response to indicate that the request was not processed. In general, response codes in the <code>2xx&nbsp;</code>range indicate success while codes in the <code>4xx&nbsp;</code>and <code>5xx&nbsp;</code>range indicate an error in processing the request (such as a required parameter was invalid, incorrect XML format, and so on).</p><p>Following are the common error codes and their meaning for the FranConnect API:</p><ul><li><p>400<strong> Invalid : &lt;parameter&gt;</strong> - Returned when the input parameter name is invalid</p></li><li><p>400<strong> Invalid XML format: {error}</strong> - Returned when the xmlString entered in the payload is invalid</p></li><li><p>400 <strong>Request to {operation}{subModule} is not supported</strong> - Returned when some operation is restricted for a specific sub-module</p></li> <li> <p>400 <strong>Invalid mandatory field : {field}</strong> - Returned when the value provided in xmlString is invalid for a mandatory field</p> </li><li><p>400 <strong>Invalid mandatory field : {custom_error}</strong> - Returned when the xmlString entered in the payload is invalid. For example, the end date is before the start date or the userID contains space(s)</p></li><li><p>401 <strong>Missing : &lt;parameter&gt; </strong> - Returned when a mandatory parameter is missing</p></li><li> <p>401 <strong>mandatory field : {field}</strong> - Returned when a mandatory field is missing in the xmlString.</p></li> <li><p>409 <strong>{subModule}already exists</strong> - Returned when you try to perform create operation for a sub-module again and only one time submission is allowed for that sub-module</p></li><li><p>411 <strong>Duplicate mandatory field : {field}</strong> - Returned when you try to input duplicate data</p></li><li><p>438 <strong>Invalid tag &lt;tagName&gt;</strong> - Returned when the &lt;tagName&gt; is invalid for the specified module and sub-module</p></li><li><p>500 <strong>Database error</strong> - Returned when there is a database mapping issue</p></li><li><p>503 <strong>Service Unavailable</strong> - Returned when the system is undergoing maintenance</p></li></ul><p></p><p></p>"
     },
     {
       "name": "List of Sub-Modules",
@@ -3520,7 +3520,7 @@
       "DeleteCRMAccountArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n< cmAccount>\n<referenceId>344545</referenceId>\n</ cmAccount>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmAccount>\n<referenceId>344545</referenceId>\n</ cmAccount>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3672,7 +3672,7 @@
       "DeleteCRMOpportunityArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n< cmOpportunity>\n<referenceId>344545</referenceId>\n</ cmOpportunity>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmOpportunity>\n<referenceId>344545</referenceId>\n</ cmOpportunity>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3805,7 +3805,7 @@
       "CMDeleteMailArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n< cmMail><referenceId>344545</referenceId>\n</cmMail>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmMail><referenceId>344545</referenceId>\n</cmMail>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -4067,7 +4067,7 @@
       "CMDeleteLeadResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmLead >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmLead >\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmLead >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmLead >\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4099,7 +4099,7 @@
       "CMDeleteContactResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmContact >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmContact >\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmContact >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmContact >\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4123,7 +4123,7 @@
       "CMUpdateAccountResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmContact >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmContact >\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmContact >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmContact >\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4131,7 +4131,7 @@
       "CMDeleteAccountResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmAccount>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmAccount>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmAccount>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmAccount>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4195,7 +4195,7 @@
       "CMDeleteOpportunityResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmOpportunity>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmOpportunity>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmOpportunity>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmOpportunity>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4219,7 +4219,7 @@
       "FSUpdateTaskResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n< fsTask>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<fsTask>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4227,7 +4227,7 @@
       "FSDeleteTaskResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< fsTask>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<fsTask>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4251,7 +4251,7 @@
       "CMDeleteMailResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n< cmMail>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmMail>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmMail>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmMail>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
