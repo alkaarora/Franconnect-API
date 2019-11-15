@@ -3501,7 +3501,7 @@
       "UpdateCRMAccountArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n   <cmAccount>\n<referenceId>899807710</referenceId>\n<accountName>Support Collector</accountName>\n</cmAccount>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmAccount>\n<referenceId>899807710</referenceId>\n<accountName>Support Collector</accountName>\n</cmAccount>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
