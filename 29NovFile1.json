@@ -269,7 +269,7 @@
           "Retrieve Sub-Modules"
         ],
         "summary": "Admin",
-        "description": "<p class=\"western\">Use this operation to get a list of all sub-modules/tabs available for Admin.<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=admin&responseType=XML</p>",
+        "description": "<p class=\"western\">Use this operation to get a list of all sub-modules/tabs available for Admin.<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=admin&responseType=XML</p><img src=\"images/Admin_Submodules.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/AdminSubModuleResp"
@@ -298,7 +298,7 @@
           "Retrieve Sub-Modules"
         ],
         "summary": "Sales",
-        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for Sales.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fs&responseType=XML</p><p><strong>Notes:</strong> In response, the \"element names\" specify the actual name that you must use to perform any operation and \"element value\" specifies the display name of the sub-module that is displayed in the system.<br/>Format: &lt; element_name&gt; element_value&lt;/element_name&gt;<br/>Example: &lt;user&gt;User&lt;/user&gt;<br/>Here, <strong>user</strong> is the subModule key that is to be used in the API for user.</p>",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for Sales.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fs&responseType=XML</p><p><strong>Notes:</strong> In response, the \"element names\" specify the actual name that you must use to perform any operation and \"element value\" specifies the display name of the sub-module that is displayed in the system.<br/>Format: &lt; element_name&gt; element_value&lt;/element_name&gt;<br/>Example: &lt;user&gt;User&lt;/user&gt;<br/>Here, <strong>user</strong> is the subModule key that is to be used in the API for user.</p><img src=\"images/Sales_Submodules.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/SalesSubModuleResp"
@@ -327,7 +327,7 @@
           "Retrieve Sub-Modules"
         ],
         "summary": "Info Manager",
-        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for Info Manager.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fim&responseType=XML</p>",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for Info Manager.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=fim&responseType=XML</p><img src=\"images/InfoManager_Submodules.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/InfoMgrSubModuleResp"
@@ -356,7 +356,7 @@
           "Retrieve Sub-Modules"
         ],
         "summary": "CRM",
-        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for CRM.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=cm&responseType=XML</p>",
+        "description": "<p class=\"western\">Use this operation to get list of all sub-modules/tabs available for CRM.</p></p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/submodule?key=generatedAccessToken&module=cm&responseType=XML</p><img src=\"images/CRM_Submodules.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/CRMSubModuleResp"
