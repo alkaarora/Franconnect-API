@@ -1,15 +1,14 @@
 {
   "openapi": "3.0.0",
   "servers": [
-{
-"url": ""
-}
-],
+    {
+      "url": ""
+    }
+  ],
   "info": {
     "description": "",
     "version": "1.0",
     "title": "FranConnect API"
-    
   },
   "basePath": " ",
   "tags": [
@@ -263,7 +262,7 @@
         }
       }
     },
-    "/dataservices/submodule?module=admin": {
+    "/submodule?module=admin": {
       "post": {
         "tags": [
           "Retrieve Sub-Modules"
@@ -292,7 +291,7 @@
         }
       }
     },
-    "/dataservices/submodule?module=fs": {
+    "/submodule?module=fs": {
       "post": {
         "tags": [
           "Retrieve Sub-Modules"
@@ -321,7 +320,7 @@
         }
       }
     },
-    "/dataservices/submodule?module=fim": {
+    "/submodule?module=fim": {
       "post": {
         "tags": [
           "Retrieve Sub-Modules"
@@ -350,7 +349,7 @@
         }
       }
     },
-    "/dataservices/submodule?module=cm": {
+    "/submodule?module=cm": {
       "post": {
         "tags": [
           "Retrieve Sub-Modules"
@@ -379,7 +378,7 @@
         }
       }
     },
-    "/dataservices/query?module=admin&operation=create": {
+    "/query?module=admin&operation=create": {
       "post": {
         "tags": [
           "Retrieve Schema"
@@ -408,7 +407,7 @@
         }
       }
     },
-    "/dataservices/query?module=admin&operation=retrieve": {
+    "/query?module=admin&operation=retrieve": {
       "post": {
         "tags": [
           "Retrieve Schema"
@@ -437,7 +436,7 @@
         }
       }
     },
-    "/dataservices/query?module=admin&operation=update": {
+    "/query?module=admin&operation=update": {
       "post": {
         "tags": [
           "Retrieve Schema"
@@ -466,7 +465,7 @@
         }
       }
     },
-    "/dataservices/query?module=admin&operation=delete": {
+    "/query?module=admin&operation=delete": {
       "post": {
         "tags": [
           "Retrieve Schema"
@@ -495,13 +494,13 @@
         }
       }
     },
-    "/dataservices/create": {
+    "/create": {
       "post": {
         "tags": [
           "User"
         ],
         "summary": "Create",
-        "description": "<p class=\"western\">This section provides details (as well as an example)for performing the Create operation to add a user in the FranConnect system. Note that it is important to specify the “userLevel”, as this would determine the type of user that would be created. For example, to create a corporate user, the “userLevel” must be “Corporate”. Similarly, for regional users, the “userLevel” must be “Regional” and for brand/divisional users, the “userLevel” must be “Divisional”. For franchisee users, the “userLevel” can either be an “Owner” or an “Employee”, depending on the type of franchisee user that is created.</p> <p> Similarly, the Create operation can also be performed to add locations in the FranConnect system. </p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=admin&subModule=user&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a user using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “admin”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “user”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a user. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p>",
+        "description": "<p class=\"western\">This section provides details (as well as an example)for performing the Create operation to add a user in the FranConnect system. Note that it is important to specify the “userLevel”, as this would determine the type of user that would be created. For example, to create a corporate user, the “userLevel” must be “Corporate”. Similarly, for regional users, the “userLevel” must be “Regional” and for brand/divisional users, the “userLevel” must be “Divisional”. For franchisee users, the “userLevel” can either be an “Owner” or an “Employee”, depending on the type of franchisee user that is created.</p> <p> Similarly, the Create operation can also be performed to add locations in the FranConnect system. </p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=admin&subModule=user&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a user using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “admin”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “user”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a user. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_CreateUser.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/AdminCreateUserResp"
@@ -524,7 +523,7 @@
         }
       }
     },
-    "/dataservices/retrieve": {
+    "/retrieve": {
       "post": {
         "tags": [
           "User"
@@ -553,7 +552,7 @@
         }
       }
     },
-    "/dataservices/update": {
+    "/update": {
       "post": {
         "tags": [
           "User"
@@ -582,7 +581,7 @@
         }
       }
     },
-    "/dataservices/delete": {
+    "/delete": {
       "post": {
         "tags": [
           "User"
@@ -611,13 +610,13 @@
         }
       }
     },
-    "/dataservices/create?module=fs&subModule=lead": {
+    "/create?module=fs&subModule=lead": {
       "post": {
         "tags": [
           "Lead"
         ],
         "summary": "Create",
-        "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding the Primary Info for a Sales lead. In a similar manner, the Create operation can be performed to add other details such as Call, Compliance and Remark for the Sales lead. </p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fs&subModule=lead&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a lead using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the lead for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
+        "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding the Primary Info for a Sales lead. In a similar manner, the Create operation can be performed to add other details such as Call, Compliance and Remark for the Sales lead. </p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fs&subModule=lead&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a lead using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fs”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the lead for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/Sales_Retrieve_Lead\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/Sales_Lead_Create.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/FSCreateLeadResp"
@@ -640,7 +639,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=fs&subModule=lead": {
+    "/retrieve?module=fs&subModule=lead": {
       "post": {
         "tags": [
           "Lead"
@@ -670,7 +669,7 @@
         }
       }
     },
-    "/dataservices/update?module=fs&subModule=lead": {
+    "/update?module=fs&subModule=lead": {
       "post": {
         "tags": [
           "Lead"
@@ -699,7 +698,7 @@
         }
       }
     },
-    "/dataservices/delete?module=fs&subModule=lead": {
+    "/delete?module=fs&subModule=lead": {
       "post": {
         "tags": [
           "Lead"
@@ -728,7 +727,7 @@
         }
       }
     },
-    "/dataservices/create?module=fim&subModule=franchisee": {
+    "/create?module=fim&subModule=franchisee": {
       "post": {
         "tags": [
           "Franchisee"
@@ -757,7 +756,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=fim&subModule=franchisee": {
+    "/retrieve?module=fim&subModule=franchisee": {
       "post": {
         "tags": [
           "Franchisee"
@@ -787,7 +786,7 @@
         }
       }
     },
-    "/dataservices/update?module=fim&subModule=franchisee": {
+    "/update?module=fim&subModule=franchisee": {
       "post": {
         "tags": [
           "Franchisee"
@@ -816,7 +815,7 @@
         }
       }
     },
-    "/dataservices/delete?module=fim&subModule=franchisee": {
+    "/delete?module=fim&subModule=franchisee": {
       "post": {
         "tags": [
           "Franchisee"
@@ -845,7 +844,7 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=lead": {
+    "/create?module=cm&subModule=lead": {
       "post": {
         "tags": [
           "CRM Lead"
@@ -874,7 +873,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=lead": {
+    "/retrieve?module=cm&subModule=lead": {
       "post": {
         "tags": [
           "CRM Lead"
@@ -904,7 +903,7 @@
         }
       }
     },
-    "/dataservices/update?module=cm&subModule=lead": {
+    "/update?module=cm&subModule=lead": {
       "post": {
         "tags": [
           "CRM Lead"
@@ -933,7 +932,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=lead": {
+    "/delete?module=cm&subModule=lead": {
       "post": {
         "tags": [
           "CRM Lead"
@@ -962,13 +961,13 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=contact": {
+    "/create?module=cm&subModule=contact": {
       "post": {
         "tags": [
           "Contact"
         ],
         "summary": "Create",
-        "description": "<p class=\"western\">This section contains an example of the Create operation to add a CRM contact through the CRM > Contacts module. Similarly, you can use the Create operation to add data to any of the tabs/ sub-modules in CRM > Contacts.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=cm&subModule=contact&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a CRM contact using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “contact”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a CRM contact. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the lead for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/CM_Retrieve_Lead\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p>",
+        "description": "<p class=\"western\">This section contains an example of the Create operation to add a CRM contact through the CRM > Contacts module. Similarly, you can use the Create operation to add data to any of the tabs/ sub-modules in CRM > Contacts.</p><p class=\"western\"><strong>Operation Name: </strong> POST</p><p class=\"western\"><strong> API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><context-path>/rest/dataservices/create?key=generatedAccessToken&module=cm&subModule=contact&xmlString=requiredxmlString&responseType=XML</p><h4 class=\"western\">Prerequisites to perform a Create operation</h4><p class=\"western\">To perform a Create operation for adding a CRM contact using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “cm”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “contact”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a CRM contact. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the lead for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/CM_Retrieve_Lead\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/CRM_CreateContact.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/CMCreateContactResp"
@@ -991,7 +990,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=contact": {
+    "/retrieve?module=cm&subModule=contact": {
       "post": {
         "tags": [
           "Contact"
@@ -1021,7 +1020,7 @@
         }
       }
     },
-    "/dataservices/update?module=cm&subModule=contact": {
+    "/update?module=cm&subModule=contact": {
       "post": {
         "tags": [
           "Contact"
@@ -1050,7 +1049,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=contact": {
+    "/delete?module=cm&subModule=contact": {
       "post": {
         "tags": [
           "Contact"
@@ -1079,7 +1078,7 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=account": {
+    "/create?module=cm&subModule=account": {
       "post": {
         "tags": [
           "Account"
@@ -1108,7 +1107,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=account": {
+    "/retrieve?module=cm&subModule=account": {
       "post": {
         "tags": [
           "Account"
@@ -1137,7 +1136,7 @@
         }
       }
     },
-    "/dataservices/update?module=cm&subModule=account": {
+    "/update?module=cm&subModule=account": {
       "post": {
         "tags": [
           "Account"
@@ -1166,7 +1165,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=account": {
+    "/delete?module=cm&subModule=account": {
       "post": {
         "tags": [
           "Account"
@@ -1195,7 +1194,7 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=transaction": {
+    "/create?module=cm&subModule=transaction": {
       "post": {
         "tags": [
           "Transactions"
@@ -1224,7 +1223,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=transaction": {
+    "/retrieve?module=cm&subModule=transaction": {
       "post": {
         "tags": [
           "Transactions"
@@ -1253,7 +1252,7 @@
         }
       }
     },
-    "/dataservices/update?module=cm&subModule=transaction": {
+    "/update?module=cm&subModule=transaction": {
       "post": {
         "tags": [
           "Transactions"
@@ -1282,7 +1281,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=transaction": {
+    "/delete?module=cm&subModule=transaction": {
       "post": {
         "tags": [
           "Transactions"
@@ -1311,7 +1310,7 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=opportunity": {
+    "/create?module=cm&subModule=opportunity": {
       "post": {
         "tags": [
           "Opportunity"
@@ -1340,7 +1339,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=opportunity": {
+    "/retrieve?module=cm&subModule=opportunity": {
       "post": {
         "tags": [
           "Opportunity"
@@ -1370,7 +1369,7 @@
         }
       }
     },
-    "/dataservices/update?module=cm&subModule=opportunity": {
+    "/update?module=cm&subModule=opportunity": {
       "post": {
         "tags": [
           "Opportunity"
@@ -1399,7 +1398,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=opportunity": {
+    "/delete?module=cm&subModule=opportunity": {
       "post": {
         "tags": [
           "Opportunity"
@@ -1428,7 +1427,7 @@
         }
       }
     },
-    "/dataservices/create?module=fs&subModule=task": {
+    "/create?module=fs&subModule=task": {
       "post": {
         "tags": [
           "Task"
@@ -1457,7 +1456,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=fs&subModule=task": {
+    "/retrieve?module=fs&subModule=task": {
       "post": {
         "tags": [
           "Task"
@@ -1486,7 +1485,7 @@
         }
       }
     },
-    "/dataservices/update?module=fs&subModule=task": {
+    "/update?module=fs&subModule=task": {
       "post": {
         "tags": [
           "Task"
@@ -1515,7 +1514,7 @@
         }
       }
     },
-    "/dataservices/delete?module=fs&subModule=task": {
+    "/delete?module=fs&subModule=task": {
       "post": {
         "tags": [
           "Task"
@@ -1544,7 +1543,7 @@
         }
       }
     },
-    "/dataservices/create?module=cm&subModule=mail": {
+    "/create?module=cm&subModule=mail": {
       "post": {
         "tags": [
           "Email"
@@ -1573,7 +1572,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=mail": {
+    "/retrieve?module=cm&subModule=mail": {
       "post": {
         "tags": [
           "Email"
@@ -1602,7 +1601,7 @@
         }
       }
     },
-    "/dataservices/delete?module=cm&subModule=mail": {
+    "/delete?module=cm&subModule=mail": {
       "post": {
         "tags": [
           "Email"
@@ -1631,7 +1630,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=campaignEmail": {
+    "/retrieve?module=cm&subModule=campaignEmail": {
       "post": {
         "tags": [
           "Email Campaigns"
@@ -1660,7 +1659,7 @@
         }
       }
     },
-    "/dataservices/retrieve?module=cm&subModule=contactSMS": {
+    "/retrieve?module=cm&subModule=contactSMS": {
       "post": {
         "tags": [
           "Retrieve SMS"
@@ -1689,7 +1688,7 @@
         }
       }
     },
-    "/dataservices/retrieve SMS Campaigns": {
+    "/retrieve SMS Campaigns": {
       "post": {
         "tags": [
           "SMS Campaigns"
@@ -2077,7 +2076,7 @@
           "Sales Reports"
         ],
         "summary": "Retrieve Sales Report",
-        "description": "<p class=\"western\">You can retrieve an existing sales report by making a POST type request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>https://finance.franconnect.net/manage-finance/sales/filter </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the sales report must be included in the body of the request. </p></li></ol><p class=\"western\">In the example that is included, the “franchiseeNo” has been used as a ‘constraints’ criterion. Other acceptable values of constraints, that can be used to filter and retrieve sales reports, are explained in the following table:</p><center><table width=\"623\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"157\"/> <col width=\"135\"/> <col width=\"223\"/> <col width=\"51\"/> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"157\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"135\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field Description</span></strong></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Applied Clause</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"51\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Format</span></strong></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Sales Report Number as seen in UI</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>salesReportID</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportPeriodStart/End</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Period Start/ End Date in YYYY-MM-DD format</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportSubmitDate</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Submit Date in YYYY-MM-DD format</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>totalSales</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Total Sales</p></td><td width=\"223\"><p class=\"western\" align=\"center\">GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Status of the Sales Report</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportType</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Type of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><img src=\"images/Retrieve_Sales_Report.png\">",
+        "description": "<p class=\"western\">You can retrieve an existing sales report by making a POST type request to the specified endpoint.</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>https://finance.franconnect.net/manage-finance/sales/filter </p>The following items must be included in the body of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>The constraints that would be used to filter out the sales report must be included in the body of the request. </p></li></ol><p class=\"western\">In the example that is included, the “salesreportID” has been used as a ‘constraints’ criterion. Other acceptable values of constraints, that can be used to filter and retrieve sales reports, are explained in the following table:</p><p>Note that the response displays the promissory note payment details only if the corresponding option is selected through the Admin module.</p><center><table width=\"623\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"157\"/> <col width=\"135\"/> <col width=\"223\"/> <col width=\"51\"/> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"157\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"135\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Field Description</span></strong></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"223\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Applied Clause</span></strong></p><p class=\"western\" align=\"center\">&nbsp;</p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"51\"><p class=\"western\" align=\"center\"><strong><span style=\"color: #00000a;\">Format</span></strong></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Sales Report Number as seen in UI</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>salesReportID</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>franchiseeNo</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Internal Unique Reference Number of the location</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportPeriodStart/End</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Period Start/ End Date in YYYY-MM-DD format</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportSubmitDate</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Submit Date in YYYY-MM-DD format</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN, GREATER_THAN_OR_EQUAL,</p><p class=\"western\" align=\"center\">LESS_THAN_OR_EQUAL, BETWEEN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">Date</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>totalSales</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Total Sales</p></td><td width=\"223\"><p class=\"western\" align=\"center\">GREATER_THAN,</p><p class=\"western\" align=\"center\">LESS_THAN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"157\"><p class=\"western\" align=\"center\"><strong>reportStatus</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"135\"><p class=\"western\" align=\"center\">Report Status of the Sales Report</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr><tr valign=\"top\"><td width=\"157\"><p class=\"western\" align=\"center\"><strong>reportType</strong></p></td><td width=\"135\"><p class=\"western\" align=\"center\">Report Type of the Sales Report</p></td><td width=\"223\"><p class=\"western\" align=\"center\">EQUAL, IN</p></td><td width=\"51\"><p class=\"western\" align=\"center\">String</p></td></tr></tbody></table></center><p class=\"western\">&nbsp;</p><img src=\"images/Retrieve_Sales_Report.png\">",
         "operationId": "Retrieve_Sales",
         "consumes": [
           "application/json"
@@ -2108,19 +2107,19 @@
                   }
                 },
                 "example": {
-                  "constraints": {
-                    "franchiseeNo": {
-                      "clause": "EQUAL",
-                      "values": [
-                        "403951414"
-                      ]
-                    }
-                  },
-                  "page": {
-                    "pageId": "1",
-                    "pageSize": "100"
-                  }
-                }
+"constraints": {
+"salesReportID": {
+"clause": "EQUAL",
+"values": [
+"1758518040"
+]
+}
+},
+"page": {
+"pageId": "1",
+"pageSize": "100"
+}
+}
               }
             }
           }
@@ -4594,278 +4593,239 @@
             "example": {
               "response": {
                 "data": [
-                  {
-                    "829074374": {
-                      "reportNo": "91088",
-                      "salesReportID": "829074374",
-                      "franchiseeNo": "310158673",
-                      "reportPeriodStart": "2019-05-20",
-                      "reportPeriodEnd": "2019-05-26",
-                      "reportSubmitDate": "2019-05-30 14:38:07",
-                      "dateReceived": "2019-05-30",
-                      "totalSales": "1272.47",
-                      "reportStatus": "I",
-                      "reportType": "M",
-                      "franchiseRoyaltyID": "700324401",
-                      "versionID": "Standard with 1.5 mktg",
-                      "totalQuantity": "0.0",
-                      "financialItems": [
+            {
+                "1758518040": {
+                    "reportNo": "56",
+                    "salesReportID": "1758518040",
+                    "franchiseeNo": "907680077",
+                    "reportPeriodStart": "2019-01-01",
+                    "reportPeriodEnd": "2019-01-31",
+                    "reportSubmitDate": "2019-12-02 02:06:11",
+                    "dateReceived": "2019-12-02",
+                    "totalSales": "10000.0",
+                    "reportStatus": "I",
+                    "reportType": "M",
+                    "franchiseRoyaltyID": "1842527881",
+                    "versionID": "Flat percent 2015",
+                    "totalQuantity": "0.0",
+                    "financialItems": [
                         {
-                          "1": {
-                            "name": "Service",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "543": {
-                            "name": "% Baked Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "592": {
-                            "name": "% Coffee Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "593": {
-                            "name": "% Cookie Cake Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "594": {
-                            "name": "% Ice Cream Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "595": {
-                            "name": "% Current Promotion",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "5573": {
-                            "name": "% Other",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "972388911": {
-                            "name": "Net Sales($)",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 1272.47,
-                                "quantity": 0
-                              }
-                            ]
-                          },
-                          "1488518715": {
-                            "name": "% Bulk Cookie Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0,
-                                "quantity": 0
-                              }
-                            ]
-                          }
+                            "1": {
+                                "name": "Service 1",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 10000.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "1925589920": {
+                                "name": "Service 2",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "771657194": {
+                                "name": "Service 3",
+                                "calculationType": "(+)",
+                                "children": [
+                                    {
+                                        "247817332": {
+                                            "name": "Weekly Special",
+                                            "calculationType": "(+)",
+                                            "data": [
+                                                {
+                                                    "amount": 0.0,
+                                                    "quantity": 0
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "1508280192": {
+                                "name": "Package 1",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "110353610": {
+                                "name": "Product 1",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "172558286": {
+                                "name": "Product 2",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "1155069001": {
+                                "name": "Product 3",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            },
+                            "489950611": {
+                                "name": "Adjustments",
+                                "calculationType": "(-)",
+                                "data": [
+                                    {
+                                        "amount": 0.0,
+                                        "quantity": 0
+                                    }
+                                ]
+                            }
                         }
-                      ],
-                      "nonFinancialItems": [
+                    ],
+                    "nonFinancialItems": [
                         {
-                          "99": {
-                            "name": "Customer Count",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "100": {
-                            "name": "% Baked Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518718": {
-                            "name": "% Bulk Cookie Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518720": {
-                            "name": "% Coffee Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518722": {
-                            "name": "% Cookie Cake Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518724": {
-                            "name": "% Current Promotion",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518726": {
-                            "name": "% Ice Cream Sales",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518728": {
-                            "name": "% Other",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1488518730": {
-                            "name": "Service(+)",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1611329681": {
-                            "name": "% Food Cost",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1611329683": {
-                            "name": "% Labor Cost",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1611329685": {
-                            "name": "Avg Ticket",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          },
-                          "1611329687": {
-                            "name": "Total Percentage",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          }
+                            "100": {
+                                "name": "Non Financial Category",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 100.0
+                                    }
+                                ]
+                            },
+                            "1925589933": {
+                                "name": "Average Transaction Value",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "1925589935": {
+                                "name": "New Leads",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "1925589937": {
+                                "name": "Loyalty Program Enrollments",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "1925589939": {
+                                "name": "Total Marketing Campaigns",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            }
                         }
-                      ],
-                      "finAddnlItems": [
+                    ],
+                    "finAddnlItems": [
                         {
-                          "5574": {
-                            "name": "Technology Fee",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 8.13
-                              }
-                            ]
-                          },
-                          "5576": {
-                            "name": "Milano Weekly Fee",
-                            "calculationType": "(+)",
-                            "data": [
-                              {
-                                "amount": 0
-                              }
-                            ]
-                          }
+                            "91768934": {
+                                "name": "Printing",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 300.0
+                                    }
+                                ]
+                            },
+                            "425629981": {
+                                "name": "Training Fee",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "602785080": {
+                                "name": "Tech Fee",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "714608200": {
+                                "name": "Marketing Fee",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "1637569982": {
+                                "name": "Call Center Fee",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 0.0
+                                    }
+                                ]
+                            },
+                            "1659664436": {
+                                "name": "Co-op Fee",
+                                "calculationType": "(+)",
+                                "data": [
+                                    {
+                                        "amount": 400.0
+                                    }
+                                ]
+                            }
                         }
-                      ],
-                      "actionLogs": {
-                        "901280568": {
-                          "salestasklogId": 901280568,
-                          "userComments": "per email from Luis A",
-                          "userName": "Natalie Little",
-                          "finSalestasklogsdate": "2019-05-30T18:38:07.000+0000",
-                          "finSalesTaskId": "Added"
-                        },
-                        "2147279380": {
-                          "salestasklogId": 2147279380,
-                          "userComments": "",
-                          "userName": "Natalie Little",
-                          "finSalestasklogsdate": "2019-05-31T19:11:04.000+0000",
-                          "finSalesTaskId": "Approved"
+                    ],
+                    "actionLogs": {
+                        "764579323": {
+                            "salestasklogId": 764579323,
+                            "userComments": "",
+                            "userName": "FranConnect Administrator",
+                            "finSalestasklogsdate": "2019-12-02T07:06:11.000+0000",
+                            "finSalesTaskId": "Added"
                         }
-                      }
                     },
-                    "response": "Success"
-                  }
-                ],
+                    "promissoryNotes": {
+                        "673395639": {
+                            "amount": "837.85",
+                            "name": "Promissory note test"
+                        }
+                    }
+                },
+                "response": "Success"
+            }
+        ],
                 "page": null
               }
             }
