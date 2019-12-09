@@ -147,7 +147,7 @@
           "Retrieve Franchisee Number"
         ],
         "summary": "Retrieve for all Locations",
-        "description": "<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> GET</p><p class=\"western\"><strong>Production API Endpoint&nbsp;:&nbsp;</strong>//finance.franconnect.net/common/franchisee</p><p class=\"western\"><strong>UAT API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong></strong> //finance.franconnectuat.net/common/franchisee</p><h4>To retrieve the Franchisee Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchisee number and the franchisee names of all the locations.</p><img src=\"images/Retrieve_Franchise_Number_All.png\">",
+        "description": "<p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> GET</p><p class=\"western\"><strong>Production API Endpoint&nbsp;:&nbsp;</strong><p class=\"nolink\">https://finance.franconnect.net/common/franchisee</p><p class=\"western\"><strong>UAT API Endpoint&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong></strong><p class=\"nolink\">https://finance.franconnectuat.net/common/franchisee</p><h4>To retrieve the Franchisee Number, you must provide the following items in the header of the GET request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps will provide the franchisee number and the franchisee names of all the locations.</p><img src=\"images/Retrieve_Franchise_Number_All.png\">",
         "operationId": "Retrieve_Franchisee_Number",
         "produces": [
           "application/json"
@@ -190,7 +190,7 @@
           "Retrieve Franchisee Number"
         ],
         "summary": "Retrieve for a specific Location",
-        "description": "</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>https://finance.franconnectuat.net/common/franchisee/filter</p><h4>To retrieve the Franchisee Number for a specific location, you must provide the following items in the header of the POST request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchisee numbers. Performing the above mentioned steps will provide the franchisee number and the franchisee name for the required location.</p><img src=\"images/Retrieve_Franchise_Number_Specific.png\">",
+        "description": "</p><p class=\"western\"><strong>Operation Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>POST</p><p class=\"western\"><strong>API Endpoint &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong><p class=\"nolink\">https://finance.franconnectuat.net/common/franchisee/filter</p><h4>To retrieve the Franchisee Number for a specific location, you must provide the following items in the header of the POST request: </h4><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>Specify &ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>Specify &ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">You can specify any of the following as the filter criteria in the body of the request: areas, countries, divisions, entities, fields, and franchisee numbers. Performing the above mentioned steps will provide the franchisee number and the franchisee name for the required location.</p><img src=\"images/Retrieve_Franchise_Number_Specific.png\">",
         "operationId": "Retrieve_Franchisee_Number",
         "consumes": [
           "application/json"
@@ -2107,19 +2107,19 @@
                   }
                 },
                 "example": {
-"constraints": {
-"salesReportID": {
-"clause": "EQUAL",
-"values": [
-"1758518040"
-]
-}
-},
-"page": {
-"pageId": "1",
-"pageSize": "100"
-}
-}
+                  "constraints": {
+                    "salesReportID": {
+                      "clause": "EQUAL",
+                      "values": [
+                        "1758518040"
+                      ]
+                    }
+                  },
+                  "page": {
+                    "pageId": "1",
+                    "pageSize": "100"
+                  }
+                }
               }
             }
           }
@@ -4593,239 +4593,239 @@
             "example": {
               "response": {
                 "data": [
-            {
-                "1758518040": {
-                    "reportNo": "56",
-                    "salesReportID": "1758518040",
-                    "franchiseeNo": "907680077",
-                    "reportPeriodStart": "2019-01-01",
-                    "reportPeriodEnd": "2019-01-31",
-                    "reportSubmitDate": "2019-12-02 02:06:11",
-                    "dateReceived": "2019-12-02",
-                    "totalSales": "10000.0",
-                    "reportStatus": "I",
-                    "reportType": "M",
-                    "franchiseRoyaltyID": "1842527881",
-                    "versionID": "Flat percent 2015",
-                    "totalQuantity": "0.0",
-                    "financialItems": [
+                  {
+                    "1758518040": {
+                      "reportNo": "56",
+                      "salesReportID": "1758518040",
+                      "franchiseeNo": "907680077",
+                      "reportPeriodStart": "2019-01-01",
+                      "reportPeriodEnd": "2019-01-31",
+                      "reportSubmitDate": "2019-12-02 02:06:11",
+                      "dateReceived": "2019-12-02",
+                      "totalSales": "10000.0",
+                      "reportStatus": "I",
+                      "reportType": "M",
+                      "franchiseRoyaltyID": "1842527881",
+                      "versionID": "Flat percent 2015",
+                      "totalQuantity": "0.0",
+                      "financialItems": [
                         {
-                            "1": {
-                                "name": "Service 1",
-                                "calculationType": "(+)",
-                                "data": [
+                          "1": {
+                            "name": "Service 1",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 10000,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "110353610": {
+                            "name": "Product 1",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "172558286": {
+                            "name": "Product 2",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "489950611": {
+                            "name": "Adjustments",
+                            "calculationType": "(-)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "771657194": {
+                            "name": "Service 3",
+                            "calculationType": "(+)",
+                            "children": [
+                              {
+                                "247817332": {
+                                  "name": "Weekly Special",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 10000.0,
-                                        "quantity": 0
+                                      "amount": 0,
+                                      "quantity": 0
                                     }
-                                ]
-                            },
-                            "1925589920": {
-                                "name": "Service 2",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            },
-                            "771657194": {
-                                "name": "Service 3",
-                                "calculationType": "(+)",
-                                "children": [
-                                    {
-                                        "247817332": {
-                                            "name": "Weekly Special",
-                                            "calculationType": "(+)",
-                                            "data": [
-                                                {
-                                                    "amount": 0.0,
-                                                    "quantity": 0
-                                                }
-                                            ]
-                                        }
-                                    }
-                                ]
-                            },
-                            "1508280192": {
-                                "name": "Package 1",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            },
-                            "110353610": {
-                                "name": "Product 1",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            },
-                            "172558286": {
-                                "name": "Product 2",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            },
-                            "1155069001": {
-                                "name": "Product 3",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            },
-                            "489950611": {
-                                "name": "Adjustments",
-                                "calculationType": "(-)",
-                                "data": [
-                                    {
-                                        "amount": 0.0,
-                                        "quantity": 0
-                                    }
-                                ]
-                            }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          "1155069001": {
+                            "name": "Product 3",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "1508280192": {
+                            "name": "Package 1",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          },
+                          "1925589920": {
+                            "name": "Service 2",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0,
+                                "quantity": 0
+                              }
+                            ]
+                          }
                         }
-                    ],
-                    "nonFinancialItems": [
+                      ],
+                      "nonFinancialItems": [
                         {
-                            "100": {
-                                "name": "Non Financial Category",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 100.0
-                                    }
-                                ]
-                            },
-                            "1925589933": {
-                                "name": "Average Transaction Value",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589935": {
-                                "name": "New Leads",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589937": {
-                                "name": "Loyalty Program Enrollments",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589939": {
-                                "name": "Total Marketing Campaigns",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            }
+                          "100": {
+                            "name": "Non Financial Category",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 100
+                              }
+                            ]
+                          },
+                          "1925589933": {
+                            "name": "Average Transaction Value",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "1925589935": {
+                            "name": "New Leads",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "1925589937": {
+                            "name": "Loyalty Program Enrollments",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "1925589939": {
+                            "name": "Total Marketing Campaigns",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          }
                         }
-                    ],
-                    "finAddnlItems": [
+                      ],
+                      "finAddnlItems": [
                         {
-                            "91768934": {
-                                "name": "Printing",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 300.0
-                                    }
-                                ]
-                            },
-                            "425629981": {
-                                "name": "Training Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "602785080": {
-                                "name": "Tech Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "714608200": {
-                                "name": "Marketing Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1637569982": {
-                                "name": "Call Center Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1659664436": {
-                                "name": "Co-op Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 400.0
-                                    }
-                                ]
-                            }
+                          "91768934": {
+                            "name": "Printing",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 300
+                              }
+                            ]
+                          },
+                          "425629981": {
+                            "name": "Training Fee",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "602785080": {
+                            "name": "Tech Fee",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "714608200": {
+                            "name": "Marketing Fee",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "1637569982": {
+                            "name": "Call Center Fee",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 0
+                              }
+                            ]
+                          },
+                          "1659664436": {
+                            "name": "Co-op Fee",
+                            "calculationType": "(+)",
+                            "data": [
+                              {
+                                "amount": 400
+                              }
+                            ]
+                          }
                         }
-                    ],
-                    "actionLogs": {
+                      ],
+                      "actionLogs": {
                         "764579323": {
-                            "salestasklogId": 764579323,
-                            "userComments": "",
-                            "userName": "FranConnect Administrator",
-                            "finSalestasklogsdate": "2019-12-02T07:06:11.000+0000",
-                            "finSalesTaskId": "Added"
+                          "salestasklogId": 764579323,
+                          "userComments": "",
+                          "userName": "FranConnect Administrator",
+                          "finSalestasklogsdate": "2019-12-02T07:06:11.000+0000",
+                          "finSalesTaskId": "Added"
                         }
-                    },
-                    "promissoryNotes": {
+                      },
+                      "promissoryNotes": {
                         "673395639": {
-                            "amount": "837.85",
-                            "name": "Promissory note test"
+                          "amount": "837.85",
+                          "name": "Promissory note test"
                         }
-                    }
-                },
-                "response": "Success"
-            }
-        ],
+                      }
+                    },
+                    "response": "Success"
+                  }
+                ],
                 "page": null
               }
             }
