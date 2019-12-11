@@ -269,7 +269,7 @@
         }
       }
     },
-    "/module?module=admin": {
+    "/module": {
       "post": {
         "tags": [
           "Retrieve Modules"
