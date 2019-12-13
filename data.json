@@ -6,182 +6,182 @@
       "url": "tag/Introduction"
     },
     {
-      "displayname": "OAuth",
+      "displayName": "OAuth",
       "name": "Authentication",
       "url": "tag/Authentication"
     },
     {
-      "displayname": "Franchise Number",
+      "displayName": "Franchise Number",
       "name": "Franchisee Number",
       "url": "tag/Franchisee-Number"
     },
     {
-      "displayname": "Retrieve Franchise Number",
+      "displayName": "Retrieve Franchise Number",
       "name": "Retrieve Franchisee Number",
       "url": "tag/Retrieve-Franchisee-Number"
     },
     {
-      "displayname": "Errors",
+      "displayName": "Errors",
       "name": "Error Codes",
       "url": "tag/Error-Codes"
     },
     {
-      "displayname": "Modules",
+      "displayName": "Modules",
       "name": "List of Modules",
       "url": "tag/List of Modules"
     },
     {
-      "displayname": "Retrieve Modules",
+      "displayName": "Retrieve Modules",
       "name": "Retrieve Modules",
       "url": "tag/Retrieve Modules"
     },
     {
-      "displayname": "Sub-Modules",
+      "displayName": "Sub-Modules",
       "name": "List of Sub-Modules",
       "url": "tag/List of Sub-Modules"
     },
     {
-      "displayname": "Retrieve Sub-Modules",
+      "displayName": "Retrieve Sub-Modules",
       "name": "Retrieve Sub-Modules",
       "url": "tag/Retrieve-Sub-Modules"
     },
     {
-      "displayname": "Field Names",
+      "displayName": "Field Names",
       "name": "List of Field Names",
       "url": "tag/List-of-Field-Names"
     },
     {
-      "displayname": "Schema",
+      "displayName": "Schema",
       "name": "Retrieve Schema",
       "url": "tag/Retrieve-Schema"
     },
     {
-      "displayname": "Admin",
+      "displayName": "Admin",
       "name": "Admin",
       "url": "tag/Admin"
     },
     {
-      "displayname": "User",
+      "displayName": "User",
       "name": "User",
       "url": "tag/User"
     },
     {
-      "displayname": "Sales",
+      "displayName": "Sales",
       "name": "Sales",
       "url": "tag/Sales"
     },
     {
-      "displayname": "Sales Lead",
+      "displayName": "Sales Lead",
       "name": "Lead",
       "url": "tag/Sales Lead"
     },
     {
-      "displayname": "Info Mgr",
+      "displayName": "Info Mgr",
       "name": "Info Manager",
       "url": "tag/Info-Manager"
     },
     {
-      "displayname": "Location",
+      "displayName": "Location",
       "name": "Franchisee",
       "url": "tag/Franchisee"
     },
     {
-      "displayname": "CRM",
+      "displayName": "CRM",
       "name": "CRM",
       "url": "tag/CRM"
     },
     {
-      "displayname": "CRM-Lead",
+      "displayName": "CRM-Lead",
       "name": "CRM Lead",
       "url": "tag/CRM-Lead"
     },
     {
-      "displayname": "CRM Contact",
+      "displayName": "CRM Contact",
       "name": "Contact",
       "url": "tag/Contact"
     },
     {
-      "displayname": "CRM Account",
+      "displayName": "CRM Account",
       "name": "Account",
       "url": "tag/Account"
     },
     {
-      "displayname": "CRM Transaction",
+      "displayName": "CRM Transaction",
       "name": "Transactions",
       "url": "Transactions"
     },
     {
-      "displayname": "CRM Opportunity",
+      "displayName": "CRM Opportunity",
       "name": "Opportunity",
       "url": "tag/Opportunity"
     },
     {
-      "displayname": "Task",
+      "displayName": "Task",
       "name": "Tasks",
       "url": "tag/Tasks"
     },
     {
-      "displayname": "Task",
+      "displayName": "Task",
       "name": "Task",
       "url": "tag/Task"
     },
     {
-      "displayname": "Email",
+      "displayName": "Email",
       "name": "Emails",
       "url": "tag/Emails"
     },
     {
-      "displayname": "Retrieve Email",
+      "displayName": "Retrieve Email",
       "name": "Email Messages",
       "url": "tag/Email Messages"
     },
     {
-      "displayname": "SMS",
+      "displayName": "SMS",
       "name": "SMS",
       "url": "tag/SMS"
     },
     {
-      "displayname": "SMS Messages",
+      "displayName": "SMS Messages",
       "name": "Retrieve SMS",
       "url": "tag/SMS Messages"
     },
     {
-      "displayname": "Campaign",
+      "displayName": "Campaign",
       "name": "Campaigns",
       "url": "tag/Campaigns"
     },
     {
-      "displayname": "Email Campaigns",
+      "displayName": "Email Campaigns",
       "name": "Email Campaigns",
       "url": "tag/Email-Campaigns"
     },
     {
-      "displayname": "SMS Campaign",
+      "displayName": "SMS Campaign",
       "name": "SMS Campaigns",
       "url": "tag/SMS-Campaigns"
     },
     {
-      "displayname": "Finance API",
+      "displayName": "Finance API",
       "name": "Finance",
       "url": "tag/Finance"
     },
     {
-      "displayname": "Sales Report",
+      "displayName": "Sales Report",
       "name": "Sales Reports",
       "url": "tag/Sales-Reports"
     },
     {
-      "displayname": "Royalty",
+      "displayName": "Royalty",
       "name": "Royalties",
       "url": "tag/Royalties"
     },
     {
-      "displayname": "Payment",
+      "displayName": "Payment",
       "name": "Payments",
       "url": "tag/Payments"
     },
     {
-      "displayname": "Profit Loss",
+      "displayName": "Profit Loss",
       "name": "Profit and Loss Statements",
       "url": "tag/Profit and Loss Statements"
     }
