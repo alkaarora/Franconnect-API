@@ -21,6 +21,11 @@
       "url": "tag/Authentication"
     },
     {
+      "displayName": "Authentication",
+      "name": "Authentication",
+      "url": "tag/Authentication"
+    },
+    {
       "displayName": "Franchise Number",
       "name": "Franchisee Number",
       "url": "tag/Franchisee-Number"
@@ -47,6 +52,11 @@
     },
     {
       "displayName": "Sub-Modules",
+      "name": "List of Sub-Modules",
+      "url": "tag/List of Sub-Modules"
+    },
+    {
+      "displayName": "Submodules",
       "name": "List of Sub-Modules",
       "url": "tag/List of Sub-Modules"
     },
