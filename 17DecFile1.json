@@ -402,7 +402,7 @@
           "Retrieve Schema"
         ],
         "summary": "Create",
-        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Create operation for the Admin sub-module. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Create operation for the Sales, Info Manager and CRM sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/query?module=admin&operation=create<br>&roleTypeForQuery=1&subModule=user</td></tr><tr><td></td></tr></table><img src=\"images/Admin_CreateQuery.png\">",
+        "description": "<p class=\"western\">This section contains an example of the “query” endpoint applied to retrieve fields that are available during the Create operation for the Admin sub-module. </p><p>In a similar manner, the “query” endpoint can be applied to retrieve fields that are available during the Create operation for the Sales, Info Manager and CRM sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><tdvalign=\"top\"><context-path>/rest/dataservices/query?module=admin&operation=create<br>&roleTypeForQuery=1&subModule=user</td></tr><tr><td></td></tr></table><img src=\"images/Admin_CreateQuery.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/AdminCreateQueryResp"
