@@ -43,22 +43,22 @@
     {
       "displayName": "Modules",
       "name": "List of Modules",
-      "url": "tag/List of Modules"
+      "url": "tag/List-of-Modules"
     },
     {
       "displayName": "Retrieve Modules",
       "name": "Retrieve Modules",
-      "url": "tag/Retrieve Modules"
+      "url": "tag/Retrieve-Modules"
     },
     {
       "displayName": "Sub-Modules",
       "name": "List of Sub-Modules",
-      "url": "tag/List of Sub-Modules"
+      "url": "tag/List-of-Sub-Modules"
     },
     {
       "displayName": "Submodules",
       "name": "List of Sub-Modules",
-      "url": "tag/List of Sub-Modules"
+      "url": "tag/List-of-Sub-Modules"
     },
     {
       "displayName": "Retrieve Sub-Modules",
@@ -93,7 +93,7 @@
     {
       "displayName": "Sales Lead",
       "name": "Lead",
-      "url": "tag/Sales Lead"
+      "url": "tag/Sales-Lead"
     },
     {
       "displayName": "Info Mgr",
@@ -140,20 +140,15 @@
       "name": "Tasks",
       "url": "tag/Tasks"
     },
-    {
-      "displayName": "Task",
-      "name": "Task",
-      "url": "tag/Task"
-    },
-    {
+        {
       "displayName": "Email",
       "name": "Emails",
       "url": "tag/Emails"
     },
     {
       "displayName": "Retrieve Email",
-      "name": "Email Messages",
-      "url": "tag/Email Messages"
+      "name": "Emails",
+      "url": "tag/Email-Messages"
     },
     {
       "displayName": "SMS",
@@ -163,7 +158,7 @@
     {
       "displayName": "SMS Messages",
       "name": "Retrieve SMS",
-      "url": "tag/SMS Messages"
+      "url": "tag/SMS-Messages"
     },
     {
       "displayName": "Campaign",
@@ -203,7 +198,7 @@
     {
       "displayName": "Profit Loss",
       "name": "Profit and Loss Statements",
-      "url": "tag/Profit and Loss Statements"
+      "url": "tag/Profit-and-Loss-Statements"
     }
   ],
   "components": {}
