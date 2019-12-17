@@ -208,7 +208,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                 "name": {
+                 "franchisee_name": {
                     "type": "string"
                   }
                 },
@@ -839,7 +839,7 @@
           "Franchisee"
         ],
         "summary": "Delete",
-        "description": "<p class=\"western\">This section contains an example of the Delete operation to delete a franchisee location through the Info Manager module. Note that the FranConnect API does not support the deletion of a franchisee location. However, the Delete operation can be performed to delete the other Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path> /rest/dataservices/delete?module=fim&subModule=franchisee&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><h4 class=\"western\">Prerequisites to perform a Delete operation</h4><p class=\"western\">To perform a Delete operation for deleting a sub module under the Info Manager module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Delete operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to delete a sub module. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Delete. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to delete data in any tab/sub-module other than “Center Info”, it is mandatory to specify the franchisee for which this data is to be deleted. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to delete data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/InfoMgr_DeleteAgreement.png\">",
+        "description": "<p class=\"western\">This section contains an example of the Delete operation to delete a franchisee location through the Info Manager module. Note that the FranConnect API does not support the deletion of a franchisee location. However, the Delete operation can be performed to delete the other Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=fim&subModule=franchisee<br>&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><h4 class=\"western\">Prerequisites to perform a Delete operation</h4><p class=\"western\">To perform a Delete operation for deleting a sub module under the Info Manager module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters:</p><ol><li><p>An access token as a key. Steps on how an access token is generated is documented <u><a href=\"#tag/Authentication\">here</a></u>.</p></li><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Delete operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to delete a sub module. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Delete. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p><strong>Note:</strong> In order to delete data in any tab/sub-module other than “Center Info”, it is mandatory to specify the franchisee for which this data is to be deleted. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to delete data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/InfoMgr_DeleteAgreement.png\">",
         "responses": {
           "200": {
             "$ref": "#/components/responses/FimDeleteFranchiseeResp"
@@ -1741,14 +1741,14 @@
           "Sales Reports"
         ],
         "summary": "Retrieve Sales Report Periods",
-        "description": "<p class=\"western\">The report period in Finance > Sales refers to that time duration for which sales is to be reported by the franchisees. The report period for each location is defined in the financial agreement that is associated with that location.</p><p class=\"western\">You must make a GET request to the request URL, along with other required details, to retrieve the report periods. This would provide a list of all the report periods for which sales is to be reported by the franchisees.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://api.franconnect.net/manage-finance/sales/periods/franchiseeNo/{id}</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td> https://api.franconnectuat.net/manage-finance/sales/periods/franchiseeNo/{id}</td></tr></table>To retrieve the report periods for which sales data has not been entered for a particular franchisee location, you must make a GET request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters: <ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>Franchisee number as the internal unique reference number of the location. Click <u><a href=\"#tag/Retrieve-Franchisee-Number\">here</a></u> for details on retrieving the franchisee number. </p></li></ol><p class=\"western\">Performing the above mentioned steps would return all the report periods for which sales has not been reported by that location.</p><img src=\"images/Retrieve_Sales_Reports_Period.png\">",
+        "description": "<p class=\"western\">The report period in Finance > Sales refers to that time duration for which sales is to be reported by the franchisees. The report period for each location is defined in the financial agreement that is associated with that location.</p><p class=\"western\">You must make a GET request to the request URL, along with other required details, to retrieve the report periods. This would provide a list of all the report periods for which sales is to be reported by the franchisees.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://api.franconnect.net/manage-finance/sales/<br>periods/franchiseeNo/{id}</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td> https://api.franconnectuat.net/manage-finance/sales/<br>periods/franchiseeNo/{id}</td></tr></table>To retrieve the report periods for which sales data has not been entered for a particular franchisee location, you must make a GET request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be used as path parameters: <ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.<br>Note that you are required to select the option <strong>Inherit auth from parent</strong> for the <strong>Type</strong> field under the <strong>Authorization</strong> tab before generating the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li><li><p>Franchisee number as the internal unique reference number of the location. Click <u><a href=\"#tag/Retrieve-Franchisee-Number\">here</a></u> for details on retrieving the franchisee number. </p></li></ol><p class=\"western\">Performing the above mentioned steps would return all the report periods for which sales has not been reported by that location.</p><img src=\"images/Retrieve_Sales_Reports_Period.png\">",
         "operationId": "Retrieve_Sales_Reports_Periods",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "franchiseeNo",
             "in": "path",
             "description": "ParameterType:Integer",
             "required": false,
@@ -1784,14 +1784,14 @@
           "Sales Reports"
         ],
         "summary": "Retrieve Finance Categories",
-        "description": "<p class=\"western\">Finance categories are an important part of the sales report. These represent the categories that are used to report Sales data. To retrieve all the finance categories, you must use the report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">here</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET request to retrieve a list of financial categories that are available to report the sales for the given report period. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://api.franconnect.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td>https://api.franconnectuat.net/manage-finance/sales/categories/finance-categories/franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</td></tr></table><img src=\"images/Retrieve_Finance_Categories.png\">",
+        "description": "<p class=\"western\">Finance categories are an important part of the sales report. These represent the categories that are used to report Sales data. To retrieve all the finance categories, you must use the report period as input parameter for the GET request. Click <u><a href=\"#tag/Sales-Reports\">here</a></u> for details on retrieving these report periods.</p><p>Then, use this report period, and perform a GET request to retrieve a list of financial categories that are available to report the sales for the given report period. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://api.franconnect.net/manage-finance/sales/categories/finance-categories/<br>franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td>https://api.franconnectuat.net/manage-finance/sales/categories/finance-categories/<br>franchiseeNo/{franchisee_number}/reportPeriod/{reportPeriod}</td></tr></table><img src=\"images/Retrieve_Finance_Categories.png\">",
         "operationId": "Retrieve_Finance_Categories",
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "franchisee_number",
             "in": "path",
             "description": "ParameterType:Integer",
             "required": false,
@@ -1841,7 +1841,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "franchisee_number",
             "in": "path",
             "description": "ParameterType:Integer",
             "required": false,
@@ -1891,7 +1891,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "franchisee_number",
             "in": "path",
             "description": "ParameterType:Integer",
             "required": false,
@@ -1987,7 +1987,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "franchiseeNo": {
                     "type": "string"
                   },
                   "name": {
@@ -2117,10 +2117,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "reportNo": {
                     "type": "string"
                   },
-                  "name": {
+                  "salesReportID": {
+                    "type": "string"
+                  },
+                  "franchiseeNo": {
+                    "type": "string"
+                  },
+                  "reportPeriodStart/End": {
+                    "type": "date"
+                  },
+                  "reportSubmitDate": {
+                    "type": "date"
+                  },
+                  "totalSales": {
+                    "type": "string"
+                  },
+                   "reportStatus": {
+                    "type": "string"
+                  },
+                   "reportType": {
                     "type": "string"
                   }
                 },
@@ -2187,9 +2205,9 @@
             }
           },
           {
-            "name": "id",
+            "name": "salesReportID",
             "in": "path",
-            "description": "salesReportID",
+            "description": "",
             "required": true,
             "type": "integer",
             "format": "int32"
@@ -2201,10 +2219,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "name": {
+                    "name": {
                     "type": "string"
                   }
                 },
@@ -2329,10 +2344,19 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "franchiseeRoyaltyID": {
                     "type": "string"
                   },
-                  "name": {
+                  "invoiceNO": {
+                    "type": "string"
+                  },
+                  "franchiseeNo": {
+                    "type": "string"
+                  },
+                  "invoiceDate": {
+                    "type": "date"
+                  },
+                  "paymentStatus": {
                     "type": "string"
                   }
                 },
@@ -2429,11 +2453,20 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
+                  "franchiseeRoyaltyID": {
                     "type": "string"
                   },
-                  "name": {
+                  "invoiceNO": {
                     "type": "string"
+                  },
+                  "paymentNo": {
+                    "type": "string"
+                  },
+                  "franchiseeNo": {
+                    "type": "string"
+                  },
+                  "dateApplied": {
+                    "type": "date"
                   }
                 },
                 "example": {
@@ -2486,7 +2519,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "franchiseeNo",
             "in": "path",
             "description": "ParameterType:Integer",
             "required": false,
@@ -2524,20 +2557,7 @@
         "produces": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ParameterType:Integer",
-            "required": false,
-            "type": "integer",
-            "format": "int32",
-            "enum": [
-              "Integer"
-            ]
-          }
-        ],
-        "responses": {
+                "responses": {
           "200": {
             "$ref": "#/components/responses/RetrieveProfitLossCategoriesResp"
           },
