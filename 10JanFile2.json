@@ -786,7 +786,7 @@
           }
         },
         "requestBody": {
-          "$ref": "#/components/requestBodies/FSCreateLeadArray"
+          "$ref": "#/components/requestBodies/retrieveFieldDataArray"
         }
       }
     },
