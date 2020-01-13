@@ -3028,7 +3028,7 @@
       "ModuleArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/module HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\n&responseType=XML",
+            "example": "POST/<context-path>/rest/dataservices/module?responseType=XML",
             "schema": {
               "type": "array",
               "items": {
@@ -3046,7 +3046,7 @@
       "CreateSchemaArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=admin&subModule=user&roleTypeForQuery=1&operation=create",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&roleTypeForQuery=1&operation=create",
             "schema": {
               "type": "array",
               "items": {
@@ -3064,7 +3064,7 @@
       "RetrieveSchemaArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=admin&subModule=user&operation=retrieve",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&operation=retrieve",
             "schema": {
               "type": "array",
               "items": {
@@ -3082,7 +3082,7 @@
       "UpdateSchemaArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=admin&subModule=user&roleTypeForQuery=1&operation=update",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&roleTypeForQuery=1&operation=update",
             "schema": {
               "type": "array",
               "items": {
@@ -3100,7 +3100,7 @@
       "DeleteSchemaArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=admin&subModule=user&operation=delete",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&operation=delete",
             "schema": {
               "type": "array",
               "items": {
@@ -3194,7 +3194,7 @@
       "AdminSubModuleArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\nmodule=admin&responseType=XML",
+            "example": "POST/<context-path>/rest/dataservices/submodule?module=admin&responseType=XML",
             "schema": {
               "type": "array",
               "items": {
@@ -3212,7 +3212,7 @@
       "SalesSubModuleArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=fs&responseType=XML",
+            "example": "POST/<context-path>/rest/dataservices/submodule?module=fs&responseType=XML",
             "schema": {
               "type": "array",
               "items": {
@@ -3231,7 +3231,7 @@
       "InfoMgrSubModuleArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/submodule HTTP/1.1\nContent-type: application/x-www-form-urlencoded/module=fim&responseType=XML",
+            "example": "POST/<context-path>/rest/dataservices/submodule?module=fim&responseType=XML",
             "schema": {
               "type": "array",
               "items": {
@@ -3326,7 +3326,7 @@
       "AdminDeleteUserArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1/Content-type: application/x-www-form-urlencoded/module=admin&subModule=user&operation=delete",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&operation=delete",
             "schema": {
               "type": "array",
               "items": {
@@ -3345,7 +3345,7 @@
       "retrieveFieldDataArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/retrieveFieldData?module=fs&subModule=lead&responseType=XML&fieldName=countyID&dependentFieldName=country&dependentFieldValue=USA HTTP/1.1\nContent-type: application/x-www-form-urlencoded/\n&responseType=XML",
+            "example": "POST/<context-path>/rest/dataservices/retrieveFieldData?module=fs&subModule=lead&responseType=XML&fieldName=countyID&dependentFieldName=country&dependentFieldValue=USA",
             "schema": {
               "type": "array",
               "items": {
@@ -3420,7 +3420,7 @@
       "FimDeleteFranchiseeArray": {
         "content": {
           "application/xml": {
-            "example": "POST/<context-path>/rest/dataservices/query HTTP/1.1/Content-type: application/x-www-form-urlencoded/module=admin&subModule=user&operation=delete",
+            "example": "POST/<context-path>/rest/dataservices/query?module=admin&subModule=user&operation=delete",
             "schema": {
               "type": "array",
               "items": {
