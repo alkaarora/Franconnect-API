@@ -3295,7 +3295,7 @@
       "AdminRetrieveUserArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>52152465</referenceId>\n<userID op='eq'>jameswilliam</userID>\n<firstname>James</firstname>\n<lastname></lastname>\n<userLevel>Corporate Users</userLevel>\n<createdBy>FranConnect Administrator</createdBy>\n</filter>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>2055098927</referenceId>\n</filter>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
