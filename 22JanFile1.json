@@ -3449,7 +3449,7 @@
       "CreateCRMLeadArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest><cmLead><title>Mr.</title>\n<leadFirstName>Shaun</leadFirstName>\n<leadLastName>Henry</leadLastName>\n<companyName>Company</companyName>\n<primaryContactMethod>Email</primaryContactMethod>\n<ownerTypeValue> CORP</ownerTypeValue>\n<leadOwnerID>Justin Williams</leadOwnerID><franchiseeNo></franchiseeNo>\n<areaID></areaID>\n<divisionID>Division</divisionID>\n<address>Street 1</address>\n<city>New Delhi</city>\n<country>India</country>\n<zipcode>110018</zipcode>\n<state>Delhi</state>\n<phoneNumbers>25252525</phoneNumbers>\n<extn>011</extn>\n<faxNumbers> </faxNumbers>\n<mobileNumbers>9898989898</mobileNumbers>\n<emailIds>shaun.henry@franconnect.com</emailIds>\n<alternateEmail> </alternateEmail>\n<suffix></suffix>\n<position></position>\n<birthdate></birthdate>\n<anniversarydate></anniversarydate>\n<cmLeadTypeID></cmLeadTypeID>\n<cmRatingID>Cold</cmRatingID>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID>Newspaper</cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact></bestTimeToContact>\n<comments>Welcome to FC System</comments>\n<serviceID>Product/Service Update, Announcements</serviceID>\n</cmLead>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest><cmLead><title>Mr.</title>\n<leadFirstName>Shaun</leadFirstName>\n<leadLastName>Henry</leadLastName>\n<companyName>Atrium Office Suites</companyName>\n<primaryContactMethod>Email</primaryContactMethod>\n<ownerTypeValue> CORP</ownerTypeValue>\n<franchiseeNo></franchiseeNo>\n<areaID></areaID>\n<divisionID>Affiliates</divisionID>\n<address>Street 1</address>\n<city>Saint Louis</city>\n<country>USA</country>\n<zipcode>63132</zipcode>\n<state>Missouri</state>\n<phoneNumbers>(314) 570-8568</phoneNumbers>\n<extn>011</extn>\n<faxNumbers> </faxNumbers>\n<mobileNumbers>9898989898</mobileNumbers>\n<emailIds>shaun.henry@franconnect.com</emailIds>\n<alternateEmail> </alternateEmail>\n<suffix></suffix>\n<position></position>\n<birthdate></birthdate>\n<anniversarydate></anniversarydate>\n<cmLeadTypeID></cmLeadTypeID>\n<cmRatingID>Cold</cmRatingID>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID>Newspaper</cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact></bestTimeToContact>\n<comments>Welcome to FC System</comments>\n<serviceID>Product/Service Update, Announcements</serviceID>\n</cmLead>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3468,7 +3468,7 @@
       "RetrieveCRMLeadArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId op='eq'>329773998</referenceId>\n</filter>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>837476009</referenceId>\n</filter>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3487,7 +3487,7 @@
       "UpdateCRMLeadArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmLead>\n<referenceId>1254852541</referenceId>\n<title>Mr.</title>\n<cmLeadStatusID>Pending</cmLeadStatusID>\n<leadFirstName>Shaun</leadFirstName>\n<leadLastName>Henry</leadLastName>\n<companyName>Company</companyName>\n<primaryContactMethod>Email</primaryContactMethod>\n<ownerTypeValue> CORP</ownerTypeValue>\n<leadOwnerID>Justin Williams</leadOwnerID>\n<franchiseeNo></franchiseeNo>\n<areaID></areaID>\n<divisionID>Division</divisionID>\n<address>Street 1</address>\n<city>New Delhi</city>\n<country>India</country>\n<zipcode>110018</zipcode>\n<state>Delhi</state>\n<phoneNumbers>25252525</phoneNumbers>\n<extn>011</extn>\n<faxNumbers> </faxNumbers>\n<mobileNumbers>9898989898</mobileNumbers>\n<emailIds>shaun.henry@franconnect.com</emailIds>\n<alternateEmail></alternateEmail>\n<suffix></suffix>\n<position></position>\n<birthdate></birthdate>\n<anniversarydate></anniversarydate>\n<cmLeadTypeID></cmLeadTypeID>\n<cmRatingID>Cold</cmRatingID>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID>Newspaper</cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact></bestTimeToContact>\n<comments>Welcome to FC System</comments>\n<smsUnsubscribe>Opt-Out</smsUnsubscribe>\n<unsubscribe>Opt-In</unsubscribe>\n<serviceID> Email Communications </serviceID>\n</cmLead>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmLead>\n<referenceId>837476009</referenceId>\n<leadFirstName>Philip</leadFirstName></cmLead>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3506,7 +3506,7 @@
       "DeleteCRMLeadArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmLead>\n<referenceId>344545</referenceId>\n</cmLead>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmLead>\n<referenceId>1485413158</referenceId>\n</cmLead>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -4197,7 +4197,7 @@
       "CMCreateLeadResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<cmLead>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</cmLead>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1915513385</responseId>\n<responseData>\n<cmLead>\n<status>Success</status>\n<referenceId>837476009</referenceId>\n</cmLead>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4205,7 +4205,7 @@
       "CMRetrieveLeadResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>98548521</responseId>\n<responseData>\n<cmLead>\n<referenceId>645951178</referenceId>\n<title>Miss</title>\n<cmLeadStatusID>New</cmLeadStatusID>\n<leadAddDate>10/13/2016</leadAddDate>\n<leadFirstName>Anny</leadFirstName>\n<leadLastName>Watson</leadLastName>\n<primaryContactMethod>Email</primaryContactMethod>\n<franchiseeNo/>\n<divisionID/>\n<leadModifyDate/>\n<address>103 N Mooreland Road</address>\n<city>Richmond</city>\n<country>USA</country>\n<zipcode>23218</zipcode>\n<state>Virginia</state>\n<phoneNumbers>2545232</phoneNumbers>\n<extn>231</extn>\n<faxNumbers/>\n<mobileNumbers/>\n<emailIds>support@franconnect.com</emailIds>\n<alternateEmail/>\n<suffix/>\n<position/>\n<birthdate/>\n<anniversarydate/>\n<cmLeadTypeID/>\n<cmRatingID/>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID>Newspaper</cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact/>\n<comments/>\n<unsubscribe>Opted In</unsubscribe>\n<unsubscribeDate/>\n<leadOwnerID>Allison Gibbs</leadOwnerID>\n<leadAddedBy>Allison Gibbs</leadAddedBy>\n<bounceEmailStatus>Yes</bounceEmailStatus>\n<spamEmailStatus>No</spamEmailStatus>\n<bounceReason>Invalid</bounceReason>\n<smsUnsubscribe/>\n<smsUnsubscribeDate/>\n<lastContactedField>2017-07-12</lastContactedField>\n<unsubscribeReason/>\n<unsubscribeReasonDetail/>\n<franchiseeReferenceId/>\n<convertedBy/>\n<convertedOn/>\n<divisionReferenceId/>\n<areaReferenceId/>\n<areaID/>\n<serviceID>Product/Service Update, Announcements, Send Email, Email Communications</serviceID>\n<contactDetails>\n<referenceId/>\n<contactFirstName/>\n<contactLastName/>\n<referenceId/>\n<contactFirstName/>\n<contactLastName/>\n</contactDetails>\n</cmLead>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n    <responseStatus>Success</responseStatus>\n<responseId>777803570</responseId>\n<responseData>\n<cmLead>\n<referenceId>837476009</referenceId>\n<title>Mr.</title>\n<cmLeadStatusID>New</cmLeadStatusID>\n<leadAddDate>01/22/2020 05:59 AM</leadAddDate>\n<leadFirstName>Shaun</leadFirstName>\n<leadLastName>Henry</leadLastName>\n<companyName>Atrium Office Suites</companyName>\n    <primaryContactMethod>Email</primaryContactMethod>\n<franchiseeNo></franchiseeNo>\n<divisionID></divisionID>\n<leadModifyDate></leadModifyDate>\n<address>Street 1</address>\n<city>Saint Louis</city>\n<country>USA</country>\n<zipcode>63132</zipcode>\n<state>Missouri</state>\n<phoneNumbers>(314) 570-8568</phoneNumbers>\n    <extn>011</extn>\n<faxNumbers></faxNumbers>\n<mobileNumbers>(989) 898-9898</mobileNumbers>\n<emailIds>shaun.henry@franconnect.com</emailIds>\n<alternateEmail></alternateEmail>\n<suffix></suffix>\n<position></position>\n<birthdate></birthdate>\n<anniversarydate></anniversarydate>\n<cmLeadTypeID></cmLeadTypeID>\n<cmRatingID>Cold</cmRatingID>\n<cmSource2ID>Advertisement</cmSource2ID>\n<cmSource3ID></cmSource3ID>\n<cmSource1ID>Email</cmSource1ID>\n<bestTimeToContact></bestTimeToContact><comments>Welcome to FC System</comments>\n    <unsubscribe>Opt-In Request not Sent</unsubscribe>\n           <unsubscribeDate></unsubscribeDate>\n<leadOwnerID>DKI Connect Administrator</leadOwnerID>\n<leadAddedBy>Web Service</leadAddedBy>\n<bounceEmailStatus>No</bounceEmailStatus>\n<spamEmailStatus>No</spamEmailStatus>\n<bounceReason></bounceReason>\n<smsUnsubscribe></smsUnsubscribe>\n<smsUnsubscribeDate></smsUnsubscribeDate>\n  <lastContactedField></lastContactedField>\n<unsubscribeReason></unsubscribeReason>\n<unsubscribeReasonDetail></unsubscribeReasonDetail>\n<franchiseeReferenceId></franchiseeReferenceId>\n<leadOwnerReferenceId>356393263</leadOwnerReferenceId>\n<leadAddedByReferenceId>2</leadAddedByReferenceId>\n<convertedBy></convertedBy>\n<convertedOn></convertedOn>\n<ownerType>Corporate</ownerType>\n<divisionReferenceId></divisionReferenceId>\n<areaReferenceId></areaReferenceId>\n<areaID></areaID>\n<contactDetails>\n        <referenceId></referenceId>\n<contactFirstName></contactFirstName>\n <contactLastName></contactLastName>\n</contactDetails>\n<serviceID>Product/Service Update, Announcements</serviceID>\n</cmLead>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4213,7 +4213,7 @@
       "CMUpdateLeadResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<cmLeadCall>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</cmLeadCall>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>85246348</responseId>\n<responseData>\n<cmLead>\n<status>Success</status>\n<referenceId>837476009</referenceId>\n</cmLead>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4221,7 +4221,7 @@
       "CMDeleteLeadResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmLead >\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</cmLead>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>829485943</responseId>\n<responseData>\n<cmLead >\n<status>Success</status>\n<referenceId>1485413158</referenceId>\n</cmLead>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
