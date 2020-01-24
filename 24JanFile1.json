@@ -3676,7 +3676,7 @@
       "CreateCRMTransactionArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<parentReferenceId>12121</parentReferenceId>\n<invoiceDate>2016-10-20</invoiceDate>\n<isReported>Yes</isReported>\n<cmtmsTransactionDetails>\n<category>Default Service</category>\n<productID>Service</productID>\n<quantity>10</quantity>\n<rate>10</rate>\n<amount>100 </amount>\n<description>This is the default service</description>\n</cmtmsTransactionDetails>\n<cmtmsTransactionDetails>\n</cmtmsTransactionDetails>\n</cmTransaction>\n<cmTransaction>\n</cmTransaction>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<parentReferenceId>9000002</parentReferenceId>\n<invoiceDate>02/16/2016</invoiceDate>\n<isReported>Yes</isReported>\n<cmtmsTransactionDetails>\n<category>ProSupply</category>\n<productID>Bronze Sponsor</productID>\n<quantity>10</quantity>\n<rate>10</rate>\n<amount>100</amount>\n<description>This is the default service</description>\n</cmtmsTransactionDetails>\n<cmtmsTransactionDetails>\n</cmtmsTransactionDetails>\n</cmTransaction>\n<cmTransaction>\n</cmTransaction>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3714,7 +3714,7 @@
       "UpdateCRMTransactionArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<referenceId>12121</referenceId>\n<invoiceDate>2016-10-20</invoiceDate>\n<isReported>No</isReported>\n<cmtmsTransactionDetails>\n<referenceId>12121</referenceId>\n<category>Default Service</category>\n<productID>Service</productID>\n<quantity>10</quantity>\n<rate>10</rate>\n<amount>100 </amount>\n<description>This is the default service</description>\n</cmtmsTransactionDetails></cmTransaction>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<referenceId>39614076</referenceId>\n<invoiceDate>02/16/2016</invoiceDate>\n<isReported>No</isReported>\n<cmtmsTransactionDetails>\n<referenceId>464080221</referenceId>\n<productID>Water Mitigation</productID>\n<quantity>10</quantity>\n<rate>10</rate>\n<amount>100 </amount>\n<description>This is the default service</description>\n</cmtmsTransactionDetails></cmTransaction>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3733,7 +3733,7 @@
       "DeleteCRMTransactionArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<referenceId>1790617254</referenceId>\n<cmtmsTransactionDetails>\n<referenceId>1790617452</referenceId>\n</cmtmsTransactionDetails>\n</cmTransaction>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmTransaction>\n<referenceId>39614076</referenceId>\n</cmTransaction>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3809,7 +3809,7 @@
       "DeleteCRMOpportunityArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmOpportunity>\n<referenceId>344545</referenceId>\n</ cmOpportunity>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmOpportunity>\n<referenceId>2036557576</referenceId>\n</ cmOpportunity>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3866,7 +3866,7 @@
       "FSUpdateTaskArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<referenceId>913876583</referenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Mandatory</taskType>\n<subject>ABC task</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>2017-01-11</date>\n<calendarTask>Y</calendarTask>\n<startTime>01:00 AM</startTime>\n<endTime>02:00 PM</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n <fsTask>\n<referenceId>1442059186</referenceId>\n<priority>Low</priority>\n</fsTask>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -4292,7 +4292,7 @@
       "CMCreateTransactionResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<cmTransaction>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</cmTransaction>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\nfcResponse>\n    <responseStatus>Success</responseStatus>\n<responseId>892811458</responseId>\n<responseData>\n<cmTransaction>\n<referenceId>1427070110</referenceId>\n<cmtmsTransactionDetails>\n<referenceId>1463881224</referenceId>\n</cmtmsTransactionDetails>\n</cmTransaction>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4300,7 +4300,7 @@
       "CMRetrieveTransactionResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>589658425</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>263507742</referenceId>\n<opportunityName>Larry James</opportunityName>\n<contactDetails>\n<referenceId>1464597864</referenceId>\n<contactFirstName>Mark</contactFirstName>\n<contactLastName>Blair</contactLastName>\n</contactDetails>\n<accountDetails>\n<referenceId>1082145073</referenceId>\n<accountName>Allgreen</accountName>\n</accountDetails>\n<cmTransaction>\n<referenceId>659838712</referenceId>\n<transactionNumber>INV1001</transactionNumber>\n<invoiceDate>2016-05-12</invoiceDate>\n<totalAmount>10.00</totalAmount>\n<isReported>No</isReported>\n742<cmtmsTransactionDetails>\n<referenceId>1089265217</referenceId>\n<productID>Service</productID>\n<quantity>1</quantity>\n<rate>10.00</rate>\n<amount>10.00</amount>\n<description>Service</description>\n</cmtmsTransactionDetails>\n</cmTransaction>\n</cmOpportunity>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>589658425</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>263507742</referenceId>\n<opportunityName>Larry James</opportunityName>\n<contactDetails>\n<referenceId>1464597864</referenceId>\n<contactFirstName>Mark</contactFirstName>\n<contactLastName>Blair</contactLastName>\n</contactDetails>\n<accountDetails>\n<referenceId>1082145073</referenceId>\n<accountName>Allgreen</accountName>\n</accountDetails>\n<cmTransaction>\n<referenceId>659838712</referenceId>\n<transactionNumber>INV1001</transactionNumber>\n<invoiceDate>2016-05-12</invoiceDate>\n<totalAmount>10.00</totalAmount>\n<isReported>No</isReported>\n<cmtmsTransactionDetails>\n<referenceId>1089265217</referenceId>\n<productID>Service</productID>\n<quantity>1</quantity>\n<rate>10.00</rate>\n<amount>10.00</amount>\n<description>Service</description>\n</cmtmsTransactionDetails>\n</cmTransaction>\n</cmOpportunity>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4308,7 +4308,7 @@
       "CMUpdateTransactionResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmTransaction>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</cmTransaction>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1822929301</responseId>\n<responseData>\n<cmTransaction>\n<status>Success</status>\n<referenceId>39614076</referenceId>\n<cmtmsTransactionDetails>\n<referenceId>464080221</referenceId>\n    </cmtmsTransactionDetails></cmTransaction>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4316,7 +4316,7 @@
       "CMDeleteTransactionResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmTransaction>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</cmTransaction>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>427653740</responseId>\n<responseData>\n<cmTransaction>\n<status>Success</status>\n<referenceId>39614076</referenceId>\n</cmTransaction>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4332,7 +4332,7 @@
       "CMRetrieveOpportunityResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>589658425</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>263507742</referenceId>\n<opportunityName>Larry James</opportunityName>\n<opportunityOwner>Aleister Cook</opportunityOwner>\n<opportunityAddDate>2016-05-12</opportunityAddDate>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n746<probability>85.0</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<closerDate>12/29/2018</closerDate>\n<salesAmount>1000000.0</salesAmount>\n<contactDetails>\n<referenceId>1464597864</referenceId>\n<contactFirstName>Mark</contactFirstName>\n<contactLastName>Blair</contactLastName>\n</contactDetails>\n<accountDetails>\n<referenceId>1082145073</referenceId>\n<accountName>Allgreen</accountName>\n</accountDetails>\n</cmOpportunity>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>SUCCESS</responseStatus>\n<responseId>589658425</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>263507742</referenceId>\n<opportunityName>Larry James</opportunityName>\n<opportunityOwner>Aleister Cook</opportunityOwner>\n<opportunityAddDate>2016-05-12</opportunityAddDate>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>85.0</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<closerDate>12/29/2018</closerDate>\n<salesAmount>1000000.0</salesAmount>\n<contactDetails>\n<referenceId>1464597864</referenceId>\n<contactFirstName>Mark</contactFirstName>\n<contactLastName>Blair</contactLastName>\n</contactDetails>\n<accountDetails>\n<referenceId>1082145073</referenceId>\n<accountName>Allgreen</accountName>\n</accountDetails>\n</cmOpportunity>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4348,7 +4348,7 @@
       "CMDeleteOpportunityResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1790617288</responseId>\n<responseData>\n<cmOpportunity>\n<status>Success</status>\n<referenceId>1661907438</referenceId>\n</ cmOpportunity>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2100473134</responseId>\n<responseData>\n<cmOpportunity>\n<status>Success</status>\n<referenceId>2036557576</referenceId>\n</cmOpportunity>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4372,7 +4372,7 @@
       "FSUpdateTaskResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<fsTask>\n<status>Success</status>\n<referenceId>1831211901</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>971648450</responseId>\n<responseData>\n<fsTask>\n<status>Success</status>\n<referenceId>1442059186</referenceId>\n</ fsTask>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
