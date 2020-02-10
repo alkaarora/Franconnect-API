@@ -2472,13 +2472,13 @@
         }
       }
     },
-      "/manage-finance/payments": {
+    "/manage-finance/payments": {
       "post": {
         "tags": [
           "Payments"
         ],
         "summary": "Create Payments",
-        "description": "<p class=\"western\">You can create payments for a royalty by making a POST request to the Payments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/payments</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/payments</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p>Using the FranConnect API, you can create payments by using the following types of royalties: Royalty,  Advertisement, Promissory Notes, Late Fees, Additional Fees,  Tax, and All. <p class=\"western\">&nbsp;</p><img src=\"images/Retrieve_Payments.png\">",
+        "description": "<p class=\"western\">You can create payments for a royalty by making a POST request to the Payments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/payments</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/payments</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p>Using the FranConnect API, you can create payments by using the following types of royalties: Royalty,  Advertisement, Promissory Notes, Late Fees, Additional Fees,  Tax, and All. <p class=\"western\">&nbsp;</p><img src=\"images/Create_Payments.png\">",
         "operationId": "Create_Payments",
         "consumes": [
           "application/json"
@@ -2515,23 +2515,24 @@
                   }
                 },
                 "example": [
-  {
-    "data": [
-      {
-        "franchiseeNo": "1812536030",
-        "dateReceived": "2019-12-31",
-        "royaltyType": "Promissory Notes",
-		"franchiseRoyaltyID": ["1042018448"],
-		"debitMemos": [],
-		"collectionMethod": { 
-			"mode" : "cash", 
-			"amount" : "10.2"
-		}		
-      }
-    ]
-  }
-]
-
+                  {
+                    "data": [
+                      {
+                        "franchiseeNo": "1812536030",
+                        "dateReceived": "2019-12-31",
+                        "royaltyType": "Promissory Notes",
+                        "franchiseRoyaltyID": [
+                          "1042018448"
+                        ],
+                        "debitMemos": [],
+                        "collectionMethod": {
+                          "mode": "cash",
+                          "amount": "10.2"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             }
           }
@@ -5040,102 +5041,102 @@
             "example": {
               "response": {
                 "data": [
-            {
-                "1042018448": {
-                    "franchiseRoyaltyID": "1042018448",
-                    "parentID": "1042018448",
-                    "invoiceNO": "274",
-                    "franchiseeNo": "1812536030",
-                    "taxRateId": "-1",
-                    "totalSales": "1500.0",
-                    "addlAmount": "10.0",
-                    "invoiceAmount": "265.56",
-                    "taxAmount": null,
-                    "invoiceDate": "2020-02-07 04:50:29",
-                    "paymentStatus": "P",
-                    "reportStatus": "I",
-                    "invType": "R",
-                    "amountPaid": "0.0",
-                    "openBalAdv": "0.0",
-                    "openBalTax": "0.0",
-                    "openBalRoy": "0.0",
-                    "addlFees": "10.0",
-                    "openBalAddlFees": "10.0",
-                    "totalQuantity": "0.0",
-                    "Open Royalty": "28.0",
-                    "Royalty": "28.0",
-                    "Open Adv.": "28.0",
-                    "Adv.": "28.0",
-                    "Open Royalty (Area Franchise)": "10.02",
-                    "Royalty (Area Franchise)": "10.02",
-                    "Open Adv. (Area Franchise)": "10.02",
-                    "Adv. (Area Franchise)": "10.02",
-                    "Open Promissory Notes": "161.36",
-                    "Promissory Notes": "171.56",
-                    "Open Late Fee": "28.0",
-                    "Late Fee": "28.0",
-                    "Open Late Fee(Area Franchise)": "10.02",
-                    "Late Fee(Area Franchise)": "10.02",
-                    "lineItems": {},
-                    "totalOpenBalance": "255.36",
-                    "reportNo": "274",
-                    "salesReportID": "1562253270",
-                    "reportPeriodStart": "2019-04-01",
-                    "reportPeriodEnd": "2019-04-30",
-                    "reportSubmitDate": "2020-02-07 04:49:58",
-                    "dateReceived": "2020-02-07",
-                    "reportType": "M",
-                    "versionID": "Category Sales Based Version"
-                },
-                "response": "Success",
-                "1319427657": {
-                    "franchiseRoyaltyID": "1319427657",
-                    "parentID": "1319427657",
-                    "invoiceNO": "263",
-                    "franchiseeNo": "1812536030",
-                    "taxRateId": "-1",
-                    "totalSales": "1000.0",
-                    "addlAmount": "10.0",
-                    "invoiceAmount": "400.89",
-                    "taxAmount": null,
-                    "invoiceDate": "2020-01-31 02:43:06",
-                    "paymentStatus": "C",
-                    "reportStatus": "I",
-                    "invType": "R",
-                    "amountPaid": "-38.0",
-                    "openBalAdv": "0.0",
-                    "openBalTax": "0.0",
-                    "openBalRoy": "0.0",
-                    "addlFees": "10.0",
-                    "openBalAddlFees": "0.0",
-                    "totalQuantity": "0.0",
-                    "Open Royalty": "0.0",
-                    "Royalty": "19.0",
-                    "Open Adv.": "0.0",
-                    "Adv.": "19.0",
-                    "Open Royalty (Area Franchise)": "5.01",
-                    "Royalty (Area Franchise)": "5.01",
-                    "Open Adv. (Area Franchise)": "5.01",
-                    "Adv. (Area Franchise)": "5.01",
-                    "Open Promissory Notes": "0.0",
-                    "Promissory Notes": "333.89",
-                    "Open Late Fee": "0.0",
-                    "Late Fee": "19.0",
-                    "Open Late Fee(Area Franchise)": "5.01",
-                    "Late Fee(Area Franchise)": "5.01",
-                    "lineItems": {},
-                    "totalOpenBalance": "0.0",
-                    "reportNo": "263",
-                    "salesReportID": "155495205",
-                    "reportPeriodStart": "2019-11-01",
-                    "reportPeriodEnd": "2019-11-30",
-                    "reportSubmitDate": "2020-01-31 02:38:20",
-                    "dateReceived": "2020-01-31",
-                    "reportType": "M",
-                    "versionID": "Category Sales Based Version"
-                }
-                         }
-        ],
+                  {
+                    "1042018448": {
+                      "franchiseRoyaltyID": "1042018448",
+                      "parentID": "1042018448",
+                      "invoiceNO": "274",
+                      "franchiseeNo": "1812536030",
+                      "taxRateId": "-1",
+                      "totalSales": "1500.0",
+                      "addlAmount": "10.0",
+                      "invoiceAmount": "265.56",
+                      "taxAmount": null,
+                      "invoiceDate": "2020-02-07 04:50:29",
+                      "paymentStatus": "P",
+                      "reportStatus": "I",
+                      "invType": "R",
+                      "amountPaid": "0.0",
+                      "openBalAdv": "0.0",
+                      "openBalTax": "0.0",
+                      "openBalRoy": "0.0",
+                      "addlFees": "10.0",
+                      "openBalAddlFees": "10.0",
+                      "totalQuantity": "0.0",
+                      "Open Royalty": "28.0",
+                      "Royalty": "28.0",
+                      "Open Adv.": "28.0",
+                      "Adv.": "28.0",
+                      "Open Royalty (Area Franchise)": "10.02",
+                      "Royalty (Area Franchise)": "10.02",
+                      "Open Adv. (Area Franchise)": "10.02",
+                      "Adv. (Area Franchise)": "10.02",
+                      "Open Promissory Notes": "161.36",
+                      "Promissory Notes": "171.56",
+                      "Open Late Fee": "28.0",
+                      "Late Fee": "28.0",
+                      "Open Late Fee(Area Franchise)": "10.02",
+                      "Late Fee(Area Franchise)": "10.02",
+                      "lineItems": {},
+                      "totalOpenBalance": "255.36",
+                      "reportNo": "274",
+                      "salesReportID": "1562253270",
+                      "reportPeriodStart": "2019-04-01",
+                      "reportPeriodEnd": "2019-04-30",
+                      "reportSubmitDate": "2020-02-07 04:49:58",
+                      "dateReceived": "2020-02-07",
+                      "reportType": "M",
+                      "versionID": "Category Sales Based Version"
+                    },
+                    "1319427657": {
+                      "franchiseRoyaltyID": "1319427657",
+                      "parentID": "1319427657",
+                      "invoiceNO": "263",
+                      "franchiseeNo": "1812536030",
+                      "taxRateId": "-1",
+                      "totalSales": "1000.0",
+                      "addlAmount": "10.0",
+                      "invoiceAmount": "400.89",
+                      "taxAmount": null,
+                      "invoiceDate": "2020-01-31 02:43:06",
+                      "paymentStatus": "C",
+                      "reportStatus": "I",
+                      "invType": "R",
+                      "amountPaid": "-38.0",
+                      "openBalAdv": "0.0",
+                      "openBalTax": "0.0",
+                      "openBalRoy": "0.0",
+                      "addlFees": "10.0",
+                      "openBalAddlFees": "0.0",
+                      "totalQuantity": "0.0",
+                      "Open Royalty": "0.0",
+                      "Royalty": "19.0",
+                      "Open Adv.": "0.0",
+                      "Adv.": "19.0",
+                      "Open Royalty (Area Franchise)": "5.01",
+                      "Royalty (Area Franchise)": "5.01",
+                      "Open Adv. (Area Franchise)": "5.01",
+                      "Adv. (Area Franchise)": "5.01",
+                      "Open Promissory Notes": "0.0",
+                      "Promissory Notes": "333.89",
+                      "Open Late Fee": "0.0",
+                      "Late Fee": "19.0",
+                      "Open Late Fee(Area Franchise)": "5.01",
+                      "Late Fee(Area Franchise)": "5.01",
+                      "lineItems": {},
+                      "totalOpenBalance": "0.0",
+                      "reportNo": "263",
+                      "salesReportID": "155495205",
+                      "reportPeriodStart": "2019-11-01",
+                      "reportPeriodEnd": "2019-11-30",
+                      "reportSubmitDate": "2020-01-31 02:38:20",
+                      "dateReceived": "2020-01-31",
+                      "reportType": "M",
+                      "versionID": "Category Sales Based Version"
+                    },
+                    "response": "Success"
+                  }
+                ],
                 "page": null
               }
             }
@@ -5174,21 +5175,20 @@
         },
         "description": "Successful"
       },
-       "CreatePaymentResp": {
+      "CreatePaymentResp": {
         "content": {
           "application/json": {
-            "example": 
-          {
-                "response": {
-        "data": [
-            {
-                "paymentNo": "45",
-                "paymentID": "822049897"
+            "example": {
+              "response": {
+                "data": [
+                  {
+                    "paymentNo": "45",
+                    "paymentID": "822049897"
+                  }
+                ],
+                "page": null
+              }
             }
-        ],
-        "page": null
-    }
-}
           }
         },
         "description": "Successful"
