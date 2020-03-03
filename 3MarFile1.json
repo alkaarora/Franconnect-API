@@ -3836,7 +3836,7 @@
       "CreateCRMOpportunityArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fcRequest>\n<cmOpportunity>\n<opportunityName>ABC opportunity</opportunityName>\n<oppAccountID>1734810351</oppAccountID>\n<opportunityOwner>Sandy</opportunityOwner>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<salesAmount>1000</salesAmount>\n</cmOpportunity>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fcRequest>\n<cmOpportunity>\n<opportunityName>Leah opportunity</opportunityName>\n<oppAccountID>1734810351</oppAccountID>\n<opportunityOwner>Sandy</opportunityOwner>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<salesAmount>1000</salesAmount>\n</cmOpportunity>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3874,7 +3874,7 @@
       "UpdateCRMOpportunityArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmOpportunity>\n<referenceId>913876584</referenceId>\n<opportunityName>ABC opportunity</opportunityName>\n<oppAccountID>ABC account</oppAccountID>\n<oppContactID>ABC contact</oppContactID>\n<opportunityOwner>Sandy</opportunityOwner>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<closerDate>2017-01-25</closerDate>\n<salesAmount>1000</salesAmount>\n</cmOpportunity>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmOpportunity>\n<referenceId>913876584</referenceId>\n<opportunityName>Leah opportunity</opportunityName>\n<oppAccountID>Account 1</oppAccountID>\n<oppContactID>Contact 2</oppContactID>\n<opportunityOwner>Sandy</opportunityOwner>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<closerDate>2017-01-25</closerDate>\n<salesAmount>1000</salesAmount>\n</cmOpportunity>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3912,7 +3912,7 @@
       "FSCreateTaskArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<parentReferenceId>265565881</parentReferenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Default</taskType>\n<subject>ABC task</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>09/02/2015</date>\n<calendarTask>Y</calendarTask>\n<startTime>01:00 AM</startTime>\n<endTime>02:00 PM</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<parentReferenceId>265565881</parentReferenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Default</taskType>\n<subject>Task 1</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>09/02/2015</date>\n<calendarTask>Y</calendarTask>\n<startTime>01:00 AM</startTime>\n<endTime>02:00 PM</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -4416,7 +4416,7 @@
       "CMRetrieveOpportunityResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>422575173</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>1896975234</referenceId>\n<opportunityName>ABC opportunity</opportunityName>\n<oppAccountID>1-800-PackOuts</oppAccountID>\n<opportunityOwner>Sandy Nadia</opportunityOwner>\n<opportunityAddDate>01/27/2020 12:47 AM</opportunityAddDate>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<salesAmount>1000.0</salesAmount>\n<opportunityOwnerReferenceId>47691556</opportunityOwnerReferenceId>\n<accountDetails>\n<referenceId>1734810351</referenceId>\n<accountName><accountType>B2B</accountType>\n<emailIds>example@franconnect.com</emailIds><companyAddDate>12/16/2015 12:00 AM</companyAddDate>\n</accountDetails></cmOpportunity>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>422575173</responseId>\n<responseData>\n<cmOpportunity>\n<referenceId>1896975234</referenceId>\n<opportunityName>Leah opportunity</opportunityName>\n<oppAccountID>1-800-PackOuts</oppAccountID>\n<opportunityOwner>Sandy Nadia</opportunityOwner>\n<opportunityAddDate>01/27/2020 12:47 AM</opportunityAddDate>\n<stage>Prospecting</stage>\n<opportunityType>New Business</opportunityType>\n<probability>10</probability>\n<opportunitySource>Advertisement</opportunitySource>\n<salesAmount>1000.0</salesAmount>\n<opportunityOwnerReferenceId>47691556</opportunityOwnerReferenceId>\n<accountDetails>\n<referenceId>1734810351</referenceId>\n<accountName><accountType>B2B</accountType>\n<emailIds>example@franconnect.com</emailIds><companyAddDate>12/16/2015 12:00 AM</companyAddDate>\n</accountDetails></cmOpportunity>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
