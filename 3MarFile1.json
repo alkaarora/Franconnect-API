@@ -2046,7 +2046,7 @@
                   {
                     "data": [
                       {
-                        "franchiseeNo": "403951414",
+                        "franchiseeNo": "403968414",
                         "reportPeriod": "Jan - 2019",
                         "dateReceived": "2019-06-26",
                         "acknowledgeSalesReport": "yes",
@@ -2063,7 +2063,7 @@
                               ]
                             },
                             "24340465": {
-                              "name": "Test Sales Category (+)",
+                              "name": "Total Sales Category (+)",
                               "calculationType": "(+)",
                               "data": [
                                 {
@@ -2086,7 +2086,7 @@
                               ]
                             },
                             "450294864": {
-                              "name": "Non-Fin Integer Categ2",
+                              "name": "Non-Fin Category",
                               "calculationType": "(+)",
                               "data": [
                                 {
@@ -2195,7 +2195,7 @@
                     "salesReportID": {
                       "clause": "EQUAL",
                       "values": [
-                        "1758518040"
+                        "1758848040"
                       ]
                     }
                   },
@@ -2313,7 +2313,7 @@
                               ]
                             },
                             "450294864": {
-                              "name": "Non-Fin Integer Categ2",
+                              "name": "Non-Fin Category",
                               "calculationType": "(+)",
                               "data": [
                                 {
@@ -2413,7 +2413,7 @@
                     "franchiseeNo": {
                       "clause": "EQUAL",
                       "values": [
-                        "403951414"
+                        "403968414"
                       ]
                     }
                   },
@@ -2522,7 +2522,7 @@
                         "dateReceived": "2019-12-31",
                         "royaltyType": "Promissory Notes",
                         "franchiseRoyaltyID": [
-                          "1042018448"
+                          "1042268448"
                         ],
                         "debitMemos": [],
                         "collectionMethod": {
@@ -2606,7 +2606,7 @@
                     "franchiseeNo": {
                       "clause": "EQUAL",
                       "values": [
-                        "403951414"
+                        "403968414"
                       ]
                     }
                   },
@@ -2751,7 +2751,7 @@
                   {
                     "data": [
                       {
-                        "franchiseeNo": "403951414",
+                        "franchiseeNo": "403968414",
                         "statementPeriod": "Jun - 2019",
                         "submissionDate": "2019-06-26",
                         "plItems": [
@@ -2783,7 +2783,7 @@
                                 }
                               ]
                             },
-                            "1495583145": {
+                            "4": {
                               "name": "P&L Addition Type Categ",
                               "calculationType": "(+)",
                               "data": [
@@ -2868,7 +2868,7 @@
                     "franchiseeNo": {
                       "clause": "EQUAL",
                       "values": [
-                        "403951414"
+                        "403968414"
                       ]
                     }
                   },
@@ -2981,7 +2981,7 @@
                                 }
                               ]
                             },
-                            "1495583145": {
+                            "4": {
                               "name": "P&L Addition Type Categ",
                               "calculationType": "(+)",
                               "data": [
@@ -3912,7 +3912,7 @@
       "FSCreateTaskArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<parentReferenceId>265565881</parentReferenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Default</taskType>\n<subject>Task 1</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>09/02/2015</date>\n<calendarTask>Y</calendarTask>\n<startTime>01:00 AM</startTime>\n<endTime>02:00 PM</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsTask>\n<parentReferenceId>166110471</parentReferenceId>\n<assignmentTo>OWNER</assignmentTo>\n<assignTo></assignTo>\n<status>Not Started</status>\n<taskType>Default</taskType>\n<subject>Task 1</subject>\n<timelessTask>N</timelessTask>\n<priority>Low</priority>\n<date>2020-03-02</date>\n<calendarTask>Y</calendarTask>\n<startTime>10:00Z</startTime>\n<endTime>11:00Z</endTime>\n<comments></comments>\n<schduleTime>15 Minutes Prior</schduleTime>\n<taskEmailReminder>Y</taskEmailReminder>\n<reminderDate>2017-11-02</reminderDate>\n<reminderTime>01:00 PM</reminderTime>\n</fsTask>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -3988,7 +3988,7 @@
       "CMCreateMailArray": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmMail><parentReferenceId>2016620620</parentReferenceId>\n<subject>Mail Discussions</subject>\n<mailText>Test Mail</mailText>\n<mailFrom>noreply@franconnect.com</mailFrom>\n</cmMail>\n</fcRequest>",
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<cmMail><parentReferenceId>2016620620</parentReferenceId>\n<subject>Mail Discussions</subject>\n<mailText>Mail for general discussion</mailText>\n<mailFrom>noreply@franconnect.com</mailFrom>\n</cmMail>\n</fcRequest>",
             "schema": {
               "type": "array",
               "items": {
@@ -4496,7 +4496,7 @@
       "CMRetrieveSMSResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1715977357</responseId>\n<responseData>\n<cmContact>\n<referenceId>742374233</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:34Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>Nick</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T2</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>17</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i'm SMS for contact sent by workflow</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n<cmContact>\n<referenceId>419799026</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:33Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>Nick</contactOwnerID>\n<contactAddedBy>WebService</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T1</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>98</referenceId>\n<smsSent>2017-11-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>This is an SMS</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1715977357</responseId>\n<responseData>\n<cmContact>\n<referenceId>742374233</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:34Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>Nick</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T2</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>17</referenceId>\n<smsSent>2017-10-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Hello, i'm SMS for contact sent by workflow</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n<cmContact>\n<referenceId>419799026</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2017-10-05T10:33Z</contactAddDate>\n<franchiseeNo/>\n<contactOwnerID>Nick</contactOwnerID>\n<contactAddedBy>WebService</contactAddedBy>\n<contactFirstName>C</contactFirstName>\n<contactLastName>T1</contactLastName>\n<franchiseeReferenceId/>\n<accountDetails>\n<referenceId/>\n<accountName/>\n<accountType/>\n<emailIds/>\n<companyAddDate/>\n</accountDetails>\n<cmContactSMS>\n<referenceId>98</referenceId>\n<smsSent>2017-11-05</smsSent>\n<sentBy>FranConnect Administrator</sentBy>\n<smsText>Let's have a Discussion</smsText>\n<smsType>Outbound</smsType>\n<smsStatus/>\n</cmContactSMS>\n</cmContact>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4504,7 +4504,7 @@
       "CMRetrieveCampaignEmailResp": {
         "content": {
           "application/xml": {
-            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n    <responseStatus>Success</responseStatus>\n<responseId>1377941630</responseId>\n<responseData>\n<cmContact>\n<referenceId>1970068020</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2020-02-28T09:38Z</contactAddDate>\n<franchiseeNo></franchiseeNo>\n<contactOwnerID>FranConnect Administrator</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>Amanda</contactFirstName>\n<contactLastName>Jacques</contactLastName>\n  <franchiseeReferenceId></franchiseeReferenceId>\n<contactOwnerReferenceId>1</contactOwnerReferenceId>\n    <contactAddedByReferenceId>2</contactAddedByReferenceId>\n           <accountDetails>\n<referenceId></referenceId>\n<accountName></accountName>\n<accountType></accountType>\n<emailIds></emailIds>\n<companyAddDate></companyAddDate>\n</accountDetails>\n<cmCampaignEmail>\n<referenceId></referenceId>\n<mailRead></mailRead>\n<mailSent></mailSent>\n<cmTemplates>\n<referenceId></referenceId>\n<mailSubject></mailSubject>\n</cmTemplates>\n</cmCampaignEmail>\n</cmContact>\n</responseData>\n</fcResponse>"
+            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n    <responseStatus>Success</responseStatus>\n<responseId>1377941630</responseId>\n<responseData>\n<cmContact>\n<referenceId>1970068020</referenceId>\n<contactType>Contacts</contactType>\n<contactAddDate>2020-02-28T09:38Z</contactAddDate>\n<franchiseeNo></franchiseeNo>\n<contactOwnerID>FranConnect Administrator</contactOwnerID>\n<contactAddedBy>Web Service</contactAddedBy>\n<contactFirstName>Amanda</contactFirstName>\n<contactLastName>Jacques</contactLastName>\n  <franchiseeReferenceId></franchiseeReferenceId>\n<contactOwnerReferenceId>1131168966</contactOwnerReferenceId>\n    <contactAddedByReferenceId>2</contactAddedByReferenceId>\n           <accountDetails>\n<referenceId></referenceId>\n<accountName></accountName>\n<accountType></accountType>\n<emailIds></emailIds>\n<companyAddDate></companyAddDate>\n</accountDetails>\n<cmCampaignEmail>\n<referenceId></referenceId>\n<mailRead></mailRead>\n<mailSent></mailSent>\n<cmTemplates>\n<referenceId></referenceId>\n<mailSubject></mailSubject>\n</cmTemplates>\n</cmCampaignEmail>\n</cmContact>\n</responseData>\n</fcResponse>"
           }
         },
         "description": "Successful"
@@ -4664,12 +4664,12 @@
                             }
                           ]
                         },
-                        "450294864": {
-                          "name": "Non-Fin Integer Categ2",
+                        "450299664": {
+                          "name": "Non-Fin Category",
                           "calculationType": "(+)",
                           "data": [
                             {
-                              "amount": "Enter the amount of earning in Non-Fin Integer Categ2"
+                              "amount": "Enter the amount of earning in Non-Fin Category"
                             }
                           ]
                         }
@@ -4693,7 +4693,7 @@
                   {
                     "finAddnlItems": [
                       {
-                        "450294861": {
+                        "450294451": {
                           "name": "Additional Invoice Item Categ",
                           "calculationType": "(+)",
                           "data": [
@@ -4779,9 +4779,9 @@
               "response": {
                 "data": [
                   {
-                    "1758518040": {
+                    "1758848040": {
                       "reportNo": "56",
-                      "salesReportID": "1758518040",
+                      "salesReportID": "1758848040",
                       "franchiseeNo": "907680077",
                       "reportPeriodStart": "2019-01-01",
                       "reportPeriodEnd": "2019-01-31",
@@ -4790,7 +4790,7 @@
                       "totalSales": "10000.0",
                       "reportStatus": "I",
                       "reportType": "M",
-                      "franchiseRoyaltyID": "1842527881",
+                      "franchiseRoyaltyID": "1842529681",
                       "versionID": "Flat percent 2015",
                       "totalQuantity": "0.0",
                       "financialItems": [
@@ -5043,7 +5043,7 @@
                 "data": [
                   {
                     "1042018448": {
-                      "franchiseRoyaltyID": "1042018448",
+                      "franchiseRoyaltyID": "1048618448",
                       "parentID": "1042018448",
                       "invoiceNO": "274",
                       "franchiseeNo": "1812536030",
@@ -5089,7 +5089,7 @@
                       "versionID": "Category Sales Based Version"
                     },
                     "1319427657": {
-                      "franchiseRoyaltyID": "1319427657",
+                      "franchiseRoyaltyID": "1319427497",
                       "parentID": "1319427657",
                       "invoiceNO": "263",
                       "franchiseeNo": "1812536030",
@@ -5202,13 +5202,13 @@
                   {
                     "298031988": {
                       "paymentMappingId": "298031988",
-                      "paymentID": "1708095951",
-                      "franchiseRoyaltyId": "1928694199",
+                      "paymentID": "1648095951",
+                      "franchiseRoyaltyId": "1928354899",
                       "invoiceNo": "6",
                       "paymentNo": "1",
                       "amountApplied": "35.00",
                       "dateApplied": "2019-06-26 08:32:12",
-                      "franchiseeNo": "403951414",
+                      "franchiseeNo": "403968414",
                       "parentId": null,
                       "royaltyType": "All",
                       "dateReceived": "2019-06-26",
@@ -5220,13 +5220,13 @@
                     },
                     "497802296": {
                       "paymentMappingId": "497802296",
-                      "paymentID": "1708095951",
-                      "franchiseRoyaltyId": "1928694199",
+                      "paymentID": "1648095951",
+                      "franchiseRoyaltyId": "1928686199",
                       "invoiceNo": "6",
                       "paymentNo": "1",
                       "amountApplied": "350.00",
                       "dateApplied": "2019-06-26 08:32:11",
-                      "franchiseeNo": "403951414",
+                      "franchiseeNo": "403968414",
                       "parentId": null,
                       "royaltyType": "All",
                       "dateReceived": "2019-06-26",
@@ -5238,13 +5238,13 @@
                     },
                     "732473447": {
                       "paymentMappingId": "732473447",
-                      "paymentID": "1708095951",
+                      "paymentID": "1648095951",
                       "franchiseRoyaltyId": "1928694199",
                       "invoiceNo": "6",
                       "paymentNo": "1",
                       "amountApplied": "215.0",
                       "dateApplied": "2019-06-26 08:32:12",
-                      "franchiseeNo": "403951414",
+                      "franchiseeNo": "403968414",
                       "parentId": null,
                       "royaltyType": "All",
                       "dateReceived": "2019-06-26",
@@ -5328,7 +5328,7 @@
                             }
                           ]
                         },
-                        "1495583145": {
+                        "4": {
                           "name": "P&L Addition Type Categ",
                           "calculationType": "(+)",
                           "data": [
@@ -5375,7 +5375,7 @@
                   {
                     "1": {
                       "plrepId": "1",
-                      "franchiseeNo": "403951414",
+                      "franchiseeNo": "403968414",
                       "submissionDate": "2019-06-26 00:00:00",
                       "addedOn": "2019-06-26 07:21:29",
                       "statementPeriod": "Jun - 2019",
@@ -5409,7 +5409,7 @@
                               }
                             ]
                           },
-                          "1495583145": {
+                          "4": {
                             "name": "P&L Addition Type Categ",
                             "calculationType": "(+)",
                             "data": [
@@ -5423,7 +5423,7 @@
                     },
                     "246516745": {
                       "plrepId": "246516745",
-                      "franchiseeNo": "403951414",
+                      "franchiseeNo": "403968414",
                       "submissionDate": "2019-06-26 03:41:26",
                       "addedOn": "2019-06-26 03:40:53",
                       "statementPeriod": "May - 2019",
@@ -5457,7 +5457,7 @@
                               }
                             ]
                           },
-                          "1495583145": {
+                          "4": {
                             "name": "P&L Addition Type Categ",
                             "calculationType": "(+)",
                             "data": [
