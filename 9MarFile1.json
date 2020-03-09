@@ -2561,13 +2561,13 @@
         }
       }
     },
-     "/manage-finance/adjustments/filter": {
-      "post": {
+    "/manage-finance/adjustments/filter": {
+      "get": {
         "tags": [
           "Adjustments"
         ],
         "summary": "Retrieve Adjustments",
-        "description": "<p class=\"western\">You can retrieve adjustments for a sales report by making a POST request to the Adjustments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/adjustments/filter</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/adjustments/filter</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">The constraints that would be used to filter out the adjustments must be included in the body of the request. In the example that is included, the “franchiseeNo” has been used as a ‘constraints’ criterion. Other acceptable values of constraints, that can be used to filter and retrieve sales reports, are explained in the following table:</p><img src=\"images/Create_Payments.png\">",
+        "description": "<p class=\"western\">You can retrieve adjustments for a sales report by making a POST request to the Adjustments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/adjustments/filter</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/adjustments/filter</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">The constraints that would be used to filter out the adjustments must be included in the body of the request. In the example that is included, the “franchiseeNo” has been used as a ‘constraints’ criterion. Other acceptable values of constraints, that can be used to filter and retrieve sales reports, are explained in the following table:</p><img src=\"images/Retrieve_Adjustments.png\">",
         "operationId": "Retrieve_Adjustments",
         "consumes": [
           "application/json"
@@ -2605,19 +2605,19 @@
                 },
                 "example": [
                   {
-  "constraints": {
-    "franchiseeNo": {
-      "clause": "EQUAL",
-      "values": [
-        "1951953135"
-      ]
-    }
-  },
-  "page": {
-    "pageId": "1",
-    "pageSize": "100"
-  }
-}
+                    "constraints": {
+                      "franchiseeNo": {
+                        "clause": "EQUAL",
+                        "values": [
+                          "1951953135"
+                        ]
+                      }
+                    },
+                    "page": {
+                      "pageId": "1",
+                      "pageSize": "100"
+                    }
+                  }
                 ]
               }
             }
@@ -2625,7 +2625,7 @@
         },
         "responses": {
           "200": {
-            "$ref": "#/components/responses/CreateAdjustmentResp"
+            "$ref": "#/components/responses/RetrieveAdjustmentResp"
           },
           "201": {
             "description": "Created"
@@ -2640,6 +2640,64 @@
             "description": "Not Found"
           }
         }
+      }
+    },
+     "/manage-finance/adjustments/type": {
+      "get": {
+        "tags": [
+          "Adjustments"
+        ],
+        "summary": "Adjustment Types",
+        "description": "<p class=\"western\">You can retrieve different adjustment types for a sales report by making a GET request to the Adjustments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/adjustments/type</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/adjustments/type</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a list of Adjustment Types that are available in the system</p><img src=\"images/Adjustment_Types.png\">",
+        "operationId": "Adjustment_Types",
+       
+        "produces": [
+          "application/json"
+        ],
+     "responses": {
+          "200": {
+            "$ref": "#/components/responses/AdjustmentTypesResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+        
+      }
+    },
+    "/manage-finance/adjustments/status": {
+      "get": {
+        "tags": [
+          "Adjustments"
+        ],
+        "summary": "Adjustments Status",
+        "description": "<p class=\"western\">You can retrieve the adjustment status for a sales report by making a GET request to the Adjustments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/adjustments/status</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/adjustments/status</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p class=\"western\">Performing the above mentioned steps would return a list of adjustment status that are available in the system along with their corresponding keys. The following table lists the different adjustment status along with their corresponding keys:</p><center><table width=\"762\" cellspacing=\"0\" cellpadding=\"7\"><colgroup><col width=\"228\"/> <col width=\"505\"/> </colgroup><tbody><tr valign=\"top\"><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"228\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Key</strong></span></p></td><td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"505\"><p class=\"western\"><span style=\"color: #ffffff;\"><strong>Adjustment Status</strong></span></p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>P</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Waiting for Approval</p></td></tr><tr valign=\"top\"><td width=\"228\"><p class=\"western\"><strong>A</strong></p></td><td width=\"505\"><p class=\"western\">Approved</p></td></tr><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>R</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Rejected</p><tr valign=\"top\"><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"><p class=\"western\"><strong>I</strong></p></td><td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"><p class=\"western\">Invoiced</p></td></tr><tr valign=\"top\"><td width=\"228\"><p class=\"western\"><strong>K</strong></p></td><td width=\"505\"><p class=\"western\">Waiting for Acknowledgement</p></td></tr></td></tr></tbody></table></center></p><img src=\"images/Adjustment_Status.png\">",
+        "operationId": "Adjustment_Types",
+       
+        "produces": [
+          "application/json"
+        ],
+     "responses": {
+          "200": {
+            "$ref": "#/components/responses/AdjustmentStatusResp"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+        
       }
     },
     "/manage-finance/payments/filter": {
@@ -5279,256 +5337,197 @@
         },
         "description": "Successful"
       },
-      "CreateAdjustmentResp": {
+      "RetrieveAdjustmentResp": {
         "content": {
           "application/json": {
             "example": {
-    "response": {
-        "data": [
-            {
-    "response": {
-        "data": [
-            {
-                "response": "Success",
-                "1199821203": {
-                    "reportNo": "241",
-                    "salesReportID": "1199821203",
-                    "franchiseeNo": "1951953135",
-                    "reportPeriodStart": "2020-01-01",
-                    "reportPeriodEnd": "2020-01-31",
-                    "reportSubmitDate": "2020-03-06 00:12:34",
-                    "dateReceived": "2020-03-06",
-                    "totalSales": "500.0",
-                    "reportStatus": "I",
-                    "reportType": "X",
-                    "franchiseRoyaltyID": "424620139",
-                    "versionID": "Flat percent 2015",
-                    "totalQuantity": "100.0",
-                    "financialItems": [
+                          "response": {
+                      "data": [
                         {
-                            "1": {
-                                "name": "Service 1",
-                                "calculationType": "(+)",
-                                "data": [
+                          "1199821203": {
+                            "reportNo": "241",
+                            "salesReportID": "1199821203",
+                            "franchiseeNo": "1951953135",
+                            "reportPeriodStart": "2020-01-01",
+                            "reportPeriodEnd": "2020-01-31",
+                            "reportSubmitDate": "2020-03-06 00:12:34",
+                            "dateReceived": "2020-03-06",
+                            "totalSales": "500.0",
+                            "reportStatus": "I",
+                            "reportType": "X",
+                            "franchiseRoyaltyID": "424620139",
+                            "versionID": "Flat percent 2015",
+                            "totalQuantity": "100.0",
+                            "financialItems": [
+                              {
+                                "1": {
+                                  "name": "Service 1",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 500.0,
-                                        "quantity": 100
+                                      "amount": 500,
+                                      "quantity": 100
                                     }
-                                ]
-                            },
-                            "1925589920": {
-                                "name": "Service 2",
-                                "calculationType": "(+)",
-                                "data": [
+                                  ]
+                                },
+                                "110353610": {
+                                  "name": "Product 1",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 0,
+                                      "quantity": 0
                                     }
-                                ]
-                            },
-                            "771657194": {
-                                "name": "Service 3",
-                                "calculationType": "(+)",
-                                "children": [
+                                  ]
+                                },
+                                "172558286": {
+                                  "name": "Product 2",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "247817332": {
-                                            "name": "Weekly Special",
-                                            "calculationType": "(+)",
-                                            "data": [
-                                                {
-                                                    "amount": 0.0,
-                                                    "quantity": 0
-                                                }
-                                            ]
-                                        }
+                                      "amount": 0,
+                                      "quantity": 0
                                     }
-                                ]
-                            },
-                            "1508280192": {
-                                "name": "Package 1",
-                                "calculationType": "(+)",
-                                "data": [
+                                  ]
+                                },
+                                "489950611": {
+                                  "name": "Adjustments",
+                                  "calculationType": "(-)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 0,
+                                      "quantity": 0
                                     }
-                                ]
-                            },
-                            "110353610": {
-                                "name": "Product 1",
-                                "calculationType": "(+)",
-                                "data": [
+                                  ]
+                                }
+                              }
+                            ],
+                            "nonFinancialItems": [
+                              {
+                                "100": {
+                                  "name": "Non Financial Category",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 0
                                     }
-                                ]
-                            },
-                            "172558286": {
-                                "name": "Product 2",
-                                "calculationType": "(+)",
-                                "data": [
+                                  ]
+                                },
+                                "1925589933": {
+                                  "name": "Average Transaction Value",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 0
                                     }
-                                ]
-                            },
-                            "1155069001": {
-                                "name": "Product 3",
-                                "calculationType": "(+)",
-                                "data": [
+                                  ]
+                                }
+                              }
+                            ],
+                            "finAddnlItems": [
+                              {
+                                "91768934": {
+                                  "name": "Printing",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 300
                                     }
-                                ]
-                            },
-                            "489950611": {
-                                "name": "Adjustments",
-                                "calculationType": "(-)",
-                                "data": [
+                                  ]
+                                },
+                                "1659664436": {
+                                  "name": "Co-op Fee",
+                                  "calculationType": "(+)",
+                                  "data": [
                                     {
-                                        "amount": 0.0,
-                                        "quantity": 0
+                                      "amount": 400
                                     }
-                                ]
+                                  ]
+                                }
+                              }
+                            ],
+                            "actionLogs": {
+                                                            "2144131743": {
+                                "salestasklogId": 2144131743,
+                                "userComments": "Approved",
+                                "userName": "FranConnect Administrator",
+                                "finSalestasklogsdate": "2020-03-06T09:43:54.000+0000",
+                                "finSalesTaskId": "Approved"
+                              }
                             }
+                          },
+                          "response": "Success"
                         }
-                    ],
-                    "nonFinancialItems": [
-                        {
-                            "100": {
-                                "name": "Non Financial Category",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589933": {
-                                "name": "Average Transaction Value",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589935": {
-                                "name": "New Leads",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589937": {
-                                "name": "Loyalty Program Enrollments",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1925589939": {
-                                "name": "Total Marketing Campaigns",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    "finAddnlItems": [
-                        {
-                            "91768934": {
-                                "name": "Printing",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 300.0
-                                    }
-                                ]
-                            },
-                            "425629981": {
-                                "name": "Training Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "602785080": {
-                                "name": "Tech Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "714608200": {
-                                "name": "Marketing Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1637569982": {
-                                "name": "Call Center Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 0.0
-                                    }
-                                ]
-                            },
-                            "1659664436": {
-                                "name": "Co-op Fee",
-                                "calculationType": "(+)",
-                                "data": [
-                                    {
-                                        "amount": 400.0
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    "actionLogs": {
-                        "2144131743": {
-                            "salestasklogId": 2144131743,
-                            "userComments": "Approved",
-                            "userName": "FranConnect Administrator",
-                            "finSalestasklogsdate": "2020-03-06T09:43:54.000+0000",
-                            "finSalesTaskId": "Approved"
-                        },
-                        "481697078": {
-                            "salestasklogId": 481697078,
-                            "userComments": "",
-                            "userName": "FranConnect Administrator",
-                            "finSalestasklogsdate": "2020-03-06T05:12:33.000+0000",
-                            "finSalesTaskId": "Added"
-                        }
-                    }
+                      ]
+              }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "AdjustmentTypesResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+                "data": [
+                  {
+                "X": {
+                    "key": "X",
+                    "name": "Adjustment Report",
+                    "description": ""
+                },
+                "M": {
+                    "key": "M",
+                    "name": "Royalty Report",
+                    "description": ""
                 }
             }
-        ],
-        "page": null
-    }
-}
-        ],
-        "page": null
-    }
-}
+                ],
+                "page": null
+              }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+      "AdjustmentStatusResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+                "data": [
+                  {
+                "P": {
+                    "key": "P",
+                    "name": "Waiting for Approval",
+                    "description": ""
+                },
+                "A": {
+                    "key": "A",
+                    "name": "Approved",
+                    "description": ""
+                },
+                "R": {
+                    "key": "R",
+                    "name": "Rejected",
+                    "description": ""
+                },
+                "I": {
+                    "key": "I",
+                    "name": "Invoiced",
+                    "description": ""
+                },
+                "K": {
+                    "key": "K",
+                    "name": "Waiting for Acknowledgement",
+                    "description": ""
+                }
+            }
+                ],
+                "page": null
+              }
+            }
           }
         },
         "description": "Successful"
