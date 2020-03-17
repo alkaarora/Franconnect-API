@@ -2671,12 +2671,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "franchiseeRoyaltyID": {
+                  "salesReportID": {
                     "type": "string"
                   },
-                  "royaltyType": {
-                    "type": "string"
-                  },
+                 
                   "franchiseeNo": {
                     "type": "string"
                   },
@@ -2787,6 +2785,142 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/CreateAdjustmentResp"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+     "/manage-finance/adjustments/{id}": {
+      "put": {
+        "tags": [
+          "Adjustments"
+        ],
+        "summary": "Update Adjustment",
+        "description": "<p class=\"western\">You can update adjustments for a sales report by making a PUT request to the Adjustments endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>PUT</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/adjustments/{id}</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/adjustments/{id}</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><img src=\"images/Create_Adjustments.png\">",
+        "operationId": "Update_Adjustments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "datalist",
+            "description": "ParameterType:ArrayList<Entity>",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          {
+            "name": "salesReportID",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": [
+                  {
+                    "data": [
+                      {
+                        "dateReceived": "2019-02-26",
+                        "acknowledgeSalesReport": "Yes",
+                        "financialItems": [
+                          {
+                            "1": {
+                              "name": "Service",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "500",
+                                  "quantity": "50"
+                                }
+                              ]
+                            },
+                            "24340465": {
+                              "name": "Test Sales Category (+)",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "200",
+                                  "quantity": "2"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "nonFinancialItems": [
+                          {
+                            "100": {
+                              "name": "Non Financial Category",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "200"
+                                }
+                              ]
+                            },
+                            "450294864": {
+                              "name": "Non-Fin Category",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "250"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "finAddnlItems": [
+                          {
+                            "450294861": {
+                              "name": "Additional Invoice Item Categ",
+                              "calculationType": "(+)",
+                              "data": [
+                                {
+                                  "amount": "300"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/UpdateAdjustmentResp"
           },
           "201": {
             "description": "Created"
@@ -5787,6 +5921,22 @@
                       "salesReportID": "1476675187",
                      
                    
+                    "response": "Success"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "description": "Successful"
+      },
+       "UpdateAdjustmentResp": {
+        "content": {
+          "application/json": {
+            "example": {
+              "response": {
+                "data": [
+                  {
                     "response": "Success"
                   }
                 ]
