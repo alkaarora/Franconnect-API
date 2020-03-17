@@ -2846,73 +2846,100 @@
                   }
                 },
                 "example": [
-                  {
-                    "data": [
+                  [
+   {
+      "data": [
+         {
+            "salesReportID": "1476675187",
+            "franchiseeNo":"501957516",
+            "dateReceived": "2020-02-24",
+           "financialItems": [
                       {
-                        "dateReceived": "2019-02-26",
-                        "acknowledgeSalesReport": "Yes",
-                        "financialItems": [
-                          {
-                            "1": {
-                              "name": "Service",
-                              "calculationType": "(+)",
-                              "data": [
+                        "1": {
+                            "name": "Service",
+                            "calculationType": "(+)",
+                            "data": [
                                 {
-                                  "amount": "500",
-                                  "quantity": "50"
+                                    "amount": "500",
+                                    "quantity": "10"
                                 }
-                              ]
-                            },
-                            "24340465": {
-                              "name": "Test Sales Category (+)",
-                              "calculationType": "(+)",
-                              "data": [
+                            ]
+                        },
+                       
+                        
+                      
+                      
+                        "162961615": {
+                            "name": "Testing category",
+                            "calculationType": "(+)",
+                            "data": [
                                 {
-                                  "amount": "200",
-                                  "quantity": "2"
+                                    "amount": "0",
+                                    "quantity": "0"
                                 }
-                              ]
-                            }
-                          }
-                        ],
-                        "nonFinancialItems": [
-                          {
-                            "100": {
-                              "name": "Non Financial Category",
-                              "calculationType": "(+)",
-                              "data": [
+                            ]
+                        }
+                    }
+                ],
+        "nonFinancialItems": [
+         {
+                        "100": {
+                            "name": "Non Financial Category",
+                            "calculationType": "(+)",
+                            "data": [
                                 {
-                                  "amount": "200"
+                                    "amount": "0"
                                 }
-                              ]
-                            },
-                            "450294864": {
-                              "name": "Non-Fin Category",
-                              "calculationType": "(+)",
-                              "data": [
+                            ]
+                        },                                                         "2004859949": {
+                            "name": "Non-Financial 2",
+                            "calculationType": "(+)",
+                            "data": [
                                 {
-                                  "amount": "250"
+                                    "amount": "0"
                                 }
-                              ]
-                            }
-                          }
-                        ],
-                        "finAddnlItems": [
-                          {
-                            "450294861": {
-                              "name": "Additional Invoice Item Categ",
-                              "calculationType": "(+)",
-                              "data": [
+                            ]
+                        },
+                                               "2004859951": {
+                            "name": "Non-Financial 3",
+                            "calculationType": "(+)",
+                            "data": [
                                 {
-                                  "amount": "300"
+                                    "amount": "0"
                                 }
-                              ]
-                            }
-                          }
-                        ]
-                      }
-                    ]
-                  }
+                            ]
+                        }
+                    }
+                ],
+
+
+                  "finAddnlItems": [
+                    {
+                        "818066578": {
+                            "name": "Test 1900",
+                            "calculationType": "(+)",
+                            "data": [
+                                {
+                                    "amount": "0"
+                                }
+                            ]
+                        },
+                        "1956795379": {
+                            "name": "Additional  Invoice 5",
+                            "calculationType": "(+)",
+                            "data": [
+                                {
+                                    "amount": "0"
+                                }
+                            ]
+                        }
+                    }
+                ]
+
+      }
+    ]
+  }
+]
                 ]
               }
             }
