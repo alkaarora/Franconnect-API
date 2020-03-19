@@ -1803,7 +1803,7 @@
           {
             "name": "franchiseeNo",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
@@ -1846,7 +1846,7 @@
           {
             "name": "franchiseeNo",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
@@ -1857,7 +1857,7 @@
           {
             "name": "reportPeriod",
             "in": "path",
-            "description": "ParameterType:String",
+            "description": "String",
             "required": false,
             "type": "string",
             "enum": [
@@ -1896,7 +1896,7 @@
           {
             "name": "franchiseeNo",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
@@ -1907,7 +1907,7 @@
           {
             "name": "reportPeriod",
             "in": "path",
-            "description": "ParameterType:String",
+            "description": "String",
             "required": false,
             "type": "string",
             "enum": [
@@ -1946,7 +1946,7 @@
           {
             "name": "franchiseeNo",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
@@ -1957,7 +1957,7 @@
           {
             "name": "reportPeriod",
             "in": "path",
-            "description": "ParameterType:String",
+            "description": "String",
             "required": false,
             "type": "string",
             "enum": [
@@ -2946,7 +2946,7 @@
           {
             "name": "franchiseeNo",
             "in": "path",
-            "description": "ParameterType:Integer",
+            "description": "Integer",
             "required": false,
             "type": "integer",
             "format": "int32",
