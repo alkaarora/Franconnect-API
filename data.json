@@ -140,7 +140,7 @@
       "name": "Tasks",
       "url": "tag/Tasks"
     },
-        {
+    {
       "displayName": "Email",
       "name": "Emails",
       "url": "tag/Emails"
@@ -194,6 +194,11 @@
       "displayName": "Payment",
       "name": "Payments",
       "url": "tag/Payments"
+    },
+     {
+      "displayName": "Adjustments",
+      "name": "Adjustments",
+      "url": "tag/Adjustments"
     },
     {
       "displayName": "Profit Loss",
